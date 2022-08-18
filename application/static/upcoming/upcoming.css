@@ -1,0 +1,118 @@
+.icon {
+  height: 25px;
+  width: auto;
+  margin-right: 3%;
+  cursor: pointer;
+}
+
+.numVotes {
+  margin-right: 3%;
+}
+
+.subText {
+  margin-bottom: 1%;
+}
+
+.projectHeader {
+  font-size: xx-large;
+}
+
+.projectContainer {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-style: solid;
+  border-color: #ced4da;
+  border-radius: 10px;
+  margin-bottom: 1%;
+}
+
+.projectDescription {
+  padding: 3%;
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.descriptionContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+}
+
+.projectedTime {
+  font-size: small;
+}
+
+.projectId {
+  display: none;
+}
+
+.up-arrow {
+  margin-right: 3%;
+}
+
+.down-arrow {
+  margin-left: 1%;
+}
+
+#upcomingDeleteBtn {
+  width: 4%;
+  max-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1%;
+}
+
+.arrow {
+  width: 20px;
+  height: auto;
+  fill: #ced4da;
+}
+
+.arrow:hover {
+  cursor: pointer;
+}
+
+.arrowContainer {
+  width: 100%;
+  padding: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sbm {
+  border-style: solid;
+  border-color: #2e3a46;
+  margin-bottom: 3%;
+}
+
+.pageHeader {
+  width: 80%;
+  background-color: #2e3a46;
+  padding: 0.5% 0 0.5% 0;
+  margin: 1% 0 1% 0;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 30px;
+}
+
+@media screen and (max-width: 800px) {
+  .projectContainer {
+    width: 80%;
+  }
+}

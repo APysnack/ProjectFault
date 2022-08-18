@@ -1,0 +1,73 @@
+.codeProjectLink {
+  color: black;
+  padding: 0.5em 1em 0.5em 1em;
+  width: 100%;
+}
+
+.codeProjectLink:hover {
+  text-decoration: none;
+  background-color: #2e3a46;
+  color: white;
+}
+
+.constructionContainer {
+  margin-top: 1%;
+  margin-bottom: 3%;
+  max-width: 40%;
+  background-color: black;
+  color: white;
+  padding: 3%;
+  border-radius: 7px;
+}
+
+.projectContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid black;
+  border-radius: 7px;
+}
+
+.projectDetails {
+  margin-top: 3%;
+}
+
+.projectHeader {
+  width: 100%;
+  background-color: #2e3a46;
+  text-align: center;
+  color: white;
+  padding: 2%;
+}
+
+.projectDetailsContainer {
+  padding: 5%;
+}
+
+.projectDetailsContainer:hover {
+  background-color: #ced4da;
+  color: black;
+}
+
+a.projectLink {
+  text-decoration: none;
+  color: #666666;
+}
+
+@media screen and (max-width: 1200px) {
+  .projectContainer {
+    width: 85%;
+    margin-bottom: 3%;
+  }
+  .projectLink {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .constructionContainer {
+    min-width: 85%;
+  }
+}

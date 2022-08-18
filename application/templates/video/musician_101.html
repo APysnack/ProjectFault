@@ -1,0 +1,194 @@
+{% extends "layout.html" %}
+{% block heading %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='video/video.css') }}">
+    <script defer src="{{ url_for('static', filename='video/musician101/musician101.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+<div class="pageContainer">
+    <div class="localDirectory">
+        <div class="localDirectoryContentContainer">
+            <img class="fileIcon" src="{{ url_for('static', filename='images/file.png') }}"></img>
+            <span class="directoryLinks"><a href="{{ url_for('main.media')}}">Media</a></span>
+            <span class="directoryLinks">></span>
+            <span class="directoryLinks"><a href="{{ url_for('main.video')}}">Videos</a></span>
+            <span class="directoryLinks">></span>
+            <span class="directoryLinks"><a href="{{ url_for('video.musician_101')}}">Music 101</a></span>
+        </div>
+    </div>
+    <div class="vidHeader">The Musician's 101</div>
+    <div class="promoContainer">
+        <div class="promoTextContainer">
+            <span class="promoTextHeader">OVER 8 HOURS OF CONTENT</span>
+            <span class="promoText" color="red"><b>Learn To:</b></span>
+            <div class="ptBullets">
+                <span class="promoText">Write</span>
+                <span class="promoText">Record</span>
+                <span class="promoText">Make Instrumentals</span>
+                <span class="promoText">Create Graphics</span>
+                <span class="promoText">Edit Music Videos</span>
+                <span class="promoText">Promote Your Music</span>
+            </div>
+            <span class="promoTextHeader">ALL 100% FREE!</span>
+        </div>
+        <iframe class="headVideo" width="560" height="315" src="https://www.youtube.com/embed/eM8W72UnRqY?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="vidDetails">
+        <span class="vidParagraph">This collection of videos was designed to be an educational guide for anyone with an interest in creating music. While there is a strong emphasis on hip hop, the Musician's 101 outlines how to record vocals, produce your own instrumental music, create graphics, edit your own videos, promote your content, and everything else necessary for an upcoming artist to begin creating any type of music of music they choose to. All in all it is over 8 hours of content. This course was designed for complete beginners, so you do not need any previous experience. My goal is not to make you an expert on any individual topic, but to give you an introduction to all of these fields and give you guidance on where to turn to continue mastering that subject. If you've already been making music for a while, some of this information may include things you already know, but I hope that there are at least a few new and ideas that are new to you.</span>
+    </div>
+
+    <div class="sectionContainer">
+        <div class="sectionHeader">Section 1: Introduction</div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 0: The Syllabus</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/Zrv0-UT8Jo4?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="sectionContainer">
+        <div class="sectionHeader">Section 2: Recording Basics</div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 1: Microphone Basics</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/73qWDF0xies?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 2: Recording and Digital Audio Workstations</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/rnkx5HQwsb4?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 3: Reaper General Workflow</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/sCEZ25PiY2o?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="sectionContainer">
+        <div class="sectionHeader">Section 3: Fundamentals</div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 4: Multisyllabic Rhyming</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/P3R8UXws4O8?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 5: Rhythm/Flow</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/1xufNitqFLM?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 6: Rhyme Schemes</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/t3gXuOHpI5U?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 7: Delivery</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/1QOvHHfU4Aw?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+
+    <div class="sectionContainer">
+        <div class="sectionHeader">Section 4: Advanced Writing Techniques</div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 8: Meaningful Content</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/bPmXK2eIiW0?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 9: Punchlines</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/KmxGi-mdtDo?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 10: Freestyling/A Brief History of Battle Rap (Bonus Content)</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/-XNPh3Ll6pE?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="sectionContainer">
+        <div class="sectionHeader">Section 5: Songwriting and Choruses</div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 11: Basics of Music Theory</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/skG2anY5q2E?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 12: Copying and Pasting Choruses in a DAW</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/ngyxDxkjOHU?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 13: Chorus-writing - Singing</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/IFLC_IYfkFQ?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 14: Chorus-writing - Rapping</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/mvatrps0mS0?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="sectionContainer">
+        <div class="sectionHeader">Section 6: Music Production</div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 15: Installing FL Studio</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/cRWNQK_2oIo?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 16: Introduction to FL Studio</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/BlV0yQVhvdY?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 17: Installing Drum Kits/VST's</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/8fJkuHSR-NU?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 18: Additional Notes on FL Studio</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/WMg1EkIGM60?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 19: Introduction to Mixing</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/r6SmFPIzxNI?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 20: Making a Beat - Workflow</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/G4SeqalV9zQ?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="sectionContainer">
+        <div class="sectionHeader">Section 7: Graphic Design</div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 21: Installing Fonts and Photoshop Brushes</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/7x7Iqr2XYP4?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 22: Intro to Photoshop I - The Boring Stuff</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/KP0vSW_k_-M?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 23: Intro to Photoshop II - The Fun Stuff</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/UobEATW2nw8?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="sectionContainer">
+        <div class="sectionHeader">Section 8: Music Videos</div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 24: Music Videos Part I - Cameras/DSLR's</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/u-1gh3s2qlY?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 25: Music Videos Part II - Basics of Video Editing</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/O8oiwAqbd50?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="sectionContainer">
+        <div class="sectionHeader">Section 9: Marketing</div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 26: Promotion and Distribution</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/zikUebTFJDs?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="sectionContainer">
+        <div class="sectionHeader">Section 10: Review</div>
+        <div class="rowContainer">
+            <div class="lectureRow">Lecture 27: 5 Key Takeaways</div>
+            <iframe class="lectureVideo" width="560" height="315" src="https://www.youtube.com/embed/6yV2Wdq0z_g?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+{% endblock %}
+  

@@ -1,0 +1,107 @@
+#mediaListRow {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 3%;
+}
+
+.mediaPlayerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 2%;
+  background-color: #282828;
+  border-radius: 7px;
+}
+
+.songRowContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  background-color: #2e3a46;
+  border-radius: 7px;
+  margin-bottom: 1%;
+  border: 0.25px solid black;
+  padding: 2% 3% 2% 3%;
+}
+
+.mpText {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: white;
+  font-size: small;
+}
+
+.songPageBtn {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: white;
+  background-image: linear-gradient(to top, #1c375c 0%, #537895 100%);
+  border-radius: 30px;
+  border: 0.25px solid black;
+  font-weight: bold;
+  font-size: small;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5% 10% 5% 10%;
+}
+
+.songRowContainer:hover {
+  background-color: #df2500;
+  cursor: pointer;
+}
+
+.mpHeader {
+  margin-bottom: 5%;
+  font-size: x-large;
+}
+
+.cellContainer {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonCell {
+  margin-right: 2%;
+}
+
+@media (max-width: 1400px) {
+  .enumeration {
+    display: none;
+  }
+  .cellContainer {
+    width: 33%;
+  }
+  .downloadBtn {
+    display: none;
+  }
+  .songPageBtn {
+    padding: 3% 4% 3% 4%;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .mediaPlayerContainer {
+    width: 90%;
+  }
+  .songPageBtn {
+    padding: 0;
+  }
+  .cellContainer {
+    width: 50%;
+  }
+  .superfluous {
+    display: none;
+  }
+  .songPageBtn {
+    padding: 3% 4% 3% 4%;
+    border-radius: 4px;
+  }
+}

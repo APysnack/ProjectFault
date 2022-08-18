@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+{% block heading %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='audio/audioPlayer.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='audio/audioGenre.css') }}">
+<script defer src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script defer src="{{ url_for('static', filename='like.js') }}"></script>
+<script defer src="{{ url_for('static', filename='audio/audioPlayer.js') }}"></script>
+<script defer src="{{ url_for('static', filename='audio/audioGenre.js') }}"></script>
+{% endblock %}
+
+
+{% block body %}
+    <div class="pageContainer">
+        <div class="localDirectory">
+            <div class="localDirectoryContentContainer">
+                <img class="fileIcon" src="{{ url_for('static', filename='images/file.png') }}"></img>
+                <span class="directoryLinks"><a href="{{ url_for('main.media')}}">Media</a></span>
+                <span class="directoryLinks">></span>
+                <span class="directoryLinks"><a href="{{ url_for('main.audio')}}">Audio</a></span>
+                <span class="directoryLinks">></span>
+                {% if genre == 'instrumental' %}
+                    <span class="directoryLinks"><a href="{{ url_for('audio.instrumental')}}">Instrumentals</a></span>
+                {% elif genre == 'alternative' %}
+                    <span class="directoryLinks"><a href="{{ url_for('audio.alternative')}}">Indie/Alt</a></span>
+                {% elif genre == 'indie_rap' %}
+                    <span class="directoryLinks"><a href="{{ url_for('audio.indie_rap')}}">Indie Rap</a></span>
+                {% else %}
+                    <span class="directoryLinks"><a href="{{ url_for('audio.hip_hop')}}">Hip Hop</a></span>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if genre == 'instrumental' %}
+            <span id="doc_title" title="audio/instrumental"></span>
+            <span id="page_title" title="audio/instrumental"></span>
+        {% elif genre == 'alternative' %}
+            <span id="doc_title" title="audio/alternative"></span>
+            <span id="page_title" title="audio/alternative"></span>
+        {% elif genre == 'indie_rap' %}
+            <span id="doc_title" title="audio/indie-rap"></span>
+            <span id="page_title" title="audio/indie-rap"></span>
+        {% else %}
+            <span id="doc_title" title="audio/hip-hop"></span>
+            <span id="page_title" title="audio/hip-hop"></span>
+        {% endif %}
+
+        {% if audios %}
+        <div class="songsContainer">
+                {% for audio in audios %}
+                <section class="audioContainer">
+                        <div class="smallLogoContainer">
+                            <svg class="smallLogo" viewBox="-23 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="m236.894531 205c-28.125 0-51 22.878906-51 51s22.878907 51 51 51c28.121094 0 51-22.878906 51-51s-22.878906-51-51-51zm0 0"/><path d="m64 318.707031c0-17.644531-14.355469-32-32-32s-32 14.355469-32 32 14.355469 32 32 32 32-14.355469 32-32zm0 0"/><path d="m415.996094 256c5.097656-5.621094 9.886718-11.257812 14.316406-16.890625 34.382812-43.691406 44.425781-83.152344 28.285156-111.109375-16.136718-27.957031-55.332031-38.988281-110.363281-31.058594-34.136719 4.917969-72.378906 16.734375-111.316406 34.121094-20.523438-9.167969-40.851563-16.777344-60.488281-22.648438 1.953124-5.957031 4.03125-11.707031 6.238281-17.222656 12.03125-30.074218 27.105469-50.632812 42.042969-58.085937 2.984374-12.847657 9.972656-24.175781 19.578124-32.59375-2.449218-.335938-4.917968-.511719-7.398437-.511719-32.28125 0-61.429687 28.429688-82.078125 80.050781-2.660156 6.65625-5.148438 13.621094-7.46875 20.847657-7.417969-1.605469-14.695312-2.933594-21.789062-3.957032-55.023438-7.925781-94.21875 3.101563-110.359376 31.058594-16.140624 27.957031-6.097656 67.417969 28.28125 111.109375 21.332032 27.109375 50.671876 54.328125 85.203126 79.359375 2.328124 22.351562 5.898437 43.753906 10.632812 63.6875-6.136719 1.289062-12.15625 2.363281-18.035156 3.210938-32.019532 4.613281-57.335938 1.847656-71.269532-7.335938-5.699218 1.734375-11.746093 2.679688-18.007812 2.679688-7.015625 0-13.753906-1.191407-20.046875-3.347657.933594 2.28125 2.007813 4.496094 3.242187 6.636719 12.726563 22.046875 39.78125 33.566406 77.640626 33.566406 10.152343 0 21.085937-.832031 32.722656-2.507812 7.09375-1.023438 14.371094-2.351563 21.789062-3.957032 2.316406 7.226563 4.804688 14.195313 7.46875 20.847657 20.644532 51.621093 49.796875 80.050781 82.074219 80.050781 32.28125 0 61.433594-28.429688 82.082031-80.050781 12.808594-32.03125 21.71875-71.050781 26.132813-113.472657 18.191406-13.1875 34.941406-26.980468 49.835937-41.046874 4.1875 4.671874 8.125 9.347656 11.796875 14.011718 20.070313 25.507813 30.332031 48.886719 29.269531 65.558594 9.273438 8.710938 15.871094 20.226562 18.421876 33.1875 1.523437-1.964844 2.921874-4.023438 4.167968-6.1875 16.144532-27.957031 6.097656-67.414062-28.28125-111.109375-4.433594-5.632813-9.222656-11.269531-14.320312-16.890625zm-63.480469-129.363281c40.84375-5.886719 70.789063.230469 80.101563 16.363281 9.316406 16.132812-.359376 45.125-25.878907 77.558594-3.671875 4.664062-7.609375 9.34375-11.796875 14.011718-28.351562-26.769531-63.402344-52.5625-102.347656-75.042968-6.585938-3.800782-13.199219-7.453125-19.820312-10.964844 28.03125-10.867188 55.113281-18.378906 79.742187-21.925781zm-285.460937 93.921875c-25.519532-32.429688-35.191407-61.425782-25.875-77.558594 9.3125-16.132812 39.253906-22.25 80.101562-16.363281 5.878906.84375 11.898438 1.917969 18.035156 3.207031-9.011718 37.9375-13.824218 81.1875-13.824218 126.15625 0 7.601562.144531 15.152344.417968 22.640625-23.425781-18.835937-43.472656-38.53125-58.855468-58.082031zm88.4375 35.441406c0-42.53125 4.480468-83.230469 12.863281-118.707031 34.917969 10.476562 72.40625 26.949219 109.238281 48.214843 36.835938 21.261719 69.84375 45.488282 96.378906 70.492188-26.535156 25-59.542968 49.230469-96.378906 70.492188-36.832031 21.265624-74.320312 37.738281-109.238281 48.214843-8.386719-35.476562-12.863281-76.175781-12.863281-118.707031zm135.625 164.808594c-15.328126 38.316406-35.597657 61.191406-54.226563 61.191406-18.625 0-38.898437-22.875-54.222656-61.191406-2.207031-5.515625-4.285157-11.265625-6.238281-17.222656 37.359374-11.167969 77.21875-28.628907 116.160156-51.113282 6.589844-3.800781 13.058594-7.703125 19.410156-11.683594-4.601562 29.707032-11.640625 56.914063-20.882812 80.019532zm0 0"/><path d="m393.601562 370.164062c-17.648437 0-32 14.355469-32 32 0 17.644532 14.351563 32 32 32 17.644532 0 32-14.355468 32-32 0-17.644531-14.359374-32-32-32zm0 0"/><path d="m285.09375 79.132812c17.644531 0 32-14.355468 32-32 0-17.644531-14.355469-32-32-32s-32 14.355469-32 32c0 17.644532 14.355469 32 32 32zm0 0"/></svg>
+                        </div>
+                        <span class="songTitle">{{ audio.title }}</span>
+                        <figure class="imageBackground" data-song="{{ audio.id }}" data-genre="{{ genre }}">
+                            <div class="songModal">
+                                <span class="sModalText">More Details</span>
+                            </div>
+                            <img class="audio-img" src="{{ url_for('static', filename='audio/audio-images/' + audio.image_file ) }}">
+                        </figure>
+                        <source src="{{ url_for('static', filename='audio/audio-files/' + audio.url ) }}" type="audio/ogg">
+                        <div class="detailContainer">
+                            <span class="songArtist">By: {{ audio.artist }}</span>
+                            {% if current_user.is_authenticated %}
+                                <div class="likeContainer">
+                                    <span class="likeCaption"></span>
+                                    <img class="likeButton" name="{{ loop.index - 1 }}" onclick="likeToggle(name)"></img>
+                                </div>
+                            {% endif %}
+                            <div class="songActionContainer songPlayBtn" data-song_position="{{ loop.index - 1 }}">
+                                <span class="songActionText">PLAY SONG</span>
+                            </div>
+                            <div class="songActionContainer">
+                                <a class="songActionText" download href="{{ url_for('static', filename='audio/audio-files/' + audio.url ) }}">
+                                    <span>DOWNLOAD</span>
+                                    <img class="songActionIcon" src="{{ url_for('static', filename='images/download.png')}}">
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                {% endfor %}
+        </div>
+        <div id="audioPlayerContainer">
+            <div id="audioPlayer">
+                <div id="controlsContainer">
+                    <div id="internalControls">
+                        <div id="songInfoContainer">
+                            <span id="songTitle"></span>
+                            <span id="songArtist"></span>
+                        </div>
+                        <div id="progressBarNormalizer">
+                            <div id="progressContainer">
+                                <div id="progressBar"></div>
+                            </div>
+                        </div>
+                        <audio src="" id="current_song"></audio>
+                        <div id="buttonContainer">
+                            <div class="buttonWrap" id="prevAudioBtn">
+                                <svg id="prevAudioSvg" enable-background="new 0 0 13.68 13.68" viewBox="0 0 13.68 13.68" xmlns="http://www.w3.org/2000/svg"><path d="m13.268 1.662c-.247-.128-.548-.106-.775.06l-4.787 3.475v-1.251-1.617c0-.283-.159-.538-.411-.667-.248-.128-.549-.106-.776.06l-6.213 4.511c-.191.141-.306.365-.306.605s.114.465.306.604l6.213 4.512c.128.094.283.145.439.145.114 0 .23-.03.337-.083.252-.129.411-.388.411-.665v-1.619-1.254l4.787 3.477c.129.094.283.145.439.145.113 0 .229-.03.336-.083.253-.129.412-.388.412-.665v-1.619-5.786-1.618c0-.282-.159-.538-.412-.667z"/></svg>
+                            </div>
+                            <div class="buttonWrap playPause" id="playAudioBtn">
+                                <svg id="playAudioSvg" enable-background="new 0 0 163.861 163.861" height="163.861" viewBox="0 0 163.861 163.861" width="163.861" xmlns="http://www.w3.org/2000/svg"><path d="m34.857 3.613c-14.773-8.474-26.75-1.532-26.75 15.493v125.637c0 17.042 11.977 23.975 26.75 15.509l109.813-62.977c14.778-8.477 14.778-22.211 0-30.686z"/></svg>
+                            </div>
+                            <div class="buttonWrap playPause" id="pauseAudioBtn">
+                                <svg id="pauseAudioSvg" height="327pt" viewBox="-45 0 327 327" width="327pt" xmlns="http://www.w3.org/2000/svg"><path d="m158 0h71c4.417969 0 8 3.582031 8 8v311c0 4.417969-3.582031 8-8 8h-71c-4.417969 0-8-3.582031-8-8v-311c0-4.417969 3.582031-8 8-8zm0 0"/><path d="m8 0h71c4.417969 0 8 3.582031 8 8v311c0 4.417969-3.582031 8-8 8h-71c-4.417969 0-8-3.582031-8-8v-311c0-4.417969 3.582031-8 8-8zm0 0"/></svg>
+                            </div>
+                            <div class="buttonWrap" id="nextAudioBtn">
+                                <svg id="nextAudioSvg" enable-background="new 0 0 18.909 18.909" viewBox="0 0 18.909 18.909" xmlns="http://www.w3.org/2000/svg"><g></g><path d="m10.193 8.311-8.306-6.597c-.403-.203-.884-.181-1.268.052-.386.232-.619.646-.619 1.09v13.198c0 .443.233.856.619 1.089.208.126.444.19.683.19.201 0 .401-.046.586-.138l8.306-6.599c.4-.376.716-.658.716-1.143s-.269-.746-.717-1.142z"/><path d="m18.193 8.311-8.306-6.597c-.403-.203-.885-.181-1.269.052-.386.232-.619.646-.619 1.09v13.198c0 .443.233.856.619 1.089.208.126.444.19.683.19.201 0 .401-.046.586-.138l8.306-6.599c.4-.376.716-.658.716-1.143s-.268-.746-.716-1.142z"/></svg>        
+                            </div>
+                        </div>
+                    </div>
+                    <img id="audioPlayerThumb" src="{{ url_for('static', filename='audio/audio-images/' + audios[0].image_file ) }}">
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}
+  

@@ -1,0 +1,246 @@
+#newEntryForm {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.newEntryContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#entryListInnerContainer {
+  border: solid black 3px;
+  height: 40vh;
+  width: 25vw;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 3%;
+}
+
+#entryListOuterContainer {
+  margin-left: 5%;
+}
+
+#entryList {
+  list-style-type: none;
+}
+
+#entryHeader {
+  width: 100%;
+  background-color: #2e3a46;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  margin-bottom: 3%;
+  color: white;
+}
+
+.entryRow {
+  margin-top: 3%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.deleteEntryBtn {
+  padding: 1% 2% 1% 2%;
+  background-color: #df2500;
+  color: white;
+  border-radius: 7px;
+  border: 1px black solid;
+  box-shadow: 1px 1px #888888;
+}
+
+.deleteEntryBtn:hover {
+  cursor: pointer;
+}
+
+li,
+.entryNum {
+  font-size: x-large;
+}
+
+#generateResultsBtn {
+  margin-top: 3%;
+  margin-bottom: 3%;
+  padding: 1% 2% 1% 2%;
+  background-color: #df2500;
+  color: white;
+  border-radius: 7px;
+  border: 1px black solid;
+  box-shadow: 1px 1px #888888;
+  float: right;
+}
+
+#generateResultsBtn:hover {
+  cursor: pointer;
+}
+
+#userActionContainer {
+  height: 40vh;
+  width: 25vw;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.dropDownContainer {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#generator {
+  padding: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  width: 100%;
+}
+
+#newNameSubmit {
+  margin-top: 3%;
+  background-color: #2e3a46;
+  color: white;
+  padding: 0.5em;
+  border: none;
+  border-radius: 7px;
+}
+
+#newNameSubmit:hover {
+  cursor: pointer;
+}
+
+#typeDescriptionContainer {
+  margin-top: 3%;
+  padding: 3%;
+  border: solid 3px #ced4da;
+  border-radius: 7px;
+}
+
+#resultsModal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  width: 70vw;
+  height: 70vh;
+  top: 5%;
+  border: 2px black solid;
+  border-radius: 7px;
+}
+
+#closeModal {
+  margin-bottom: 5%;
+  font-size: small;
+  color: #df2500;
+  border: #df2500 solid 1px;
+  border-radius: 7px;
+  padding: 0.5% 2% 0.5% 2%;
+}
+
+#closeModal:hover {
+  cursor: pointer;
+  background-color: #df2500;
+  color: white;
+}
+
+.modal-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.congratsText {
+  font-size: 5em;
+  font-weight: bold;
+  background-image: linear-gradient(
+    to left,
+    violet,
+    indigo,
+    blue,
+    green,
+    yellow,
+    orange,
+    red
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.congratsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#modalHeader {
+  margin-top: 3%;
+  background-color: #2e3a46;
+  color: white;
+  padding: 2% 5% 2% 5%;
+  border-radius: 7px;
+  width: 70%;
+  text-align: center;
+}
+
+#internalText {
+  font-size: large;
+}
+
+#numItemsVar,
+#winnerVar {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 800px) {
+  .newEntryContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #userActionContainer {
+    width: 95%;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+  }
+
+  #entryListOuterContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 5%;
+    width: 90%;
+    margin-top: 2%;
+  }
+
+  #entryListInnerContainer {
+    width: 100%;
+  }
+
+  .congratsText {
+    font-size: 2em;
+  }
+
+  .modal-content {
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+  }
+
+  #closeModal {
+    padding: 2% 3% 2% 3%;
+  }
+}

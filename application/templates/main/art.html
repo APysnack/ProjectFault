@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block heading %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='construction.css') }}">
+{% endblock %}
+
+
+{% block body %}
+    <div class="pageContainer">
+        <img src="{{url_for('static', filename='images/construction.png')}}">
+        <h1 class="constructionHead">Not So Fast</h1>
+        <div class="constructionMsg">We're sorry, this page is currently still under construction. Please check back in the future, and don't forget to bring moar cheezburgers, we're hard at work here</div>
+        <div class="constructionMsg">In the meantime, you can check out these links: 
+            
+            <div class="linkContainer">
+                <a href="{{ url_for('artwork.digital_art') }}" class="homeNavLink">Graphic Designs</a>
+                <a href="{{ url_for('artwork.photography') }}" class="homeNavLink">Photos</a>
+            </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block heading %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='forum/forum.css') }}">
+{% endblock %}
+
+
+{% block body %}
+<div class="pageContainer" id="forumContainer">
+    <div class="forumPosts">
+        <div class="fHeaderContainer">
+            <div class="forumButtonContainer">
+                <a class="forumActionContainer" href="{{ url_for('posts.new_post') }}">
+                    <div>NEW POST</div>
+                </a>
+            </div>
+            <div class="latestPostsHeader">Latest forum posts</div>
+        </div>
+        <table class="forum">
+            <tr class="forumTblRow">
+                <th class="forumHeader">Avatar</th>
+                <th class="forumHeader titleMeta">Title</th>
+                <th class="forumHeader authorMeta">Author</th>
+                <th class="forumHeader dateMeta rmClass">Date</th>
+                <th class="forumHeader rmClass">Replies</th>
+            </tr>
+            {% for f_post in forum_posts.items %}
+            <tr class="forumTblRow">
+                <td class="forumThreadMeta imgMeta"><div class="avyWrap">
+                    <img class="authorImg" src="{{ url_for('static', filename='images/' + f_post.author.image_file) }}">
+                </div></td>
+                <td class="forumThreadMeta titleMeta"><a href="{{ url_for('posts.post', post_id=f_post.id) }}">{{ f_post.title }}</a></td>
+                <td class="forumThreadMeta authorMeta"><a href="{{ url_for('users.user_posts', username=f_post.author.username) }}">{{ f_post.author.username }}</a></td>
+                <td class="forumThreadMeta dateMeta rmClass">{{ f_post.date_posted.strftime('%m-%d-%y') }}</td>
+                <td class="forumThreadMeta tagMeta rmClass">{{ f_post.getNumComments() }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="paginationContainer">
+            {% for page_num in forum_posts.iter_pages(left_edge=3, right_edge=2, left_current=0, right_current=2) %}
+            {% if page_num %}
+                {% if forum_posts.page == page_num %}
+                    <a class="paginationButton paginationActive" href="{{ url_for('users.account', page=page_num) }}">{{ page_num }}</a>
+                {% else %}
+                    <a class="paginationButton paginationInactive" href="{{ url_for('users.account', page=page_num) }}">{{ page_num }}</a>
+            {% endif %}
+            {% else%}
+            ...
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+  

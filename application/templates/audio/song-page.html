@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+{% block heading %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='audio/audioGenre.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='audio/audioPlayer.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='audio/song.css') }}">
+    <script defer src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script defer src="{{ url_for('static', filename='like.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='audio/audioPlayer.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+        <div class="pageContainer" id="songPgContainer"> 
+            {% if song.tag == 'instrumental' %}
+                <span id="doc_title" title="audio/instrumental"></span>
+                <span id="page_title" title="audio/instrumental"></span>
+            {% elif song.tag == 'alternative' %}
+                <span id="doc_title" title="audio/alternative"></span>
+                <span id="page_title" title="audio/alternative"></span>
+            {% elif song.tag == 'indie-rap' %}
+                <span id="doc_title" title="audio/indie-rap"></span>
+                <span id="page_title" title="audio/indie-rap"></span>
+            {% else %}
+                <span id="doc_title" title="audio/hip-hop"></span>
+                <span id="page_title" title="audio/hip-hop"></span>
+            {% endif %}
+            <div class="localDirectory">
+                <div class="localDirectoryContentContainer">
+                    <img class="fileIcon" src="{{ url_for('static', filename='images/file.png') }}"></img>
+                    <span class="directoryLinks"><a href="{{ url_for('main.media')}}">Media</a></span>
+                    <span class="directoryLinks">></span>
+                    <span class="directoryLinks"><a href="{{ url_for('main.audio')}}">Audios</a></span>
+                    <span class="directoryLinks">></span>
+                        {% if song.tag == 'instrumental' %}
+                            <span class="directoryLinks"><a href="{{ url_for('audio.instrumental')}}">Instrumentals</a></span>
+                        {% elif song.tag == 'alternative' %}
+                            <span class="directoryLinks"><a href="{{ url_for('audio.alternative')}}">Alternative</a></span>
+                        {% elif song.tag == 'indie-rap' %}
+                            <span class="directoryLinks"><a href="{{ url_for('audio.indie_rap')}}">Indie Rap</a></span>
+                        {% else %}
+                            <span class="directoryLinks"><a href="{{ url_for('audio.hip_hop')}}">Hip Hop</a></span>
+                        {% endif %}
+                    <span class="directoryLinks">></span>
+                    <span class="directoryLinks"><a href="{{ url_for('audio.song_page', tag=song.tag, id=song.id) }}">{{ song.title }}</a></span>
+                </div>
+            </div>
+            <div id="songHub">
+                <div id="headerContainer">
+                    <img id="shImage" src="{{ url_for('static', filename='audio/audio-images/' + song.image_file ) }}">
+                    <div id="shTextContainer">
+                        <div class="shText" id="shTitle">{{ song.title }}</div>
+                        <div class="shText" id="shArtist">By: {{ song.artist }}</div>
+                        <div class="shText" id="shTag">{{ song.tag }}</div>
+                        <div class="songActionContainer" title="{{ position }}" onclick="playTrack(title)">
+                            <span class="songActionText">PLAY SONG</span>
+                        </div>
+                        <a class="songActionContainer" download href="{{ url_for('static', filename='audio/audio-files/' + song.url ) }}">
+                            <span class="songActionText">DOWNLOAD</span>
+                            <img class="songActionIcon" src="{{ url_for('static', filename='images/download.png')}}">
+                        </a>
+                        {% if current_user.is_authenticated %}
+                        <div class="likeContainer">
+                            <span class="likeCaption" style="color:white"></span>
+                            <img class="likeButton" style="color:white" name="{{ position }}" onclick="likeToggle(name)"></img>
+                        </div>
+                        {% endif %}
+                        {% if current_user.rank == 'admin' %}
+                        <div class="adminBtnContainer">
+                            <a class="updateContainer" href="{{ url_for('audio.updateSong', song_id=song.id)}}">
+                                <span>Update</span>
+                            </a>
+                            <div class="deleteContainer">
+                                <div class='deleteButton' data-dbType='Audio' data-dbObject='{{ song.id }}'>Delete</div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div id="lyricsContainer"></div>
+                <div class="shText" id="shLyrics">{{ song.lyrics|safe }}</div>
+            </div>
+            <div id="audioPlayerContainer">
+                <div id="audioPlayer">
+                    <div id="controlsContainer">
+                        <div id="internalControls">
+                            <div id="songInfoContainer">
+                                <span id="songTitle"></span>
+                                <span id="songArtist"></span>
+                            </div>
+                            <div id="progressBarNormalizer">
+                                <div id="progressContainer">
+                                    <div id="progressBar"></div>
+                                </div>
+                            </div>
+                            <audio src="{{ song.url }}" id="current_song"></audio>
+                            <div id="buttonContainer">
+                                <div class="buttonWrap" id="prevAudioBtn">
+                                    <svg id="prevAudioSvg" enable-background="new 0 0 13.68 13.68" viewBox="0 0 13.68 13.68" xmlns="http://www.w3.org/2000/svg"><path d="m13.268 1.662c-.247-.128-.548-.106-.775.06l-4.787 3.475v-1.251-1.617c0-.283-.159-.538-.411-.667-.248-.128-.549-.106-.776.06l-6.213 4.511c-.191.141-.306.365-.306.605s.114.465.306.604l6.213 4.512c.128.094.283.145.439.145.114 0 .23-.03.337-.083.252-.129.411-.388.411-.665v-1.619-1.254l4.787 3.477c.129.094.283.145.439.145.113 0 .229-.03.336-.083.253-.129.412-.388.412-.665v-1.619-5.786-1.618c0-.282-.159-.538-.412-.667z"/></svg>
+                                </div>
+                                <div class="buttonWrap playPause" id="playAudioBtn">
+                                    <svg id="playAudioSvg" enable-background="new 0 0 163.861 163.861" height="163.861" viewBox="0 0 163.861 163.861" width="163.861" xmlns="http://www.w3.org/2000/svg"><path d="m34.857 3.613c-14.773-8.474-26.75-1.532-26.75 15.493v125.637c0 17.042 11.977 23.975 26.75 15.509l109.813-62.977c14.778-8.477 14.778-22.211 0-30.686z"/></svg>
+                                </div>
+                                <div class="buttonWrap playPause" id="pauseAudioBtn">
+                                    <svg id="pauseAudioSvg" height="327pt" viewBox="-45 0 327 327" width="327pt" xmlns="http://www.w3.org/2000/svg"><path d="m158 0h71c4.417969 0 8 3.582031 8 8v311c0 4.417969-3.582031 8-8 8h-71c-4.417969 0-8-3.582031-8-8v-311c0-4.417969 3.582031-8 8-8zm0 0"/><path d="m8 0h71c4.417969 0 8 3.582031 8 8v311c0 4.417969-3.582031 8-8 8h-71c-4.417969 0-8-3.582031-8-8v-311c0-4.417969 3.582031-8 8-8zm0 0"/></svg>
+                                </div>
+                                <div class="buttonWrap" id="nextAudioBtn">
+                                    <svg id="nextAudioSvg" enable-background="new 0 0 18.909 18.909" viewBox="0 0 18.909 18.909" xmlns="http://www.w3.org/2000/svg"><g></g><path d="m10.193 8.311-8.306-6.597c-.403-.203-.884-.181-1.268.052-.386.232-.619.646-.619 1.09v13.198c0 .443.233.856.619 1.089.208.126.444.19.683.19.201 0 .401-.046.586-.138l8.306-6.599c.4-.376.716-.658.716-1.143s-.269-.746-.717-1.142z"/><path d="m18.193 8.311-8.306-6.597c-.403-.203-.885-.181-1.269.052-.386.232-.619.646-.619 1.09v13.198c0 .443.233.856.619 1.089.208.126.444.19.683.19.201 0 .401-.046.586-.138l8.306-6.599c.4-.376.716-.658.716-1.143s-.268-.746-.716-1.142z"/></svg>        
+                                </div>
+                            </div>
+                        </div>
+                        <img id="audioPlayerThumb" src="{{ url_for('static', filename='audio/audio-images/' + song.image_file ) }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+  
+  

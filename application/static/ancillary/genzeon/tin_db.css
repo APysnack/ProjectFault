@@ -1,0 +1,192 @@
+.optionContainer {
+  margin: 1% 0 1% 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 70%;
+}
+
+.divider {
+  border-top: 3px solid #ced4da;
+  width: 70%;
+}
+
+.optionBtn {
+  background-color: #2e3a46;
+  padding: 1% 2% 1% 2%;
+  border-radius: 7px;
+  color: white;
+}
+
+.optionBtn:hover {
+  cursor: pointer;
+}
+
+a.optionBtn {
+  color: white;
+  text-decoration: none;
+}
+
+#addTINInput {
+  width: 40%;
+  margin-bottom: 1%;
+}
+
+#addSubmit {
+  margin-top: 1%;
+}
+.addTINForm {
+  margin-top: 2%;
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 60%;
+}
+
+#searchTINInput {
+  width: 50%;
+}
+
+.addDocForm {
+  margin: 2% 0% 5% 0%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  flex-direction: column;
+}
+
+.inputRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.inputLabel {
+  width: 10%;
+  font-size: large;
+  font-weight: bold;
+}
+
+.inputBox {
+  width: 50%;
+  justify-content: flex-end;
+}
+
+.textFields {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+#tinSelector {
+  width: 50%;
+  background-color: #ffffe0;
+}
+
+.modifyColBtn {
+  background-color: #2e3a46;
+  width: 10%;
+  margin-left: 3%;
+  color: white;
+  font-size: xx-large;
+  border-radius: 7px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.modifyColBtn:hover {
+  cursor: pointer;
+}
+
+.colInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 70%;
+  padding: 1%;
+  border: 1px solid black;
+  margin-top: 1%;
+  border-radius: 7px;
+}
+
+.addColBtnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+}
+
+.columnSpace {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#docSubmit {
+  margin-top: 3%;
+}
+
+.noSelect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.tinContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 1px black solid;
+  padding: 1%;
+  border-radius: 7px;
+  margin: 1% 2% 0 0;
+}
+
+.childContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.TINHeader {
+  font-size: large;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+}
+
+.tinListContainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+}
+
+.docIcon {
+  width: 20px;
+  margin-right: 0.5%;
+}
+
+.searchContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 2% 0 3% 0;
+}

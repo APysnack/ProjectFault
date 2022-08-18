@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+{% block heading %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='ancillary/donate/donate.css') }}">
+    <script defer src="{{ url_for('static', filename='ancillary/donate/donate.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+<div class="pageContainer">
+  <div class="pageInnerContainer">
+    <div class="sideCol">
+      <div class="donationDirectoryContainer">
+        <div class="localDirectory" id="donationDirectory">
+        <div class="localDirectoryContentContainer">
+            <img class="fileIcon" src="{{ url_for('static', filename='images/file.png') }}"></img>
+            <span class="directoryLinks"><a href="{{ url_for('main.media')}}">Media</a></span>
+            <span class="directoryLinks">></span>
+            <span class="directoryLinks"><a href="{{ url_for('main.miscellaneous')}}">Misc</a></span>
+            <span class="directoryLinks">></span>
+            <span class="directoryLinks"><a href="{{ url_for('ancillary.donate')}}">Donate</a></span>
+        </div>
+      </div>
+    </div>
+    <form class="paypalForm" action="https://www.paypal.com/donate" method="post" target="_top">
+      <input type="hidden" name="hosted_button_id" value="D3VVGTFYL8D9J" />
+      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+      <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+    </form>
+      <div class="infoContainer">
+        <div class="infoHeader">Please Donate</div>
+        <div class="infoDetailsContainer">
+          <div class="infoDetails">I love working on new projects and will continue to deliver free content to users like you as frequently as possible. However, all projects cost time and money to put together, and the more funding received, the more I can focus on completing these projects in a timely manner with higher quality results.</div>
+          <div class="infoDetails">Platinum members may make project requests pertaining to Programming, Graphic Design, Music, Comedy, or any subject you can conceive.</div>
+          <div class="infoDetails"><b>Please Note:</b> Platinum members may <b>suggest</b> ideas for any project (with an unlimited number of requests), but there are no guarantees that these projects will be accepted or completed, based on how reasonable these requests are and whether they align with my views or goals. The decision to accept these project suggestions is solely a matter of my individual discretion. There is also no hard deadline on how long these projects may take to complete. Priority is based on donation amounts, number of previous requests, and the amount of time since your request. Donations are non-refundable</div>
+        </div>
+      </div>
+      <table class="rewardsContainer">
+        <tr class="rewardsDetail">
+          <th class="td-cell">Membership Type</th>
+          <th class="td-cell">Silver Members</th>
+          <th class="td-cell">Gold Members</th>
+          <th class="td-cell">Platinum Members</th>
+        </tr>
+        <tr class="rewardsDetail">
+          <td class="td-cell">Donation Amount</td>
+          <td class="td-cell">$100</td>
+          <td class="td-cell">$500</td>
+          <td class="td-cell">$1,000+</td>
+        </tr>
+        <tr class="rewardsDetail">
+          <td class="td-cell">"Premium" Icon</td>
+          <td class="td-cell"><img class="checkIcon" src="{{ url_for('static', filename='images/check.png') }}"></td>
+          <td class="td-cell"><img class="checkIcon" src="{{ url_for('static', filename='images/check.png') }}"></td>
+          <td class="td-cell"><img class="checkIcon" src="{{ url_for('static', filename='images/check.png') }}"></td>
+        </tr>
+        <tr class="rewardsDetail">
+          <td class="td-cell">New Project Updates</td>
+          <td class="td-cell"><img class="checkIcon" src="{{ url_for('static', filename='images/check.png') }}"></td>
+          <td class="td-cell"><img class="checkIcon" src="{{ url_for('static', filename='images/check.png') }}"></td>
+          <td class="td-cell"><img class="checkIcon" src="{{ url_for('static', filename='images/check.png') }}"></td>
+        </tr>
+        <tr class="rewardsDetail">
+          <td class="td-cell">Project Beta Testing</td>
+          <td class="td-cell"><img class="checkIcon" src="{{ url_for('static', filename='images/x.png') }}"></td>
+          <td class="td-cell"><img class="checkIcon" src="{{ url_for('static', filename='images/check.png') }}"></td>
+          <td class="td-cell"><img class="checkIcon" src="{{ url_for('static', filename='images/check.png') }}"></td>
+        </tr>
+        <tr class="rewardsDetail">
+          <td class="td-cell">Custom Project Requests</td>
+          <td class="td-cell"><img class="checkIcon" src="{{ url_for('static', filename='images/x.png') }}"></td>
+          <td class="td-cell"><img class="checkIcon" src="{{ url_for('static', filename='images/x.png') }}"></td>
+          <td class="td-cell"><img class="checkIcon" src="{{ url_for('static', filename='images/check.png') }}"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
+  

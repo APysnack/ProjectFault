@@ -1,0 +1,273 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='account/account.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='forum/forum.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='account/mediaList.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='audio/audioPlayer.css') }}">
+    <script defer src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script defer src="{{ url_for('static', filename='audio/audioPlayer.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='account/account.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="pageContainer" id="accountPageContainer">
+        <div id="accountPageContent">
+            <nav id="accountNav">
+                <div class="accountNavLink" data-navPage="forum">Forum</div>
+                <div class="accountNavLink" data-navPage="audio">Audio</div>
+                <div class="accountNavLink" data-navPage="video">Video</div>
+                <div class="accountNavLink" data-navPage="images">Images</div>
+                <div class="accountNavLink" data-navPage="text">Text</div>
+                <div class="accountNavLink" data-navPage="edit"><span class="accountNavXS">Edit </span>Profile</div>
+            </nav>
+            <div class="accountRow">
+                <div class="accountForumPosts">
+                    <div class="fHeaderContainer">
+                        <div class="forumButtonContainer">
+                            <a class="forumActionContainer" href="{{ url_for('posts.new_post') }}">
+                                <div>NEW POST</div>
+                            </a>
+                        </div>
+                        <div class="latestPostsHeader">Latest forum posts</div>
+                    </div>
+                    <table class="accountForum">
+                        <tr class="forumTblRow">
+                            <th class="forumHeader">Avatar</th>
+                            <th class="forumHeader titleMeta">Title</th>
+                            <th class="forumHeader authorMeta">Author</th>
+                            <th class="forumHeader dateMeta rmClass">Date</th>
+                            <th class="forumHeader rmClass">Replies</th>
+                        </tr>
+                        {% for f_post in forum_posts.items %}
+                        <tr class="forumTblRow">
+                            <td class="forumThreadMeta imgMeta"><div class="avyWrap">
+                                <img class="authorImg" src="{{ url_for('static', filename='images/' + f_post.author.image_file) }}">
+                            </div></td>
+                            <td class="forumThreadMeta titleMeta"><a href="{{ url_for('posts.post', post_id=f_post.id) }}">{{ f_post.title }}</a></td>
+                            <td class="forumThreadMeta authorMeta"><a href="{{ url_for('users.user_posts', username=f_post.author.username) }}">{{ f_post.author.username }}</a></td>
+                            <td class="forumThreadMeta dateMeta rmClass">{{ f_post.date_posted.strftime('%m-%d-%y') }}</td>
+                            <td class="forumThreadMeta tagMeta rmClass">{{ f_post.getNumComments() }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    <div class="paginationContainer">
+                        {% for page_num in forum_posts.iter_pages(left_edge=3, right_edge=2, left_current=0, right_current=2) %}
+                        {% if page_num %}
+                            {% if forum_posts.page == page_num %}
+                                <a class="paginationButton paginationActive" href="{{ url_for('users.account', page=page_num) }}">{{ page_num }}</a>
+                            {% else %}
+                                <a class="paginationButton paginationInactive" href="{{ url_for('users.account', page=page_num) }}">{{ page_num }}</a>
+                        {% endif %}
+                        {% else%}
+                        ...
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="accountPgEdit">
+                    <div class="media">
+                        {% if current_user.rank == 'member' or current_user.rank == 'unconfirmed' %}
+                            <img class="rounded-circle account-img" src="{{ image_file }}">
+                        {% else %}
+                            <div class="premiumContainer">
+                                <img class="opAvatar premiumAvy" src="{{ image_file }}">
+                                <span class="premModal">PREMIUM</span>
+                          </div>
+                        {% endif %}
+                        <div class="media-container">
+                            {% if current_user.rank == 'platinum member' or current_user.rank == 'admin' %}
+                                <a class="platinumRank" href="{{ url_for('users.user_posts', username=current_user.username) }}">{{ current_user.username }}</a>
+                            {% elif current_user.rank == 'silver member' %}
+                                <a class="silverRank" href="{{ url_for('users.user_posts', username=current_user.username) }}">{{ current_user.username }}</a>
+                            {% elif current_user.rank == 'gold member' %}
+                                <a class="goldRank" href="{{ url_for('users.user_posts', username=current_user.username) }}">{{ current_user.username }}</a>
+                            {% else %}
+                                <a class="memberRank" href="{{ url_for('users.user_posts', username=current_user.username) }}">{{ current_user.username }}</a>
+                  {% endif %}
+                            <p>{{ current_user.email }}</p>
+                            <p>{{ current_user.rank }}</p>
+                        </div>
+                    </div>
+                        <form class="updateAcctForm" method="POST" action="" enctype="multipart/form-data">
+                            {{ form.hidden_tag() }}
+                            <fieldset class="form-group">
+                                <legend class="border-bottom mb-4">Update Account Information</legend>
+                                <div class="form-group">
+                                    {{ form.image.label() }}
+                                    {{ form.image(class="form-control-file") }}
+                                    {% if form.image.errors %}
+                                        {% for error in form.image.errors %}
+                                            <span class="text-danger">{{ error }}</span></br>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.email.label(class="form-control-label") }}
+                
+                                    {% if form.email.errors %}
+                                        {{ form.email(class="form-control form-control-lg is-invalid")}}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.email.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.email(class="form-control form-control-lg") }}
+                                    {% endif %}
+                                </div>
+                                </fieldset>
+                                <div class="submitContainer">
+                                    <div class="form-group">
+                                        {{ form.submit(class="submitBtn")}}
+                                    </div>
+                                </div>
+                            </form>
+                </div>
+                    <div class="accountPgText">
+                        {% if not liked_posts and not liked_writings %}
+                        <div class="noLikedContent">
+                            As of now, you have yet to like any of the text content on this website. Please explore the site some more and revisit this page in the future.
+                        </div>
+                        {% else %}
+                            <div class="writingsContainer">
+                                <div class="acctTextHeader">
+                                    Text Threads You've Liked
+                                </div>
+                                {% if liked_writings %}
+                                    {% for writing in liked_writings %}
+                                        <a href="{{ url_for('text.text_thread', tag=writing.tag, writing_id=writing.id) }}">{{ writing.title }}</a>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="writingsContainer">
+                                <div class="acctTextHeader">
+                                    Posts You've Liked
+                                </div>
+                                {% if liked_posts %}
+                                    {% for liked_post in liked_posts %}
+                                        <a href="{{ url_for('posts.post', post_id=liked_post.id) }}">{{ liked_post.title }}</a>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+                <div class="accountPgImages">
+                    {% if liked_artwork %}
+                    <div class="imageWrap">
+                        <div class="artRow">
+                            <div class="artCol">
+                                {% for artwork in liked_artwork[0:arrayLengths[0]] %}
+                                    <img class="acctArt" src="{{ url_for('static', filename='images/' + artwork.image_file) }}">
+                                {% endfor %}
+                            </div>
+                            <div class="artCol">
+                                {% for artwork in liked_artwork[arrayLengths[0]:(arrayLengths[0] + arrayLengths[1])] %}
+                                    <img class="acctArt" src="{{ url_for('static', filename='images/' + artwork.image_file) }}">
+                                {% endfor %}
+                            </div>
+                            <div class="artCol">
+                                {% for artwork in liked_artwork[(arrayLengths[0] + arrayLengths[1]):(arrayLengths[0] + arrayLengths[1] + arrayLengths[2])] %}
+                                    <img class="acctArt" src="{{ url_for('static', filename='images/' + artwork.image_file) }}">
+                                {% endfor %}
+                            </div>
+                            <div class="artCol">
+                                {% for artwork in liked_artwork[(arrayLengths[0] + arrayLengths[1] + arrayLengths[2]):] %}
+                                    <img class="acctArt" src="{{ url_for('static', filename='images/' + artwork.image_file) }}">
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="noLikedContent">
+                        As of now, you have yet to like any of the images on this website. Please explore the site some more and revisit this page in the future.
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="accountPgVideo">
+                {% if liked_videos %}
+                    <div class="videoWrap">
+                    {% for video in liked_videos %}
+                        <iframe class="acctVidContent" width="520" height="315" src="https://www.youtube.com/embed/{{ video.url }}?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    {% endfor %}
+                    </div>
+                {% else %}
+                <div class="noLikedContent">
+                    As of now, you have yet to like any of the videos on this website. Please explore the site some more and revisit this page in the future.
+                </div>
+                {% endif %}
+                </div>
+                <div class="accountPgAudio" id="mediaListRow">
+                <span id="page_title" title="audio/my_likes"></span>
+                    {% if liked_audios %}
+                    <div class="mediaPlayerContainer">
+                        <span class="mpText mpHeader">Music You've Liked</span>
+                            {% for audio in liked_audios %}
+                            <div class="songRowContainer" title="{{ loop.index - 1 }}" onclick="playTrack(title);toggle_active(this)">
+                                <div class="cellContainer superfluous enumeration">
+                                    <span class="mpSongTitle mpText">{{ loop.index }}</span>
+                                </div>
+                                <div class="cellContainer">
+                                    <span class="mpSongTitle mpText">{{ audio.title }}</span>
+                                </div>
+                                <div class="cellContainer superfluous">
+                                    <span class="mpSongArtist mpText">{{ audio.artist }}</span>
+                                </div>
+                                <div class="cellContainer buttonCell">
+                                    <a class="songPageBtn" href="{{ url_for('audio.song_page', tag=audio.tag, id=audio.id) }}">
+                                        <div>SONG PAGE</div>
+                                    </a>
+                                </div>
+                                <div class="cellContainer downloadBtn superfluous">
+                                    <a class="songPageBtn" download href="{{ url_for('static', filename='audio/audio-files/' + audio.url ) }}">
+                                        <div>DOWNLOAD</div>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="noLikedContent">
+                        As of now, you have yet to like any of the audios on this website. Please explore the site some more and revisit this page in the future.
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% if liked_audios %}
+            <div id="audioPlayerContainer">
+                <div id="audioPlayer">
+                    <div id="controlsContainer">
+                        <div id="internalControls">
+                            <div id="songInfoContainer">
+                                <span id="songTitle"></span>
+                                <span id="songArtist"></span>
+                            </div>
+                            <div id="progressBarNormalizer">
+                                <div id="progressContainer">
+                                    <div id="progressBar"></div>
+                                </div>
+                            </div>
+                            <audio src="" id="current_song"></audio>
+                            <div id="buttonContainer">
+                                <div class="buttonWrap" id="prevAudioBtn">
+                                    <svg id="prevAudioSvg" enable-background="new 0 0 13.68 13.68" viewBox="0 0 13.68 13.68" xmlns="http://www.w3.org/2000/svg"><path d="m13.268 1.662c-.247-.128-.548-.106-.775.06l-4.787 3.475v-1.251-1.617c0-.283-.159-.538-.411-.667-.248-.128-.549-.106-.776.06l-6.213 4.511c-.191.141-.306.365-.306.605s.114.465.306.604l6.213 4.512c.128.094.283.145.439.145.114 0 .23-.03.337-.083.252-.129.411-.388.411-.665v-1.619-1.254l4.787 3.477c.129.094.283.145.439.145.113 0 .229-.03.336-.083.253-.129.412-.388.412-.665v-1.619-5.786-1.618c0-.282-.159-.538-.412-.667z"/></svg>
+                                </div>
+                                <div class="buttonWrap playPause" id="playAudioBtn">
+                                    <svg id="playAudioSvg" enable-background="new 0 0 163.861 163.861" height="163.861" viewBox="0 0 163.861 163.861" width="163.861" xmlns="http://www.w3.org/2000/svg"><path d="m34.857 3.613c-14.773-8.474-26.75-1.532-26.75 15.493v125.637c0 17.042 11.977 23.975 26.75 15.509l109.813-62.977c14.778-8.477 14.778-22.211 0-30.686z"/></svg>
+                                </div>
+                                <div class="buttonWrap playPause" id="pauseAudioBtn">
+                                    <svg id="pauseAudioSvg" height="327pt" viewBox="-45 0 327 327" width="327pt" xmlns="http://www.w3.org/2000/svg"><path d="m158 0h71c4.417969 0 8 3.582031 8 8v311c0 4.417969-3.582031 8-8 8h-71c-4.417969 0-8-3.582031-8-8v-311c0-4.417969 3.582031-8 8-8zm0 0"/><path d="m8 0h71c4.417969 0 8 3.582031 8 8v311c0 4.417969-3.582031 8-8 8h-71c-4.417969 0-8-3.582031-8-8v-311c0-4.417969 3.582031-8 8-8zm0 0"/></svg>
+                                </div>
+                                <div class="buttonWrap" id="nextAudioBtn">
+                                    <svg id="nextAudioSvg" enable-background="new 0 0 18.909 18.909" viewBox="0 0 18.909 18.909" xmlns="http://www.w3.org/2000/svg"><g></g><path d="m10.193 8.311-8.306-6.597c-.403-.203-.884-.181-1.268.052-.386.232-.619.646-.619 1.09v13.198c0 .443.233.856.619 1.089.208.126.444.19.683.19.201 0 .401-.046.586-.138l8.306-6.599c.4-.376.716-.658.716-1.143s-.269-.746-.717-1.142z"/><path d="m18.193 8.311-8.306-6.597c-.403-.203-.885-.181-1.269.052-.386.232-.619.646-.619 1.09v13.198c0 .443.233.856.619 1.089.208.126.444.19.683.19.201 0 .401-.046.586-.138l8.306-6.599c.4-.376.716-.658.716-1.143s-.268-.746-.716-1.142z"/></svg>        
+                                </div>
+                            </div>
+                        </div>
+                        <img id="audioPlayerThumb" src="{{ url_for('static', filename='audio/audio-images/' + liked_audios[0].image_file ) }}">
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

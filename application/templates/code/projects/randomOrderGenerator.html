@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block heading %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='code/randomOrderGenerator.css') }}">
+<script defer src="{{ url_for('static', filename='code/randomOrderGenerator.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="pageContainer">
+        <div class="localDirectory">
+            <div class="localDirectoryContentContainer">
+                <img class="fileIcon" src="{{ url_for('static', filename='images/file.png') }}"></img>
+                <span class="directoryLinks"><a href="{{ url_for('main.media')}}">Media</a></span>
+                <span class="directoryLinks">></span>
+                <span class="directoryLinks"><a href="{{ url_for('main.programming')}}">Code</a></span>
+                <span class="directoryLinks">></span>
+                <span class="directoryLinks"><a href="{{ url_for('code.randomOrderGenerator')}}">Random Generator</a></span>
+            </div>
+        </div>
+        <div class="newEntryContainer">
+            <div id="userActionContainer">
+                <form id="newEntryForm" action="">
+                    <label for="newName">Add a New Name:</label>
+                    <input type="text" autocomplete="off" id="newName" name="newName" value="">
+                    <button type="button" id="newNameSubmit">Add Now!</button>
+                </form>
+                <div class="dropDownContainer">
+                    <label for="generatorType">How should we sort your items?</label>
+                    <select name="generatorType" id="generator">
+                    <option value="onlyOne">Only One</option>
+                    <option value="randomizer">Randomize All</option>
+                    <option value="seeder">Tournament Seeder</option>
+                    </select>
+                </div>
+                <div id="typeDescriptionContainer">
+                </div>
+            </div>
+            <div id="entryListOuterContainer">
+                <header id="entryHeader">Your Entries</header>
+                <div id="entryListInnerContainer">
+                    <ol id="entryList">
+                    </ol>
+                </div>
+                <button type="button" id="generateResultsBtn">Generate New Results</button>
+            </div>
+        </div>
+        <div id="resultsModal">
+            <div class="modal-content">
+              <header id="modalHeader"></header>
+              <div class="congratsContainer">
+                <div class="congratsText">CONGRATULATIONS</div>
+                <div class="congratsText" id="winnerName"></div>
+              </div>
+              <div id="internalText">The Only One algorithm has randomly selected <span id="winnerVar"></span> out of <span id="numItemsVar"></span> possible choices</div>
+              <span id="closeModal">close window &times;</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+  

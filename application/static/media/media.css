@@ -1,0 +1,334 @@
+.siteTabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(
+    240deg,
+    rgb(77, 76, 76),
+    #282828,
+    #1d1c1c,
+    rgb(54, 54, 54)
+  );
+  width: 80%;
+  height: 80vh;
+  padding: 2% 2% 0% 2%;
+  border-radius: 10px;
+}
+
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#leftContainer {
+  width: 5%;
+}
+
+#centerContainer {
+  width: 90%;
+}
+
+#rightContainer {
+  width: 5%;
+}
+
+.siteTabs * {
+  font-family: "Baskerville", "Open Sans", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.individualTabContainer {
+  width: 100%;
+  margin-top: 3%;
+}
+
+.tabsList {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.tabSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 16.66666667%;
+}
+
+.tabSection:hover {
+  cursor: pointer;
+}
+
+.tabSection:hover .tabIcon {
+  animation: scaleUpIcon 0.25s ease-in-out forwards;
+}
+
+.tabIcon {
+  width: 30px;
+  margin-bottom: 5%;
+}
+
+@keyframes scaleUpIcon {
+  0% {
+  }
+  100% {
+    transform: scale(1.3);
+  }
+}
+
+.tabText {
+  color: white;
+}
+
+.tabBody {
+  width: 70vw;
+  height: 60vh;
+  padding: 0 10% 10% 10%;
+  background-color: white;
+  border-radius: 7px;
+  display: block;
+  overflow: scroll;
+}
+
+.tabActive {
+  width: 100%;
+  height: 100%;
+}
+
+#rowContainer {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+#tabLinksContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-image: linear-gradient(
+    240deg,
+    rgb(77, 76, 76),
+    #282828,
+    #1d1c1c,
+    rgb(54, 54, 54)
+  );
+  padding: 3%;
+  border-radius: 10px;
+  margin-right: 15%;
+  width: 50%;
+}
+
+#contentHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #df2500;
+  border-radius: 7px;
+}
+
+#headerContainer {
+  position: relative;
+  width: 100%;
+  border-radius: 7px;
+  margin-bottom: 3%;
+}
+
+#activeImage {
+  width: 100%;
+  padding: 9% 0 9% 0;
+  background-repeat: no-repeat;
+  background-color: #282828;
+  background-position: center;
+  border-left: 7px solid #282828;
+  border-right: 7px solid #282828;
+  border-bottom: 7px solid #282828;
+  border-radius: 0 0 7px 7px;
+}
+
+#activeHeader {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 1% 3% 1% 3%;
+  font-size: 5em;
+  text-shadow: 4px 4px #1d1c1c;
+}
+
+#additionalInfoContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  border: 4px solid #ced4da;
+  border-radius: 7px;
+  padding: 2%;
+}
+
+.tabsArrow {
+  width: 25px;
+}
+
+.tabsArrow:hover {
+  cursor: pointer;
+}
+
+#leftArrow {
+  margin-right: 30%;
+}
+
+#rightArrow {
+  margin-left: 30%;
+}
+
+.contentLink {
+  font-size: medium;
+  padding: 3%;
+  width: 100%;
+  margin-bottom: 2%;
+  background-color: white;
+  border-radius: 7px;
+  text-decoration: none;
+}
+
+.contentLink:hover {
+  cursor: pointer;
+  background-color: #282828;
+  animation: scaleUp 0.25s ease-in-out forwards;
+  border: 1.5px solid white;
+  text-decoration: none;
+}
+
+.contentLink:hover .contentLinkText {
+  text-decoration: none;
+  color: white;
+}
+
+.contentLinkText {
+  text-decoration: none;
+  color: black;
+}
+
+@keyframes scaleUp {
+  0% {
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+#contentHeader {
+  font-size: large;
+  color: white;
+}
+
+#mmHeader {
+  margin-top: 1%;
+  margin-bottom: 3%;
+  font-size: 1em;
+  background-color: #df2500;
+  padding: 0.25% 25% 0.25% 25%;
+  border-radius: 20px;
+  color: white;
+  font-family: "Baskerville", "Open Sans", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.detailsBlockHead {
+  font-size: x-large;
+  font-weight: 500;
+  border-bottom: 2px solid #ced4da;
+  line-height: 30px;
+  margin: 10px 0;
+}
+
+a.detailsBlockHead {
+  text-decoration: none;
+  color: black;
+}
+
+.detailsBlockText {
+  font-size: medium;
+}
+
+.detailsBlock {
+  margin-bottom: 4%;
+}
+
+@media (max-width: 1300px) {
+  #leftArrow {
+    margin-right: 70%;
+  }
+
+  #rightArrow {
+    margin-left: 70%;
+  }
+  #tabLinksContainer {
+    width: 100%;
+    margin-right: 3%;
+  }
+  #activeHeader {
+    font-size: 3em;
+  }
+}
+
+@media (max-width: 800px) {
+  .tabText {
+    display: none;
+  }
+
+  .siteTabs {
+    width: 90%;
+  }
+
+  #leftArrow {
+    margin-right: 15%;
+  }
+
+  #rightArrow {
+    margin-left: 15%;
+  }
+
+  .individualTabContainer {
+    margin-top: 10%;
+  }
+
+  .tabActive {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  #rowContainer {
+    flex-direction: column;
+  }
+
+  #tabLinksContainer {
+    width: 100%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+  }
+
+  #headerContainer {
+    display: none;
+  }
+
+  .detailsBlockHead {
+    font-size: 1em;
+  }
+
+  .detailsBlockText {
+    font-size: small;
+  }
+}

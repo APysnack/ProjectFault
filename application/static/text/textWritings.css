@@ -1,0 +1,83 @@
+.forumContentContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.writingBlurb {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 7px;
+  padding: 2%;
+  border: solid #ced4da 2px;
+  margin-bottom: 3%;
+}
+
+.blurbHeader {
+  font-size: xx-large;
+  margin-bottom: 3%;
+}
+
+.writingContainer {
+  margin-bottom: 3%;
+  display: none;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.googleWriting {
+  width: 55%;
+  text-align: center;
+  min-height: 85vh;
+}
+
+.displayBtn {
+  background-color: #2e3a46;
+  padding: 1% 2% 1% 2%;
+  color: white;
+  border-radius: 7px;
+  margin-top: 2%;
+  width: 20%;
+  text-align: center;
+}
+
+a.displayBtn {
+  text-decoration: none;
+  color: white;
+}
+
+.displayBtn:hover {
+  cursor: pointer;
+}
+
+.show {
+  display: flex;
+}
+
+.blurbDesc {
+  margin-bottom: 2%;
+}
+
+@media screen and (max-width: 800px) {
+  .writingBlurb {
+    width: 95%;
+  }
+
+  .writingPDF {
+    width: 95%;
+  }
+
+  .displayBtn {
+    width: 50%;
+  }
+
+  .googleWriting {
+    width: 90%;
+  }
+}

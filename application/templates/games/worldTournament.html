@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block heading %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='games/worldTournament/worldTournament.css') }}">
+<script defer src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script defer src="{{ url_for('static', filename='games/worldTournament/worldTournament.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="pageContainer">
+        <header id="headerTxt">World Tournament</header>
+        <div class="formContainer">
+            <img class="tabsArrow" id="leftArrow" src="{{url_for('static', filename='images/double-left-arrow.png')}}">
+            <form action="" class="gameForm" id="createGameForm">
+                <header class="gameFormHeader">NEW GAME</header>
+                <div class="inputRow">
+                    <input type="text" class="inputBox" id="cRoomNameInput" placeholder="Room Name" autocomplete="off"></input>
+                </div>
+                <div class="inputRow">
+                    <input type="text" class="inputBox" id="cRoomPwInput" placeholder="Room Password" autocomplete="off"></input>
+                </div>
+                <div class="inputRow">
+                    <input type="text" class="inputBox" id="cUserNameInput" placeholder="Your Username" autocomplete="off"></input>
+                </div>
+                <div class="inputRow">
+                    <input type="button" class="inputBox gameFormSubmit" id="createGameBtn" value="submit" autocomplete="off"></input>
+                </div>
+            </form>
+            <form action="" class="gameForm" id="joinGameForm">
+                <header class="gameFormHeader">JOIN GAME</header>
+                <div class="inputRow">
+                    <input type="text" class="inputBox" id="jRoomNameInput" placeholder="Room Name" autocomplete="off"></input>
+                </div>
+                <div class="inputRow">
+                    <input type="text" class="inputBox" id="jRoomPwInput" placeholder="Room Password" autocomplete="off"></input>
+                </div>
+                <div class="inputRow">
+                    <input type="text" class="inputBox" id="jUserNameInput" placeholder="Your Username" autocomplete="off"></input>
+                </div>
+                <div class="inputRow">
+                    <input type="button" class="inputBox gameFormSubmit" id="joinGameBtn" value="submit" autocomplete="off"></input>
+                </div>
+            </form>
+            <img class="tabsArrow" id="rightArrow" src="{{url_for('static', filename='images/double-right-arrow.png')}}">
+        </div>
+    </div>
+{% endblock %}
+  

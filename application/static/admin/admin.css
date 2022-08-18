@@ -1,0 +1,15 @@
+.accountContent {
+  width: 40%;
+}
+
+.media-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3vh;
+  align-items: flex-end;
+}
+
+.form-control-textbox {
+  height: 30vh;
+}

@@ -1,0 +1,114 @@
+.Banner {
+  height: 30vh;
+  width: 80%;
+  margin-bottom: 2vh;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: grayscale(100%);
+  position: relative;
+}
+
+.Banner .bannerHeader {
+  filter: grayscale(0%);
+  font-size: xx-large;
+  color: white;
+}
+
+.Banner:hover {
+  filter: grayscale(0%);
+}
+
+.bannerHeader:hover {
+  color: #00df9a;
+}
+
+#m101Banner {
+  background-image: url("../static/video/images/musicians-101.jpg");
+  background-position: 50% 70%;
+}
+
+#comedyBanner {
+  background-image: url("../static/video/images/comedy.jpg");
+  background-position: 50% 80%;
+}
+
+#lrcBanner {
+  background-image: url("../static/video/images/lrc.jpg");
+  background-position: 50% 80%;
+}
+
+#vidBattlesBanner {
+  background-image: url("../static/video/images/battles.jpg");
+}
+
+#musicVideoBanner {
+  background-image: url("../static/video/images/music-video.jpg");
+}
+
+#instrumentalBanner {
+  background-image: url("../static/audio/mediaCategoryImages/instrumental.jpg");
+}
+
+#alternativeBanner {
+  background-image: url("../static/audio/mediaCategoryImages/alternative.jpg");
+  background-position: 50% 70%;
+}
+
+#indieRapBanner {
+  background-image: url("../static/audio/mediaCategoryImages/indie-rap.jpg");
+  background-position: 50% 70%;
+}
+
+#hipHopBanner {
+  background-image: url("../static/audio/mediaCategoryImages/hip-hop.jpg");
+  background-position: 70% 50%;
+}
+
+#writingBanner {
+  background-image: url("../static/text/images/writing.jpg");
+}
+
+#poetryBanner {
+  background-image: url("../static/text/images/poetry.jpg");
+  background-position: 50% 65%;
+}
+
+#topicalBanner {
+  background-image: url("../static/text/images/topical.jpg");
+  background-position: 50% 45%;
+}
+
+#battlesBanner {
+  background-image: url("../static/text/images/battles.jpg");
+  background-position: 50% 45%;
+}
+
+.bannerContent {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.bannerDetail {
+  color: white;
+  font-size: large;
+}
+
+@media (max-width: 600px) {
+  .Banner {
+    height: 25vh;
+    width: 90%;
+    filter: grayscale(0%);
+  }
+
+  .Banner .bannerHeader {
+    font-size: 2em;
+  }
+
+  .bannerContent {
+    margin-right: 2%;
+  }
+}

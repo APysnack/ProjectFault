@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+{% block heading %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='ancillary/genzeon/tin_db.css') }}">
+<script defer src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script defer src="{{ url_for('static', filename='ancillary/genzeon/tin_db.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="pageContainer">
+        <div class="localDirectory">
+            <div class="localDirectoryContentContainer">
+                <img class="fileIcon" src="{{ url_for('static', filename='images/file.png') }}"></img>
+                <span class="directoryLinks"><a href="{{ url_for('ancillary.genzeon')}}">Genzeon</a></span>
+                <span class="directoryLinks">></span>
+                <span class="directoryLinks"><a href="{{ url_for('ancillary.tin_db')}}">TIN DB</a></span>
+            </div>
+        </div>
+        <hr class="divider"></hr>
+        <div class="optionContainer">
+            <div class="optionBtn" id="addTINBtn">Add TIN</div>
+            <div class="optionBtn" id="addDocBtn">Add Document</div>
+            <div class="optionBtn" id="searchTINBtn">Search TIN</div>
+            <a class="optionBtn" href="{{url_for('ancillary.form_models')}}">Form Models</a>
+            <div class="optionBtn" id="downloadDBBtn">Download DB</div>
+        </div>
+        <hr class="divider"></hr>
+        <form action="" class="addTINForm">
+            <input type="text" id="addTINInput" placeholder="Add New TIN Number" autocomplete="off"></input>
+            <div class="inputRow">
+                <label for="modelSelector" class="inputLabel">Model Type</label>
+                <select name="modelSelector" id="modelSelector">
+                    <option value="empty">N/A</option>
+                    {% for model in form_models %}
+                        <option value="{{ model.tag }}">{{ model.tag }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <input type="submit" value="submit" id="addSubmit"></input>
+        </form>
+        <form action="" class="addDocForm">
+            <div class="textFields">
+                <div class="inputRow">
+                    <label for="addDocInput" class="inputLabel">Document Name</label>
+                    <input type="text" class="inputBox" id="addDocInput" placeholder="Document Name" autocomplete="off"></input>
+                </div>
+                <div class="inputRow">
+                    <label for="sharePointLink" class="inputLabel">SharePoint</label>
+                    <input type="text" class="inputBox" id="sharePointLink" placeholder="SharePoint Link" autocomplete="off"></input>
+                </div>
+                <div class="inputRow">
+                    <label for="devOpsLink" class="inputLabel">DevOps</label>
+                    <input type="text" class="inputBox" id="devOpsLink" placeholder="DevOps Link" autocomplete="off"></input>
+                </div>
+            </div>
+            <div class="textFields">
+                <div class="inputRow">
+                    <label for="tinSelector" class="inputLabel">TIN Number</label>
+                    <select name="tinSelector" id="tinSelector">
+                        {% for TIN in tin_list %}
+                            <option value="{{ TIN.number }}">{{ TIN.number }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="colInfo">
+                <div class="addColBtnContainer">
+                    <h2>Header Columns</h2>
+                    <div class="modifyColBtn addColBtn noSelect" id="addHeaderCol">+</div>
+                    <div class="modifyColBtn delColBtn noSelect" id="delHeaderCol">-</div>
+                </div>
+                <div class="columnSpace" id="headerColContainer"></div>
+            </div>
+            <div class="colInfo">
+                <div class="addColBtnContainer">
+                    <h2>Data Columns</h2>
+                    <div class="modifyColBtn addColBtn noSelect" id="addDataCol">+</div>
+                    <div class="modifyColBtn delColBtn noSelect" id="delDataCol">-</div>
+                </div>
+                <div class="columnSpace" id="dataColContainer"></div>
+            </div>
+            <input type="submit" value="submit" id="docSubmit"></input>
+        </form>
+        <div class="searchContainer">
+            <img class="docIcon" src="{{url_for('static', filename='images/search.png')}}">
+            <input type="text" id="searchTINInput" placeholder="Look Up TIN Number" autocomplete="off" onkeyup="searchList()"></input>
+        </div>
+        <ol class="tinListContainer">
+            {% for TIN in tin_list %}
+                <li class="tinContainer">
+                    <a class="TINHeader">{{ TIN.number }}</a>
+                    <div class="childContainer">
+                        {% for child in TIN.children %}
+                        <a href="{{ url_for('ancillary.doc_page', docID=child.id) }}">{{ child.name }}</a>
+                    {% endfor %}
+                    </div>
+                </li>
+            {% endfor %}
+        </ol>
+    </div>
+{% endblock %}
+  

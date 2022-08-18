@@ -1,0 +1,175 @@
+.pageContainer {
+  margin-bottom: 4%;
+}
+
+.vidHeader {
+  width: 80%;
+  background-color: #2e3a46;
+  padding: 0.5% 0 0.5% 0;
+  margin: 1% 0 1% 0;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.vidDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  padding: 1%;
+  border-style: solid;
+  border-color: #ced4da;
+  border-radius: 6px;
+  margin-bottom: 1%;
+}
+
+.vidContent {
+  margin: 0.5% 0.5% 3% 0;
+}
+
+.likeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.likeCaption {
+  margin-right: 2%;
+}
+
+.vidRows {
+  width: 94%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.vidFinal {
+  display: flex;
+  align-items: flex-start;
+  width: 85%;
+}
+
+.headVideo {
+  margin-bottom: 2%;
+}
+
+.vidParagraph {
+  margin: 0.5% 0 0.5% 0;
+}
+
+.sectionContainer {
+  width: 40%;
+}
+
+.sectionHeader {
+  width: 100%;
+  padding: 0.25% 0 0.25% 0;
+  background-color: #df2500;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1% 0 1% 0;
+}
+
+.sectionHeader:hover {
+  cursor: pointer;
+}
+
+.lectureRow {
+  background-color: #ced4da;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
+
+.lectureRow:hover {
+  background-color: #2e3a46;
+  color: white;
+  cursor: pointer;
+}
+
+.lectureVideo {
+  margin-bottom: 1%;
+  display: none;
+}
+
+.rowSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.rowContainer {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.show {
+  display: flex;
+}
+
+.promoContainer {
+  display: flex;
+}
+
+.promoTextHeader {
+  margin-top: 2%;
+  font-size: xx-large;
+  color: #2e3a46;
+  font-weight: bold;
+}
+
+.promoTextContainer {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin-right: 6%;
+}
+
+.ptBullets {
+  display: flex;
+  flex-direction: column;
+  margin-left: 6%;
+}
+
+.vidAndLikeContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1%;
+}
+
+@media screen and (max-width: 800px) {
+  .sectionContainer {
+    width: 80%;
+  }
+
+  .lectureVideo {
+    width: 90vw;
+  }
+
+  .headVideo {
+    width: 90vw;
+  }
+
+  .promoTextContainer {
+    display: none;
+  }
+
+  .vidContent {
+    max-width: 95%;
+  }
+}

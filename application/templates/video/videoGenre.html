@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block heading %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='video/video.css') }}">
+    <script defer src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script defer src="{{ url_for('static', filename='like.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+<div class="pageContainer">
+    {% if genre == 'music-videos' %}
+        <span id="doc_title" title="video/music-videos"></span>
+    {% elif genre == 'comedy-videos' %}
+        <span id="doc_title" title="video/comedy-videos"></span>
+    {% elif genre == 'lrc-videos' %}
+        <span id="doc_title" title="video/lrc-videos"></span>
+    {% else %}
+        <span id="doc_title" title="video/battle-videos"></span>
+    {% endif %}
+
+    <div class="localDirectory">
+        <div class="localDirectoryContentContainer">
+            <img class="fileIcon" src="{{ url_for('static', filename='images/file.png') }}"></img>
+            <span class="directoryLinks"><a href="{{ url_for('main.media')}}">Media</a></span>
+            <span class="directoryLinks">></span>
+            <span class="directoryLinks"><a href="{{ url_for('main.video')}}">Videos</a></span>
+            <span class="directoryLinks">></span>
+            {% if genre == 'music-videos' %}
+                <span class="directoryLinks"><a href="{{ url_for('video.music_videos')}}">Music Videos</a></span>
+            {% elif genre == 'comedy-videos' %}
+                <span class="directoryLinks"><a href="{{ url_for('video.comedy_videos')}}">Comedy Videos</a></span>
+            {% elif genre == 'lrc-videos' %}
+                <span class="directoryLinks"><a href="{{ url_for('video.lrc')}}">LRC Videos</a></span>
+            {% else %}
+                <span class="directoryLinks"><a href="{{ url_for('video.video_battles')}}">PurelyDef Battles</a></span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="vidDetails">
+        <span class="vidParagraph">{{ details|safe }}</span>
+    </div>
+    <div class="vidHeader">Music Videos</div>
+    <div class="vidRows">
+        {% for video in videos %}
+            <div class="vidAndLikeContainer">
+                <iframe class="vidContent" width="560" height="315" src="https://www.youtube.com/embed/{{ video.url }}?modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                {% if current_user.is_authenticated %}
+                    <div class="likeContainer">
+                        <span class="likeCaption"></span>
+                        <img class="likeButton" name="{{ loop.index - 1 }}" onclick="likeToggle(name)"></img>
+                    </div>
+                {% endif %}
+                {% if current_user.rank == 'admin' %}
+                <div class="deleteContainer">
+                    <div class='deleteButton' data-dbType='Video' data-dbObject='{{ video.id }}'>Delete</div>
+                </div>
+            {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+  

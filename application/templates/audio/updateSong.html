@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+{% block heading %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='construction.css') }}">
+{% endblock %}
+
+
+{% block body %}
+    <div class="pageContainer">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ audio_form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Update Audio</legend>
+                <div class="form-group">
+                    {{ audio_form.title.label(class="form-control-label") }}
+
+                    {% if audio_form.title.errors %}
+                        {{ audio_form.title(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in audio_form.title.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ audio_form.title(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ audio_form.image.label(class="form-control-label") }}
+
+                    {% if audio_form.image.errors %}
+                        {{ audio_form.image(class="form-control-file")}}
+                        <div class="invalid-feedback">
+                            {% for error in audio_form.image.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ audio_form.image(class="form-control-file") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ audio_form.audio.label(class="form-control-label") }}
+
+                    {% if audio_form.audio.errors %}
+                        {{ audio_form.audio(class="form-control-file")}}
+                        <div class="invalid-feedback">
+                            {% for error in audio_form.audio.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ audio_form.audio(class="form-control-file") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ audio_form.tag.label(class="form-control-label") }}
+
+                    {% if audio_form.tag.errors %}
+                        {{ audio_form.tag(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in audio_form.tag.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ audio_form.tag(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ audio_form.lyrics.label(class="form-control-label") }}
+
+                    {% if audio_form.lyrics.errors %}
+                        {{ audio_form.lyrics(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in audio_form.lyrics.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ audio_form.lyrics(class="form-control form-control-textbox") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="submitContainer">
+                <div class="form-group">
+                    {{ audio_form.submit(class="submitBtn")}}
+                </div>
+            </div>
+            </form>
+    </div>
+{% endblock %}
+  

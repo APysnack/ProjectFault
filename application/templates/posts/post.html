@@ -1,0 +1,124 @@
+{% extends "layout.html" %}
+{% block heading %}
+    <script defer src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script defer src="{{ url_for('static', filename='like.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='posts/post.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="pageContainer">
+      <span id="doc_title" title="{{ 'post/' + post.id|string }}"></span>
+      <div class="postAndCommentContainer">
+        <article id="originalPost">
+          <header class="postHeader">
+            <div id="postInfoContainer">
+              <div class="metaWrap">
+                {% if post.author.rank == 'member' or post.author.rank == 'unconfirmed'%}
+                  <img class="opAvatar" src="{{ url_for('static', filename='images/' + post.author.image_file) }}">
+                {% else %}
+                  <div class="premiumContainer">
+                    <img class="opAvatar premiumAvy" src="{{ url_for('static', filename='images/' + post.author.image_file) }}">
+                    <span class="premModal">PREMIUM</span>
+                  </div>
+                {% endif %}
+                <div class="nameDateWrap">
+                  <span class="opRank">{{ post.author.rank }}</span>
+                  {% if post.author.rank == 'platinum member' or post.author.rank == 'admin' %}
+                    <a class="opUsername platinumRank" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+                  {% elif post.author.rank == 'silver member' %}
+                    <a class="opUsername silverRank" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+                  {% elif post.author.rank == 'gold member' %}
+                    <a class="opUsername goldRank" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+                  {% else %}
+                    <a class="opUsername memberRank" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+                  {% endif %}
+                  <span class="opMeta">original poster</span>
+                  <span class="postDate">{{ post.date_posted.strftime('%m-%d-%Y') }}</span>
+                </div>
+              </div>
+            </div>
+            <h2 class="opTitle">{{ post.title }}</h2>
+
+          {% if current_user.is_authenticated %}
+            <div class="likeContainer">
+              <span class="likeCaption"></span>
+              <img class="likeButton" name="0" onclick="likeToggle(name)"></img>
+            </div>
+          {% endif %}
+
+          </header>
+
+          <div class="opContentContainer">
+            <div class="postContent">{{ post.content|safe }}</div>
+          </div>
+        </article>
+
+      {% if post.author == current_user %}
+        <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.updatepost', post_id=post.id) }}">Update</a>
+            <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
+        </div>
+      {% endif %}
+
+      {% for comment in post.comments %}
+        <div class="commentContainer">
+          <div class="commentHead">
+            <img class="replyAuthorImg" src="{{ url_for('static', filename='images/' + post.comments[loop.index - 1].author.image_file) }}">
+            <div class="commentMeta">
+                <a class="commentUserName" href="{{ url_for('users.user_posts', username=post.comments[loop.index - 1].author.username) }}">{{ post.comments[loop.index - 1].author.username }}</a>
+                <span>{{ post.comments[loop.index - 1].date_posted.strftime('%m-%d-%Y') }}</span>
+              </div>
+            </div>
+          <div class="commentBody">
+            {{ post.comments[loop.index - 1].content|safe }}
+          </div>
+        </div>
+      {% endfor %}
+
+      {% if current_user.is_authenticated %}
+      <form class="replyForm" method="POST" action="" enctype="multipart/form-data">
+          {{ reply_form.hidden_tag() }}
+          <fieldset class="form-group">
+              <div class="form-group">
+                  {{ reply_form.content.label(class="form-control-label") }}
+
+                  {% if reply_form.content.errors %}
+                      {{ reply_form.conent(class="form-control form-control-lg is-invalid")}}
+                      <div class="invalid-feedback">
+                          {% for error in reply_form.content.errors %}
+                              <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                  {% else %}
+                      {{ reply_form.content(class="form-control form-control-lg") }}
+                  {% endif %}
+            </div>
+        </fieldset>
+          <div class="submitContainer">
+            <div class="form-group">
+              {{ reply_form.submit(class="submitBtn")}}
+            </div>
+        </div>
+    </form>
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deleteModalLabel">Are you sure you want to delete this post?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <form action="{{ url_for('posts.delete_post', post_id=post.id) }}" method="POST">
+                  <input class="btn btn-danger" type="submit" value="Delete">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+{% endblock %}

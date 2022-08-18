@@ -1,0 +1,121 @@
+.aboutMeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.aboutMeDirectory {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileContainer {
+  display: flex;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: #ced4da;
+  width: 20%;
+  margin-right: 3%;
+  margin-bottom: 2%;
+}
+
+.profileInformation .overhead,
+.payload {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.profileInformation {
+  display: flex;
+  flex-direction: column;
+  padding: 3%;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.aboutPhoto {
+  background-image: url("../../images/about_photo.jpg");
+  background-size: 100%;
+  background-position: 50% 70%;
+  background-repeat: no-repeat;
+  padding: 40% 10% 50% 10%;
+}
+
+.overhead {
+  margin-right: 2%;
+  font-weight: 700;
+  color: #2e3a46;
+}
+
+.payload {
+  color: #1d1c1c;
+}
+
+.buttonContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.profileRow {
+  border-bottom: 2px solid #ced4da;
+  padding: 2%;
+}
+
+.profileRow .overhead,
+.payload {
+  font-size: small;
+}
+
+.btn {
+  margin: 4% 4% 0 4%;
+  width: 70%;
+  background-color: #ced4da;
+  border-color: #282828;
+  color: black;
+}
+
+.btn:hover {
+  background-color: #2e3a46;
+  border-color: #2e3a46;
+  color: white;
+}
+
+.aboutColumn {
+  width: 50%;
+}
+
+.aboutColHeader {
+  width: 100%;
+  background-color: #2e3a46;
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+.aboutColContent {
+  padding: 1%;
+  margin-bottom: 4%;
+}
+
+@media screen and (max-width: 800px) {
+  .pageContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .aboutColumn {
+    margin-top: 10%;
+    width: 80%;
+  }
+  .profileContainer {
+    width: 80%;
+  }
+  .aboutMeContainer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -1,0 +1,183 @@
+.forumPosts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.forumButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 70%;
+  margin-bottom: 2%;
+}
+
+.fHeaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+}
+
+.forumActionContainer {
+  margin-right: 8em;
+  background-color: #df2500;
+  border: 1px solid black;
+  color: white;
+  padding: 1% 2% 1% 2%;
+  border-radius: 7px;
+  box-shadow: 2px 1px #888888;
+}
+
+a.forumActionContainer:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.forumActionContainer:hover {
+  animation: scaleUp 0.25s linear forwards;
+  cursor: pointer;
+}
+
+.latestPostsHeader {
+  background-color: #2e3a46;
+  border: 1px solid black;
+  color: white;
+  padding: 1% 2% 1% 2%;
+  border-radius: 7px;
+  box-shadow: 2px 1px #888888;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1%;
+}
+
+@keyframes scaleUp {
+  0% {
+  }
+  100% {
+    transform: scale(1.02);
+  }
+}
+
+.forumHeaderContainer {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.accountForumThread {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.authorImg {
+  width: 75px;
+  height: 75px;
+}
+
+table {
+  display: table;
+  width: 50%;
+  margin-bottom: 4%;
+}
+
+tr {
+  display: table-row;
+}
+
+th {
+  background-color: #2e3a46;
+  color: white;
+  font-weight: normal;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ced4da;
+  border-collapse: collapse;
+}
+
+.forumHeader {
+  text-align: center;
+}
+
+th,
+td {
+  padding: 0 1em 0 1em;
+  display: table-cell;
+}
+
+td a {
+  text-decoration: none;
+}
+
+td a:hover {
+  text-decoration: none;
+}
+
+.authorMeta {
+  text-align: center;
+  max-width: 25%;
+}
+
+.imgMeta {
+  padding: 0;
+}
+
+.avyWrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dateMeta {
+  width: 11%;
+  text-align: center;
+}
+
+.tagMeta {
+  width: 14%;
+  text-align: center;
+}
+
+.titleMeta {
+  max-width: 40%;
+}
+
+.removable {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .rmClass {
+    display: none;
+  }
+
+  .titleMeta {
+    width: 50%;
+  }
+
+  .authorMeta {
+    width: 50%;
+  }
+
+  .forum {
+    min-width: 90%;
+  }
+}

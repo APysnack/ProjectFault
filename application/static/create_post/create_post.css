@@ -1,0 +1,17 @@
+.createContent {
+  width: 45%;
+}
+
+.form-control-textbox {
+  height: 30vh;
+}
+
+@media (max-width: 600px) {
+  .contentContainer {
+    padding-top: 0;
+  }
+
+  .form-control-textbox {
+    height: 12vh;
+  }
+}

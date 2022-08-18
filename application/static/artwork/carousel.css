@@ -1,0 +1,114 @@
+.artwork:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.9);
+  padding-bottom: 5%;
+}
+
+.imageArray {
+  display: none;
+}
+
+.closeBtn {
+  width: auto;
+  height: 18px;
+  margin-top: 5%;
+}
+
+.closeBtn:hover {
+  cursor: pointer;
+}
+
+.topCloseContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.botCloseContainer {
+  display: none;
+}
+
+.arrow {
+  width: auto;
+  height: 25px;
+}
+
+.arrow:hover {
+  cursor: pointer;
+}
+
+.modalInnerContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+.likeContainer {
+  z-index: 1;
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 1%;
+}
+
+.likeContainer .likeCaption {
+  margin-right: 2%;
+}
+
+@media (max-width: 600px) {
+  .modal {
+    padding-top: 15%;
+  }
+
+  .closeContainer {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .topCloseContainer {
+    display: none;
+  }
+
+  .botCloseContainer {
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .closeBtn {
+    margin-top: 0;
+    margin-left: 2%;
+  }
+
+  #closeCaption {
+    z-index: 1;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: small;
+  }
+}

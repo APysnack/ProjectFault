@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block heading %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='media/media.css') }}">
+<script defer src="{{ url_for('static', filename='media/media.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="pageContainer" id="mediaContainer">
+        <div class="siteTabs">
+            <div class="mainContainer" id="leftContainer">
+                <img class="tabsArrow" id="leftArrow" src="{{url_for('static', filename='images/double-left-arrow.png')}}">
+            </div>
+            <div class="mainContainer" id="centerContainer">
+                <div class="tabBody">
+                    <div class="tabActive">
+                        <div id="headerContainer">
+                            <img id="activeImage">
+                            <span id="activeHeader"></span>
+                        </div>
+                        <div id="rowContainer">
+                            <div id="tabLinksContainer">
+                                <a class="contentLink" id="contentHeader"></a>
+                            </div>
+                            <div id="additionalInfoContainer">
+                                <div id="tabAdditionalInfo"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="individualTabContainer">
+                    <div class="tabsList">
+                        <div class="tabSection" data-tab="code">
+                            <img class="tabIcon" src="{{url_for('static', filename='images/tab-code.png')}}">
+                            <span class="tabText">Programming</span>
+                        </div>
+                        <div class="tabSection" data-tab="audio">
+                            <img class="tabIcon" src="{{url_for('static', filename='images/tab-audio.png')}}">
+                            <span class="tabText">Audio</span>
+                        </div>
+                        <div class="tabSection" data-tab="video">
+                            <img class="tabIcon" src="{{url_for('static', filename='images/tab-video.png')}}">
+                            <span class="tabText">Video</span>
+                        </div>
+                        <div class="tabSection" data-tab="writing">
+                            <img class="tabIcon" src="{{url_for('static', filename='images/tab-writing.png')}}">
+                            <span class="tabText">Writing</span>
+                        </div>
+                        <div class="tabSection" data-tab="art">
+                            <img class="tabIcon" src="{{url_for('static', filename='images/tab-art.png')}}">
+                            <span class="tabText">Art</span>
+                        </div>
+                        <div class="tabSection" data-tab="misc">
+                            <img class="tabIcon" src="{{url_for('static', filename='images/tab-misc.png')}}">
+                            <span class="tabText">Miscellaneous</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mainContainer" id="rightContainer">
+                <img class="tabsArrow" id="rightArrow" src="{{url_for('static', filename='images/double-right-arrow.png')}}">
+            </div>
+        </div>
+        <div id="mmHeader">MEDIA MAP</div>
+    </div>
+{% endblock %}
+  

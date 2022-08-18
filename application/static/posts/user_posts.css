@@ -1,0 +1,38 @@
+.postContainer {
+  margin-top: 2%;
+  border-top: 2px solid #ced4da;
+  width: 65%;
+}
+
+.postTitle {
+  font-size: 0.75em;
+  background-color: #2e3a46;
+  padding: 2%;
+  border-radius: 7px;
+  width: 100%;
+  margin-bottom: 2%;
+}
+
+.postTitle a {
+  color: white;
+  font-size: large;
+}
+
+.contentContainer {
+  border: 3px solid #ced4da;
+  border-radius: 7px;
+  padding: 1em;
+}
+
+.metaContainer {
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.paginationContainer {
+  margin-bottom: 3%;
+  margin-top: 3%;
+}

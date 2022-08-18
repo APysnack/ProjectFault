@@ -1,0 +1,133 @@
+.pageInnerContainer {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+}
+
+.paypalContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fieldContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.infoHeader {
+  font-size: xx-large;
+  background-color: #2e3a46;
+  color: white;
+  padding: 1%;
+  display: flex;
+  justify-content: center;
+}
+
+.infoDetails {
+  margin-top: 1%;
+}
+
+.infoDetailsContainer {
+  padding: 3%;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-style: solid;
+  border-color: #ced4da;
+  width: 100%;
+  margin-bottom: 3%;
+  border-radius: 7px;
+}
+
+#donationDirectory {
+  width: 50%;
+}
+
+.donationDirectoryContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rewardsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.rewardsDetail {
+  display: flex;
+}
+
+.checkIcon {
+  height: 25px;
+}
+
+#smart-button-container {
+  margin-top: 5%;
+}
+
+table {
+  display: table;
+  width: 100%;
+  margin-bottom: 4%;
+}
+
+tr {
+  display: table-row;
+  width: 100%;
+}
+
+th {
+  background-color: #2e3a46;
+  color: white;
+  font-weight: normal;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ced4da;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 15px;
+  display: table-cell;
+  width: 25%;
+}
+
+.td-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paypalForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3%;
+}
+
+.sideCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 5%;
+}
+
+@media screen and (max-width: 800px) {
+  .pageInnerContainer {
+    flex-direction: column;
+    width: 85%;
+  }
+}

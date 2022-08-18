@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block heading %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='text/text_threads.css') }}">
+    <script defer src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script defer src="{{ url_for('static', filename='like.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+        <div class="pageContainer">
+                <span id="doc_title" title="{{ 'writing/' + text.id|string }}"></span>
+                <div class="localDirectory">
+                    <div class="localDirectoryContentContainer">
+                        <img class="fileIcon" src="{{ url_for('static', filename='images/file.png') }}"></img>
+                        <span class="directoryLinks"><a href="{{ url_for('main.media')}}">Media</a></span>
+                        <span class="directoryLinks">></span>
+                        <span class="directoryLinks"><a href="{{ url_for('main.text')}}">Text</a></span>
+                        <span class="directoryLinks">></span>
+                        {% if text.tag == 'topical' %}
+                                <span class="directoryLinks"><a href="{{ url_for('text.topicals')}}">Topicals</a></span>
+                            {% elif text.tag == 'writing' %}
+                                <span class="directoryLinks"><a href="{{ url_for('text.writings')}}">Writings</a></span>
+                            {% elif text.tag == 'poem' %}
+                                <span class="directoryLinks"><a href="{{ url_for('text.poetry')}}">Poetry</a></span>
+                            {% else %}
+                                <span class="directoryLinks"><a href="{{ url_for('text.text_battles')}}">Battles</a></span>
+                        {% endif %}
+                        <span class="directoryLinks">></span>
+                        <span class="directoryLinks"><a href="{{ url_for('text.text_thread', tag=text.tag, writing_id=text.id) }}">{{ text.title }}</a></span>
+                    </div>
+                </div>
+                {% if current_user.is_authenticated %}
+                        <div class="likeContainer">
+                        <span class="likeCaption"></span>
+                        <img class="likeButton" name="0" onclick="likeToggle(name)"></img>
+                      </div>
+                {% endif %}
+                <div class="threadContainer">
+                        <div class="textHeader">
+                                <span class="textTitle">{{ text.title }}</span>
+                                <span class="textDetails text-muted">{{ text.details }}</span>
+                        </div>
+                        <div class="textContent">{{ text.content|safe }}</div>
+                </div>
+                {% if current_user.rank == 'admin' %}
+                <div class="deleteContainer">
+                    <div class='deleteButton' style="padding:1%; margin: 1%;" data-dbType='Writings' data-dbObject='{{ text.id }}'>Delete</div>
+                </div>
+                {% endif %}
+        </div>
+{% endblock %}
+  
+  

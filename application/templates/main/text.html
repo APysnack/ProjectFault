@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block heading %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mediaCategory.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="pageContainer">
+        <div class="localDirectory">
+            <div class="localDirectoryContentContainer">
+                <img class="fileIcon" src="{{ url_for('static', filename='images/file.png') }}"></img>
+                <span class="directoryLinks"><a href="{{ url_for('main.media')}}">Media</a></span>
+                <span class="directoryLinks">></span>
+                <span class="directoryLinks"><a href="{{ url_for('main.text')}}">Text</a></span>
+            </div>
+        </div>
+        <h1>Text Media</h1>
+        <a class="Banner" id="writingBanner" href="{{ url_for('text.writings') }}">
+            <span class="bannerContent">
+                <span class="bannerHeader">Writing</span>
+                <span class="bannerDetail">Stories and excerpts</span>
+            </span>
+        </a>
+        <a class="Banner" id="poetryBanner" href="{{ url_for('text.poetry') }}">
+            <span class="bannerContent">
+                <span class="bannerHeader">Poetry</span>
+                <span class="bannerDetail">Classic poetry</span>
+            </span>
+        </a>
+        <a class="Banner" id="topicalBanner" href="{{ url_for('text.topicals') }}">
+            <span class="bannerContent">
+                <span class="bannerHeader">Topical</span>
+                <span class="bannerDetail">Poetry which integrates Hip Hop elements</span>
+            </span>
+        </a>
+        <a class="Banner" id="battlesBanner" href="{{ url_for('text.text_battles') }}">
+            <span class="bannerContent">
+                <span class="bannerHeader">Battles</span>
+                <span class="bannerDetail">Hip Hop lyrics with an added emphasis on wordplay</span>
+            </span>
+        </a>
+    </div>
+{% endblock %}

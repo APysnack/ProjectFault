@@ -1,0 +1,129 @@
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+#audioPlayerContainer {
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  bottom: 0;
+  background: linear-gradient(to top, #282828 0%, #2e3a46 100%);
+}
+
+#audioPlayer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1% 0% 1% 0%;
+  width: 60%;
+}
+
+.buttonWrap svg {
+  width: 40px;
+  height: 40px;
+  fill: white;
+}
+
+#controlsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+#songInfoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+}
+
+#buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.buttonWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2% 5% 2% 5%;
+}
+
+.buttonWrap svg:hover {
+  fill: #00df9a;
+  cursor: pointer;
+}
+
+#songTitle {
+  font-size: x-large;
+}
+
+#pauseAudioBtn {
+  display: none;
+}
+
+#audioPlayerThumb {
+  width: 125px;
+  height: 125px;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+#progressBarNormalizer {
+  width: 40%;
+  margin-top: 1%;
+  margin-bottom: 3%;
+}
+
+#progressContainer {
+  background-color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+  height: 4px;
+  width: 100%;
+}
+
+#progressBar {
+  transition: width 0.1s linear;
+  background-color: #00df9a;
+  border-radius: 5px;
+  height: 4px;
+  width: 0%;
+}
+
+#internalControls {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+}
+
+@media screen and (max-width: 800px) {
+  #audioPlayer {
+    width: 95%;
+  }
+
+  #controlsContainer {
+    width: 95%;
+  }
+
+  #internalControls {
+    width: 90%;
+  }
+
+  .buttonWrap svg {
+    width: 35px;
+    height: 35px;
+  }
+}

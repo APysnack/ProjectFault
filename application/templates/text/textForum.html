@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block heading %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='text/text_forums.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="pageContainer">
+        <div class="localDirectory">
+            <div class="localDirectoryContentContainer">
+                <img class="fileIcon" src="{{ url_for('static', filename='images/file.png') }}"></img>
+                <span class="directoryLinks"><a href="{{ url_for('main.media')}}">Media</a></span>
+                <span class="directoryLinks">></span>
+                <span class="directoryLinks"><a href="{{ url_for('main.text')}}">Text</a></span>
+                <span class="directoryLinks">></span>
+                {% if genre == 'topicals' %}
+                    <span class="directoryLinks"><a href="{{ url_for('text.topicals')}}">Topicals</a></span>
+                {% elif genre == 'poetry' %}
+                    <span class="directoryLinks"><a href="{{ url_for('text.poetry')}}">Poetry</a></span>
+                {% elif genre == 'writings' %}
+                    <span class="directoryLinks"><a href="{{ url_for('text.writings')}}">Writings</a></span>
+                {% else %}
+                    <span class="directoryLinks"><a href="{{ url_for('text.text_battles')}}">Battles</a></span>
+                {% endif %}
+            </div>
+        </div>
+        <div class="forumContentContainer">
+            {% for writing in writings %}
+            <div class="threadContainer">
+                <a class="threadLink" href="{{ url_for('text.text_thread', tag=writing.tag, writing_id=writing.id) }}">{{ writing.title }}</a>
+                <span class="threadDetail text-muted">{{ writing.details }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+  

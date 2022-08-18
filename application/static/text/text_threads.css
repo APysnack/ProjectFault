@@ -1,0 +1,68 @@
+.contentContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.threadContainer {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-style: solid;
+  border-color: #ced4da;
+  align-items: center;
+  margin-bottom: 4%;
+}
+
+.textHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-bottom: solid #ced4da;
+}
+
+.textTitle {
+  padding: 1% 1% 1% 1%;
+  font-size: xx-large;
+  background-color: #2e3a46;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.textDetails {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1% 2% 1% 2%;
+  width: 100%;
+}
+
+.textContent {
+  padding: 2% 4% 2% 4%;
+  width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  .threadContainer {
+    width: 90%;
+    margin-bottom: 4%;
+  }
+}
+
+.likeContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1%;
+}
+
+.likeCaption {
+  margin-right: 0.75%;
+}

@@ -1,0 +1,228 @@
+* {
+  font-family: "Baskerville", "Open Sans", -apple-system, system-ui,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html,
+body {
+  min-height: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.form-control:focus {
+  border-color: #00df9a;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.pageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.submitBtn {
+  border-color: #2e3a46;
+  border-width: 1px;
+  color: #2e3a46;
+  padding: 7px 20px 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 6px;
+  box-shadow: none;
+}
+
+.submitBtn:hover {
+  background-color: #2e3a46;
+  color: white;
+  cursor: pointer;
+}
+
+.submitContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.alert {
+  width: 60%;
+  text-align: center;
+}
+
+.flashContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.likeButton {
+  height: 20px;
+  width: 20px;
+}
+
+.deleteContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteButton {
+  margin-top: 1%;
+  padding: 2%;
+  background-color: #df2500;
+  border-radius: 5px;
+  color: white;
+}
+
+.deleteButton:hover {
+  cursor: pointer;
+}
+
+.localDirectory {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2e3a46;
+  color: white;
+  border-radius: 10px;
+  min-width: 30em;
+  max-width: 60em;
+  height: 8vh;
+  margin-bottom: 3vh;
+  border: black 1px solid;
+  box-shadow: 2px 2px #888888;
+}
+
+.commentUserName {
+  color: white;
+}
+
+.commentUserName:hover {
+  color: #00df9a;
+  text-decoration: none;
+}
+
+.localDirectoryContentContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 2vh 2vw 2vh 2vw;
+}
+
+.directoryLinks {
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+.directoryLinks a {
+  text-decoration: none;
+  color: white;
+}
+
+.directoryLinks a:hover {
+  text-decoration: underline;
+}
+
+.likeButton:hover {
+  cursor: pointer;
+}
+
+.fileIcon {
+  width: 25px;
+  margin-right: 7px;
+}
+
+.doc_title {
+  display: none;
+}
+
+@media screen and (max-width: 1200px) {
+  .localDirectory {
+    min-width: 90%;
+  }
+}
+
+#psBodyContainer {
+  margin-top: 2%;
+  min-height: 40em;
+  width: 100%;
+}
+
+.paginationButton {
+  padding: 6px 10px 6px 10px;
+  margin-right: 0.75em;
+  border-radius: 5px;
+}
+
+a.paginationButton {
+  text-decoration: none;
+  color: black;
+}
+
+.paginationActive {
+  background-color: #ced4da;
+  border: 2px #ced4da solid;
+}
+
+.paginationButton:hover {
+  background-color: #2e3a46;
+  border: 2px #2e3a46 solid;
+  color: white;
+}
+
+.paginationInactive {
+  border: 2px #ced4da solid;
+}
+
+.silverRank {
+  color: #0bdbf4;
+  font-weight: bold;
+}
+
+.goldRank {
+  color: #df2500;
+  font-weight: bold;
+}
+
+.platinumRank {
+  color: #00df9a;
+  font-weight: bold;
+}
+
+.memberRank {
+  color: black;
+}
+
+.updateContainer {
+  margin-top: 1%;
+  padding: 2%;
+  background-color: #df2500;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+}
+
+.updateContainer:hover {
+  text-decoration: none;
+  color: white;
+}
+
+blockquote {
+  background-color: #ced4da;
+  border: black solid 2px;
+  border-radius: 7px;
+  padding: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  box-shadow: 2px 2px #888888;
+}

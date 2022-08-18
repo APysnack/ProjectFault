@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block heading %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='ancillary/genzeon/genzeon.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="pageContainer">
+        <section class="genzSection">
+            <header class="sectionHeader">Cognitive OCR</header>
+            <div class="buttonContainer">
+                <a href="https://zibrocr.azurewebsites.net/" class="linkButton"><span class="genzHead">React App</span><span class="genzDescription">Compare PDF/JSON</span></a>
+                <a href="https://fott-preview.azurewebsites.net/prebuilts-analyze" class="linkButton"><span class="genzHead">Fott Preview</span><span class="genzDescription">PDF Form Analyzer</span></a>
+            </div>
+        </section>
+
+        <section class="genzSection">
+            <header class="sectionHeader">Genzeon</header>
+            <div class="buttonContainer">
+                <a href="https://genzeon.sharepoint.com/:x:/r/sites/ZelisOCR/_layouts/15/guestaccess.aspx?e=rXqlJx&share=EcR6VfHeZt5FlsXww6QsvMoBat5CGL4Z4cGPlfs8eFVxUA" class="linkButton"><span class="genzHead">Work Assignments</span><span class="genzDescription">Excel Spreadsheet</span></a>
+                <a href="https://dev.azure.com/genzeon/" class="linkButton"><span class="genzHead">DevOps</span><span class="genzDescription">Complete Tasks/User Stories</span></a>
+                <a href="https://genzeon.sharepoint.com/sites/ZelisOCR/Shared%20Documents/Forms/AllItems.aspx?RootFolder=%2Fsites%2FZelisOCR%2FShared%20Documents%2FGeneral%2FZelis%5FTraining&FolderCTID=0x01200021DFC78E805A6C419E51D113D950F89D" class="linkButton"><span class="genzHead">Sharepoint</span><span class="genzDescription">Redacted File Storage</span></a>
+                <a href="{{ url_for('ancillary.tin_db') }}" class="linkButton"><span class="genzHead">TIN Database</span><span class="genzDescription">Complete Tasks/User Stories</span></a>
+            </div>
+        </section>
+
+        <section class="genzSection">
+            <header class="sectionHeader">Misc.</header>
+            <div class="buttonContainer">
+                <a href="https://teams.microsoft.com/" class="linkButton"><span class="genzHead">Teams</span><span class="genzDescription">Team Discussion</span></a>
+                <a href="https://www1.jobdiva.com/portal/?a=0rjdnw24i9hrpigyhi7d2vjqfs866407c6du6wze91eknqxfnmvtnprlqhms0kao#/login?compid=0&id=-1&SearchString=&StatesString=" class="linkButton"><span class="genzHead">Genzeon Time Portal</span><span class="genzDescription">Log Hours</span></a>
+                <a href="http://paws.southalabama.edu/" class="linkButton"><span class="genzHead">University Time Portal</span><span class="genzDescription">South Alabama PAWS</span></a>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+  

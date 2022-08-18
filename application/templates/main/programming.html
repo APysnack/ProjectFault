@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block heading %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/code/code.css') }}">
+{% endblock %}
+
+
+{% block body %}
+    <div class="pageContainer">
+        <div class="localDirectory">
+            <div class="localDirectoryContentContainer">
+                <img class="fileIcon" src="{{ url_for('static', filename='images/file.png') }}"></img>
+                <span class="directoryLinks"><a href="{{ url_for('main.media')}}">Media</a></span>
+                <span class="directoryLinks">></span>
+                <span class="directoryLinks"><a href="{{ url_for('main.programming')}}">Code</a></span>
+            </div>
+        </div>
+        <div class="constructionContainer">At the moment, this portion of the site is still heavily under construction. I will be adding some small programming assignments as I continue, and even larger ones in the future. However, since the website it still in the early stages, I'm still working on updating many parts of the site daily. Please check back here for more in the future!</div>
+        <a class="projectLink" href="{{ url_for('code.randomOrderGenerator') }}">
+            <div class="projectContainer">
+                <header class="projectHeader">
+                    <span class="projectTitle">Random Order Generator</span>
+                </header>
+                <section class="projectDetailsContainer">
+                    <span class="projectDetails">Enter a list of names or items our generator will select from it randomly</span>
+                </section>
+            </div>
+        </a>
+    </div>
+{% endblock %}
+  

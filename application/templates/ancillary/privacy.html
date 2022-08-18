@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block heading %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='legal/legal.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="pageContainer">
+        <header class="legalHeader">Privacy Policy</header>
+        <div class="legalContainer">
+            <h3>What information do you collect?</h3>
+            <p>When you register with ProjectFault, we ask for some information that will identify you to us as a user. This information includes your username, password, 
+                and email address. Each user is permitted to upload an image to represent themselves, known as an "avatar" which is saved to a website folder and 
+                it's location path is stored in our database along with your account information. In addition to this, our database stores posts, post comments, 
+                and user "likes" which are all associated with your account. These items are meant to enhance the user experience and allow users the ability to 
+                communicate with one another. Registration is completely voluntary, but some of the features of ProjectFault will be limited to users who are not registered.</p>
+    
+            <p>ProjectFault does not charge money for any services, but we do ask that users to make donations via PayPal. These donations are, of course, voluntary and 
+                any transactions using PayPal are simply through a link to PayPal's website as provided by PayPal Merchant Services. ProjectFault has no way of accessing or 
+                storing a user's PayPal information.</p>
+
+            <h3>What do you do with this information?</h3>
+            <p>ProjectFault never supplies your personal information to any third party for advertising or promotional purposes. 
+                We will occasionally use your email address to send you information regarding ProjectFault and the services we provide. 
+                In addition to this, your email is used for password recovery in case you ever forget your ProjectFault password.
+                Your account username, password, and email are stored in our database. Your email address can only be changed by you once you have logged into the system. 
+                However, any posts or post comments created by your account will be made publicly visible to anyone who visits the website. We strongly advise
+                that users do not to disclose any sensitive information in the public domain.</p>
+            
+            <p>Any content that you "like" on ProjectFault is only visible to you as a user and ProjectFault does not use or supply any form of user data for the purposes of analytics.</p></p>
+            
+            <h3>Is my information secure?</h3>
+            <p>Your personal information is protected by your password. Never share this password with anyone. ProjectFault will never contact you unsolicited 
+                to ask for your password. We have taken steps to ensure our databases are secure, and are confident in our ability to keep your information safe 
+                but it is impossible to guarantee that user data will be immune fromm malicious attack or compromise; as such, users should understand that their 
+                transmission of personal data is always at their own risk. For added security, we strongly encourage that when you register as a user, 
+                you select a password that is unique, secure, and is not associated in any way with your email address or accounts from other websites. As a user, 
+                you are encouraged to select a username and avatar that does not contain any sensitive information about you or your identity. Taking these steps 
+                are are the best way to secure your privacy for any website.</p>
+    
+            <h3>What about cookies?</h3>
+            <p>ProjectFault stores a cookie on your computer to track you while you are on the site. The information in this cookie is a string of characters that is meaningless to everyone and everything except our server. No personal information or bid information is stored in the cookie. The information in the cookie can not be used by third parties to gain access to your account information.</p>
+    
+            <h3>What about polls?</h3>
+            <p>ProjectFault does allow registered users to create surveys and allows visitors to respond to surveys. The responses to these surveys are accumulated and their results are stored in the database. Only the user who created the poll should have access to view the results of the poll. Regardless of whether you are a visitor or a registered member of ProjectFault, all responses to polls are completely anonymous, and poll responses do not identify the account or any personal information about the person who is responding to the poll.</p>
+            <h3>Still have questions?</h3>
+            <p>We realize everyone has a different view on privacy. We take your privacy very seriously. If you still have concerns, or are unclear about any aspect of our privacy policy, or if you simply wish to have your account removed from our database, please contact us using our <a href="{{ url_for('ancillary.contact') }}">Contact Form</a>, and we will be happy to discuss the matter with you.</p>
+        </div>
+    </div>
+{% endblock %}
+  

@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block heading %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mediaCategory.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="pageContainer">
+        <div class="localDirectory">
+            <div class="localDirectoryContentContainer">
+                <img class="fileIcon" src="{{ url_for('static', filename='images/file.png') }}"></img>
+                <span class="directoryLinks"><a href="{{ url_for('main.media')}}">Media</a></span>
+                <span class="directoryLinks">></span>
+                <span class="directoryLinks"><a href="{{ url_for('main.video')}}">Video</a></span>
+            </div>
+        </div>
+        <h1>Video Media</h1>
+        <a class="Banner" id="m101Banner" href="{{ url_for('video.musician_101') }}">
+            <div class="bannerContent">
+                <span class="bannerHeader">The Musician's 101</span>
+                <span class="bannerDetail">A complete guide to help you get started making music today</span>
+            </div>
+        </a>
+        <a class="Banner" id="comedyBanner" href="{{ url_for('video.comedy_videos') }}">
+            <div class="bannerContent">
+                <span class="bannerHeader">Stand Up Comedy</span>
+                <span class="bannerDetail">Live performances of stand up</span>
+            </div>
+        </a>
+        <a class="Banner" id="musicVideoBanner" href="{{ url_for('video.music_videos') }}">
+            <div class="bannerContent">
+                <span class="bannerHeader">Music Videos</span>
+                <span class="bannerDetail">Music Videos I've appeared in or filmed and edited</span>
+            </div>
+        </a>
+        <a class="Banner" id="lrcBanner" href="{{ url_for('video.lrc') }}">
+            <div class="bannerContent">
+                <span class="bannerHeader">Live Rap Circle</span>
+                <span class="bannerDetail">Live hip hop battling events I've coordinated</span>
+            </div>
+        </a>
+        <a class="Banner" id="vidBattlesBanner" href="{{ url_for('video.video_battles') }}">
+            <div class="bannerContent">
+                <span class="bannerHeader">Live Battles</span>
+                <span class="bannerDetail">Live hip hop battles I've performed in</span>
+            </div>
+        </a>
+    </div>
+{% endblock %}

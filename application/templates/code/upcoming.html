@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block heading %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='upcoming/upcoming.css') }}">
+    <script defer src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script defer src="{{ url_for('static', filename='upcoming/upcoming.js') }}"></script>
+{% endblock %}
+
+{% block body %}  
+    <div class="pageContainer">
+        <div class="localDirectory">
+            <div class="localDirectoryContentContainer">
+                <img class="fileIcon" src="{{ url_for('static', filename='images/file.png') }}"></img>
+                <span class="directoryLinks"><a href="{{ url_for('main.media')}}">Media</a></span>
+                <span class="directoryLinks">></span>
+                <span class="directoryLinks"><a href="{{ url_for('main.programming')}}">Code</a></span>
+                <span class="directoryLinks">></span>
+                <span class="directoryLinks"><a href="{{ url_for('code.upcoming')}}">Upcoming</a></span>
+            </div>
+        </div>
+        <div class="pageHeader">Upcoming Projects</div>
+        <span class="subText">Please click "submit" to save your changes</span>
+        {% for project in projects %}
+            <div class="projectContainer">
+                <div class="headerContainer">
+                    <div class="projectHeader">{{ project.title }}</div>
+                    <div class="projectedTime text-muted">Projected Duration of Project: {{ project.completion_time }} Days</div>
+                </div>
+                <div class="descriptionContainer">
+                    <div class="projectDescription">{{ project.details }}</div>
+                    <div class="arrowContainer">
+                        <span class="projectId">{{ project.id }}</span>
+                        {% if current_user.is_authenticated %}
+                            {% if current_user.has_liked_project(project) %}
+                                <svg class="arrow up-arrow" style="fill:#00df9a;" enable-background="new 0 0 512 512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="m256 0c-141.163 0-256 114.837-256 256s114.837 256 256 256 256-114.837 256-256-114.837-256-256-256zm79.083 271.083-106.667 106.666c-4.16 4.16-9.621 6.251-15.083 6.251-5.461 0-10.923-2.091-15.083-6.251-8.341-8.341-8.341-21.824 0-30.165l91.585-91.584-91.584-91.584c-8.341-8.341-8.341-21.824 0-30.165s21.824-8.341 30.165 0l106.667 106.667c8.341 8.341 8.341 21.823 0 30.165z" transform="matrix(0 -1 1 0 0 512)"/></svg>
+                            {% else %}
+                                <svg class="arrow up-arrow" style="fill:#ced4da;" enable-background="new 0 0 512 512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="m256 0c-141.163 0-256 114.837-256 256s114.837 256 256 256 256-114.837 256-256-114.837-256-256-256zm79.083 271.083-106.667 106.666c-4.16 4.16-9.621 6.251-15.083 6.251-5.461 0-10.923-2.091-15.083-6.251-8.341-8.341-8.341-21.824 0-30.165l91.585-91.584-91.584-91.584c-8.341-8.341-8.341-21.824 0-30.165s21.824-8.341 30.165 0l106.667 106.667c8.341 8.341 8.341 21.823 0 30.165z" transform="matrix(0 -1 1 0 0 512)"/></svg>
+                            {% endif %}
+                        {% else %}
+                            <svg class="arrow up-arrow" style="fill:#ced4da;" enable-background="new 0 0 512 512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="m256 0c-141.163 0-256 114.837-256 256s114.837 256 256 256 256-114.837 256-256-114.837-256-256-256zm79.083 271.083-106.667 106.666c-4.16 4.16-9.621 6.251-15.083 6.251-5.461 0-10.923-2.091-15.083-6.251-8.341-8.341-8.341-21.824 0-30.165l91.585-91.584-91.584-91.584c-8.341-8.341-8.341-21.824 0-30.165s21.824-8.341 30.165 0l106.667 106.667c8.341 8.341 8.341 21.823 0 30.165z" transform="matrix(0 -1 1 0 0 512)"/></svg>
+                        {% endif %}
+                        <span class="numVotes">{{ project.votes }} Votes</span>
+                        {% if current_user.is_authenticated %}
+                            {% if current_user.has_disliked_project(project) %}
+                                <svg class="arrow down-arrow" style="fill:#df2500;" enable-background="new 0 0 512 512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="m0 256c0-141.163 114.837-256 256-256s256 114.837 256 256-114.837 256-256 256-256-114.837-256-256zm271.083 79.083 106.666-106.667c4.16-4.16 6.251-9.621 6.251-15.083 0-5.461-2.091-10.923-6.251-15.083-8.341-8.341-21.824-8.341-30.165 0l-91.584 91.585-91.584-91.584c-8.341-8.341-21.824-8.341-30.165 0s-8.341 21.824 0 30.165l106.667 106.667c8.341 8.341 21.823 8.341 30.165 0z"/></svg>
+                            {% else %}
+                                <svg class="arrow down-arrow" style="fill:#ced4da;" enable-background="new 0 0 512 512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="m0 256c0-141.163 114.837-256 256-256s256 114.837 256 256-114.837 256-256 256-256-114.837-256-256zm271.083 79.083 106.666-106.667c4.16-4.16 6.251-9.621 6.251-15.083 0-5.461-2.091-10.923-6.251-15.083-8.341-8.341-21.824-8.341-30.165 0l-91.584 91.585-91.584-91.584c-8.341-8.341-21.824-8.341-30.165 0s-8.341 21.824 0 30.165l106.667 106.667c8.341 8.341 21.823 8.341 30.165 0z"/></svg>
+                            {% endif %}
+                        {% else %}
+                            <svg class="arrow down-arrow" style="fill:#ced4da;" enable-background="new 0 0 512 512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="m0 256c0-141.163 114.837-256 256-256s256 114.837 256 256-114.837 256-256 256-256-114.837-256-256zm271.083 79.083 106.666-106.667c4.16-4.16 6.251-9.621 6.251-15.083 0-5.461-2.091-10.923-6.251-15.083-8.341-8.341-21.824-8.341-30.165 0l-91.584 91.585-91.584-91.584c-8.341-8.341-21.824-8.341-30.165 0s-8.341 21.824 0 30.165l106.667 106.667c8.341 8.341 21.823 8.341 30.165 0z"/></svg>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% if current_user.rank == 'admin' %}
+                <div class="deleteContainer">
+                    <div class='deleteButton' id="upcomingDeleteBtn" data-dbType='Project' data-dbObject='{{ project.id }}'>Delete</div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        {% if current_user.is_authenticated %}
+            <input type="button" class='sbm submitBtn' id='logged_in' value='Submit Changes'></input>
+        {% else %}
+            <input type="button" class='sbm submitBtn' id='logged_out' value='Submit Changes'></input>
+        {% endif %}
+    </div>
+    
+{% endblock %}
+  

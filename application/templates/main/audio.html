@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block heading %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mediaCategory.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="pageContainer">
+        <div class="localDirectory">
+            <div class="localDirectoryContentContainer">
+                <img class="fileIcon" src="{{ url_for('static', filename='images/file.png') }}"></img>
+                <span class="directoryLinks"><a href="{{ url_for('main.media')}}">Media</a></span>
+                <span class="directoryLinks">></span>
+                <span class="directoryLinks"><a href="{{ url_for('main.audio')}}">Audio</a></span>
+            </div>
+        </div>
+        <h1>Audio Media</h1>
+        <a class="Banner" id="instrumentalBanner" href="{{ url_for('audio.instrumental') }}">
+            <span class="bannerContent">
+                <span class="bannerHeader">Instrumental</span>
+                <span class="bannerDetail">Songs with no vocals</span>
+            </span>
+        </a>
+        <a class="Banner" id="alternativeBanner" href="{{ url_for('audio.alternative') }}">
+            <span class="bannerContent">
+                <span class="bannerHeader">Indie/Alternative</span>
+                <span class="bannerDetail">Music inspired by Pop/Indie/Rock genres</span>
+            </span>
+        </a>
+        <a class="Banner" id="indieRapBanner" href="{{ url_for('audio.indie_rap') }}">
+            <span class="bannerContent">
+                <span class="bannerHeader">Indie Rap</span>
+                <span class="bannerDetail">Hip Hop with Pop/Indie/Rock influence</span>
+            </span>
+        </a>
+        <a class="Banner" id="hipHopBanner" href="{{ url_for('audio.hip_hop') }}">
+            <span class="bannerContent">
+                <span class="bannerHeader">Classic Hip Hop</span>
+                <span class="bannerDetail">Pure hip hop with no singing</span>
+            </span>
+        </a>
+    </div>
+{% endblock %}
+
+
+  

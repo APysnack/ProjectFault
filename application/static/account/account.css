@@ -1,0 +1,315 @@
+.accountRow {
+  margin-top: 3%;
+  margin-bottom: 3%;
+  width: 100%;
+}
+
+.opAvatar {
+  border-radius: 20px;
+  border: white solid 2px;
+}
+
+.premiumAvy {
+  border: black solid 3px;
+  box-shadow: 2px 2px #3a3a3a;
+}
+
+.premiumContainer {
+  position: relative;
+  margin-right: 5%;
+}
+
+.premModal {
+  position: absolute;
+  z-index: 1;
+  bottom: 0.25em;
+  right: 1.3em;
+  padding: 1% 3.5% 1% 3.5%;
+  background-color: #2e3a46;
+  color: white;
+  border-radius: 6px;
+  opacity: 85%;
+}
+
+#accountNav {
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #282828;
+  color: white;
+  border-radius: 30px;
+}
+
+#accountPageContainer {
+  position: relative;
+}
+
+#accountPageContent {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.noLikedContent {
+  display: block;
+  font-size: large;
+  color: white;
+  background-color: #282828;
+  padding: 3em;
+  border-radius: 10px;
+  width: 70%;
+  margin-bottom: 6em;
+}
+
+.accountForumPosts {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@keyframes scaleUp {
+  0% {
+  }
+  100% {
+    transform: scale(1.02);
+  }
+}
+
+.accountNavLink {
+  padding: 1%;
+  height: 100%;
+  display: block;
+  color: black;
+  width: 16.6667%;
+  text-align: center;
+  color: white;
+  border-radius: 20px;
+}
+.accountPgVideo,
+.accountPgAudio,
+.accountPgImages,
+.accountPgText,
+.accountPgUserPosts,
+.accountPgEdit {
+  display: none;
+}
+
+.accountPgAudio {
+  padding: 1.5em;
+}
+
+.accountPgImages {
+  padding: 2.25em;
+}
+
+.accountPgText {
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2.25em;
+  margin-bottom: 4.25em;
+}
+
+.accountPgEdit {
+  width: 90%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.accountPgImages {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.accountPgVideo {
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 2.25em;
+}
+
+.writingsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  border: 2px solid #ced4da;
+  border-radius: 7px;
+}
+
+.songPageBtn {
+  min-width: 90%;
+}
+
+a.songPageBtn {
+  text-decoration: none;
+  color: white;
+}
+
+a.songPageBtn:hover {
+  text-decoration: none;
+}
+
+.acctTextHeader {
+  padding: 2% 3% 2% 3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #2e3a46;
+  color: white;
+  border-radius: 7px 7px 0 0;
+}
+
+.alignmentWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageWrap {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  width: 90%;
+}
+
+.videoWrap {
+  width: 90%;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.acctVidContent {
+  margin: 0.5% 0.5% 3% 0;
+}
+
+.account-img {
+  max-width: 175px;
+  height: auto;
+}
+
+.showAccountPage {
+  display: flex;
+}
+
+.accountNavLink:hover {
+  cursor: pointer;
+  background-color: #00df9a;
+}
+
+@keyframes scaleUp {
+  0% {
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+.accountContent {
+  min-width: 40%;
+  margin-bottom: 5%;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.updateAcctForm {
+  margin-top: 3%;
+  margin-bottom: 3%;
+  width: 40%;
+}
+
+.userInfoContainer {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.media-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3%;
+  align-items: center;
+}
+
+.postLinkContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.writingsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contentContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.artRow {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+.artCol {
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+}
+
+.acctArt {
+  height: auto;
+  max-width: 100%;
+}
+
+.removable {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  #accountNav {
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .accountForum {
+    min-width: 90%;
+  }
+  .accountPgVideo {
+    flex-direction: column;
+    padding: 0;
+    width: 100%;
+  }
+
+  .acctVidContent {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .accountNavXS {
+    display: none;
+  }
+
+  #audioPlayerContainer {
+    margin-top: 17em;
+  }
+}

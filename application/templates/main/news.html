@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block heading %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='ancillary/news/news.css') }}">
+{% endblock %}
+
+
+{% block body %}
+    <div class="pageContainer" id="newsPageContainer">
+        <div class="newsColumn">
+            <div class="updatePanel">
+                <div class="panelHeader">Latest News</div>
+                <div class="panelBody">No new updates. Check back in the future for more news about the site's progress!</div>
+            </div>
+        </div>
+        <div class="newsColumn">
+            <div class="tabletContainer">
+                <div class="tabletRow" id="circlesRow">
+                    <span class="decorativeCircles">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </span>
+                </div>
+                <div class="tabletRow" id="headerRow">
+                    <span class="tabletHeader">recent posts</span>
+                </div>
+                <div class="tabletRow" id="bodyRows">
+                    {% for post in posts %}
+                        <div class="homePostContainer">         
+                            <div class="homePostHeader">
+                                <div class="metaContainer">
+                                    <img class="homePostIcon" src="{{ url_for('static', filename='images/calendar.png') }}"></img>
+                                    <span class="postMeta">{{ post.date_posted.strftime('%Y-%m-%d') }}</span>
+                                </div>
+                                <div class="metaContainer">
+                                    <img class="homePostIcon" src="{{ url_for('static', filename='images/user.png') }}"></img>
+                                    <span class="postMeta"><span class="removableTxt">Author: </span>{{ post.author.username }}</span>
+                                </div>
+                                <div class="metaContainer">
+                                    <img class="homePostIcon" src="{{ url_for('static', filename='images/tag.png') }}"></img>
+                                    <span class="postMeta">{{ post.tag }}</span>
+                                </div>
+                            </div>
+                            <div class="homePostContent">{{ post.content|safe }}</div>
+                            <a href="{{ url_for('posts.post', post_id=post.id) }}" class="readMoreContainer"><span class="readMoreText">read more</span></a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %}

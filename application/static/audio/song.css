@@ -1,0 +1,110 @@
+#songHub {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 2%;
+  background-color: #282828;
+  border-radius: 7px;
+  margin-bottom: 2%;
+}
+
+.localDirectory {
+  width: 60%;
+}
+
+#shTitle {
+  font-size: xx-large;
+}
+
+#shTextContainer {
+  min-width: 35%;
+}
+
+.shText {
+  color: white;
+}
+
+#lyricsContainer {
+  color: white;
+}
+
+#shImage {
+  max-height: 250px;
+  border-radius: 5px;
+}
+
+#headerContainer {
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 5%;
+}
+
+#dlButton {
+  min-width: 80%;
+  margin-top: 7%;
+  background: linear-gradient(to top, #1c375c 0%, #537895 100%);
+  /* background: linear-gradient(35deg, #2e3a46, #282828); */
+  padding: 2.5% 8.5% 2.5% 8.5%;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 0.5px black solid;
+}
+
+#dlButton:hover {
+  background: #00df9a;
+  /* background: linear-gradient(to top, #1c375c 0%, #537895 100%); */
+}
+
+#dlIcon {
+  width: 15px;
+}
+
+#dlText {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-right: 10%;
+  color: white;
+}
+
+.likeContainer {
+  margin-top: 20%;
+}
+
+.adminBtnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+}
+
+@media screen and (max-width: 800px) {
+  #songHub {
+    width: 90%;
+    margin-bottom: 6em;
+  }
+
+  #shImage {
+    max-height: 125px;
+  }
+  #shTitle {
+    font-size: x-large;
+  }
+
+  .songActionContainer {
+    width: 100%;
+  }
+  #shTextContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 3%;
+    width: 60%;
+  }
+}

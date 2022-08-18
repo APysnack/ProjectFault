@@ -1,0 +1,19 @@
+.constructionHead {
+  margin-top: 1.5%;
+}
+
+.constructionMsg {
+  padding: 0% 4% 1% 4%;
+  width: 40%;
+  text-align: center;
+  margin-bottom: 1.5%;
+}
+
+.linkContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}

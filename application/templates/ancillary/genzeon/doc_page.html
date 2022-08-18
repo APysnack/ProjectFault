@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+{% block heading %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='ancillary/genzeon/docPage.css') }}">
+<script defer src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script defer src="{{ url_for('static', filename='ancillary/genzeon/docPage.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="pageContainer">
+        <div class="docInfoContainer">
+            <div class="localDirectory">
+                <div class="localDirectoryContentContainer">
+                    <img class="fileIcon" src="{{ url_for('static', filename='images/file.png') }}"></img>
+                    <span class="directoryLinks"><a href="{{ url_for('ancillary.genzeon')}}">Genzeon</a></span>
+                    <span class="directoryLinks">></span>
+                    <span class="directoryLinks"><a href="{{ url_for('ancillary.tin_db')}}">TIN DB</a></span>
+                    <span class="directoryLinks">></span>
+                    <span class="directoryLinks"><a href="{{ url_for('ancillary.doc_page', docID=doc.id)}}">Document</a></span>
+                </div>
+            </div>
+            <div class="headerWrap">
+                <span id="docMeta">DOCUMENT NAME</span>
+                <span id="docTitle">{{ doc.name }}</span>
+            </div>
+            <span class="tinHeader">TIN: {{ doc.tin_id }}</span>
+            <div class="pageDivider">
+                <div class="pageColumn" id="leftCol">
+                    <div class="columnInfoContainer">
+                        <h2>Document Columns</h2>
+                        <div class="headerContainer">
+                            <span>Header Columns: {{ doc.header_cols | length }}</span>
+                            <div class="headerListContainer">
+                                {% for item in doc.header_cols %}
+                                <select id="headerList">
+                                    <option>{{ item }}</option>
+                                </select>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="dataContainer">
+                            <span>Data Columns: {{ doc.actual_cols | length }}</span>
+                            <div class="headerListContainer">
+                                {% for item in doc.actual_cols %}
+                                <select id="headerList">
+                                    <option>{{ item }}</option>
+                                </select>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pageColumn" id="rightCol">
+                    <div class="docLink" id="clipBoard" data-docURL="{{ doc.link }}">
+                        <img class="docIcon" src="{{url_for('static', filename='images/clipboard.png')}}">
+                        <span>Copy Storage Link</span>
+                    </div>
+                    <a class="docLink" href="{{ doc.link }}">
+                        <img class="docIcon" src="{{url_for('static', filename='images/database.png')}}">
+                        <span>Visit Storage (Sharepoint)</span>
+                    </a>
+                    <a class="docLink" href="{{ doc.bugs }}">
+                        <img class="docIcon" src="{{url_for('static', filename='images/ladybug.png')}}">
+                        <span>Bugs (DevOps)</span>
+                    </a>
+                    <div class="modelLinkContainer">
+                        <a class="modelLink">
+                            <img class="docIcon" src="{{url_for('static', filename='images/3d-modeling.png')}}">
+                            <span>Model Type</span>
+                        </a>
+                        <span class="modelName">{{ doc.model_type }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="commentAlignment">
+                <h1>Document Comments</h1>
+                <div class="docCommentsContainer">
+                    {% for comment in doc.comments|sort(attribute='date_posted', reverse=True) %}
+                        <div class="commentContainer">
+                            <span class="dateSpan">{{ comment.date_posted.strftime('%m-%d-%y') }}</span>
+                            <span class="commentSpan">{{ comment.content }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="textAreaField">
+                <label for="addCommentField">Add New Comment:</label>
+                <textarea id="addCommentField" data-docParent="{{ doc.id }}"></textarea>
+                <div class="submissionRow">
+                    <input id="submitCommentBtn" type="submit" value="submit"></input>
+                </div>
+            </div>
+            <div class="hoverModal">
+                <img id="closeBtn" src="{{ url_for('static', filename='images/close.png') }}"></img>
+                <div class="modalContent">
+                    <span class="modelName">{{ doc.model_type }}</span>
+                    {% if (doc.model_type != 'empty') %}
+                        <img class="formModel" src="{{ url_for('static', filename='images/' + model.image_file) }}">
+                    {% else %}
+                        <span>No model type selected for this TIN</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+  

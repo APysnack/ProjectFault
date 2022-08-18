@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+{% block heading %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='artwork/photography/photography.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='artwork/carousel.css') }}">
+    <script defer src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script defer src="{{ url_for('static', filename='artwork/carousel.js') }}"></script>
+    {% endblock %}
+    
+    {% block body %}
+        <div class="pageContainer">
+            <div class="localDirectory">
+                <div class="localDirectoryContentContainer">
+                    <img class="fileIcon" src="{{ url_for('static', filename='images/file.png') }}"></img>
+                    <span class="directoryLinks"><a href="{{ url_for('main.media')}}">Media</a></span>
+                    <span class="directoryLinks">></span>
+                    <span class="directoryLinks"><a href="{{ url_for('artwork.photography')}}">Photography</a></span>
+                </div>
+            </div>
+            <div id="myModal" class="modal">
+                <div class="modalContainer">
+                    <div class="topCloseContainer">
+                        <img class="closeBtn" src="{{ url_for('static', filename='images/close.png') }}" onclick="closeModal()"></img>
+                    </div>
+                    <div class="modalInnerContainer">
+                        <img class="arrow" id="prev" src="{{ url_for('static', filename='images/left-arrow.png') }}" onclick="prevImage()"></img>
+                        <div class="imgContent">
+                            <img class="modal-content" id="modalImg"></img>
+                        </div>
+                        <img class="arrow" id="next" src="{{ url_for('static', filename='images/right-arrow.png') }}" onclick="nextImage()"></img>
+                    </div>
+                    {% if current_user.is_authenticated %}
+                        <div class="likeContainer">
+                            <span class="likeCaption" id="likeCaption"></span>
+                            <img class="likeButton" id="likeButton" onclick="likeToggle()"></img>
+                        </div>
+                    {% endif %}
+                    {% if current_user.rank == 'admin' %}
+                    <div class="deleteContainer">
+                        <div class="deleteButton" id="artDeleteButton" data-dbType="" data-dbObject="">Delete</div>
+                    </div>
+                    {% endif %}
+                    <div class="botCloseContainer">
+                        <span id="closeCaption">Close</span>
+                        <img class="closeBtn" src="{{ url_for('static', filename='images/close.png') }}" onclick="closeModal()"></img>
+                    </div>
+                </div>
+            </div> 
+            <div class="pageInnerContainer">
+                <div class="row">
+                    <div class="column">
+                        {% for image in image_array[0:arrayLengths[0]] %}
+                            <img class="artwork" name='{{ image.id }}' src="{{ url_for('static', filename='images/' + image.image_file) }}" onclick="triggerModal(this, name, art_type='photo')">
+                        {% endfor %}
+                    </div>
+                    <div class="column">
+                        {% for image in image_array[arrayLengths[0]:(arrayLengths[0] + arrayLengths[1])] %}
+                            <img class="artwork" name='{{ image.id }}' src="{{ url_for('static', filename='images/' + image.image_file) }}" onclick="triggerModal(this, name, art_type='photo')">
+                        {% endfor %}
+                    </div>
+                    <div class="column">
+                        {% for image in image_array[(arrayLengths[0] + arrayLengths[1]):(arrayLengths[0] + arrayLengths[1] + arrayLengths[2])] %}
+                            <img class="artwork" name='{{ image.id }}' src="{{ url_for('static', filename='images/' + image.image_file) }}" onclick="triggerModal(this, name, art_type='photo')">
+                        {% endfor %}
+                    </div>
+                    <div class="column">
+                        {% for image in image_array[(arrayLengths[0] + arrayLengths[1] + arrayLengths[2]):] %}
+                            <img class="artwork" name='{{ image.id }}' src="{{ url_for('static', filename='images/' + image.image_file) }}" onclick="triggerModal(this, name, art_type='photo')">
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}

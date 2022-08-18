@@ -1,0 +1,110 @@
+body {
+  background-color: #1d1c1c;
+}
+
+.gameActionBtn {
+  background-color: #df2500;
+  color: white;
+  padding: 0.5% 3% 0.5% 3%;
+  border-radius: 200px;
+  margin-top: 2%;
+  width: 20%;
+  text-align: center;
+  border: solid black 3px;
+}
+
+.gameActionBtn:hover {
+  cursor: pointer;
+}
+
+#headerTxt {
+  font-size: 3em;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: white;
+}
+
+.gameForm {
+  padding: 1em 2em 2em 2em;
+  border: black 10px solid;
+  border-radius: 7px;
+  background-color: #2e3a46;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 35%;
+  margin-top: 1%;
+}
+
+.gameFormHeader {
+  font-size: medium;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  color: white;
+  border-bottom: 3px solid white;
+  letter-spacing: 7px;
+  padding: 0% 0% 4% 0%;
+  width: 60%;
+  text-align: center;
+}
+
+.inputRow {
+  margin-bottom: 4%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputBox {
+  width: 80%;
+}
+
+.gameFormSubmit {
+  margin-top: 3%;
+  padding: 3%;
+  background-color: #1d1c1c;
+  color: white;
+  border: 2px solid white;
+  border-radius: 7px;
+}
+
+@keyframes scaleUp {
+  0% {
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.gameFormSubmit:hover {
+  cursor: pointer;
+  animation: scaleUp 0.18s ease-in-out forwards;
+  background-color: black;
+  box-shadow: 0 0 0 1px white;
+  color: white;
+  border-radius: 7px;
+  border: 1px solid white;
+}
+
+.tabsArrow {
+  width: 2%;
+  margin: 2%;
+}
+
+.formContainer {
+  margin-top: 1%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tabsArrow:hover {
+  cursor: pointer;
+}
+
+#joinGameForm {
+  display: none;
+}

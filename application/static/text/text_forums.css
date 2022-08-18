@@ -1,0 +1,61 @@
+.forumContentContainer {
+  margin-top: 2%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.forumContainer .threadLink,
+.threadDetail {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.threadContainer {
+  width: 30%;
+  margin: 1% 2% 1% 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-style: solid;
+  border-color: #ced4da;
+  border-radius: 7px;
+}
+
+.threadLink {
+  padding: 1% 1% 2% 1%;
+  width: 100%;
+  background-color: #2e3a46;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px 6px 0 0;
+}
+
+a.threadLink:hover {
+  text-decoration: underline;
+  color: white;
+}
+
+.threadDetail {
+  padding: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: small;
+}
+
+.divider {
+  background-color: #ced4da;
+  padding: 2% 1px 2% 1px;
+}
+
+@media (max-width: 1000px) {
+  .threadContainer {
+    width: 80%;
+    margin: 3% 2% 3% 2%;
+  }
+}

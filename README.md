@@ -5,9 +5,8 @@ MacOS installation
 
 1. Brew should be installed
 
-`brew update`
-
-`brew install pyenv`
+  `brew update`
+  `brew install pyenv`
 
 `echo 'eval "$(pyenv init --path)"' >> ~/.zshrc`
 

@@ -1,9 +1,9 @@
 # ProjectFault
 Flask web application developed Summer of 2021
 
-MacOS installation instructions
+MacOS installation 
 
-- Brew should be installed
+1. Brew should be installed
 `brew update`
 `brew install pyenv`
 `echo 'eval "$(pyenv init --path)"' >> ~/.zshrc`

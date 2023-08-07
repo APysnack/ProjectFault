@@ -3,13 +3,13 @@ Flask web application developed Summer of 2021
 
 MacOS installation 
 
-1. Brew should be installed
-  `brew update`
-  `brew install pyenv`
-  `echo 'eval "$(pyenv init --path)"' >> ~/.zshrc`
-  `echo 'eval "$(pyenv init -)"' >> ~/.zshrc`
-  `source ~/.zshrc`
-  `pyenv --version`
+- Brew should be installed
+- `brew update`
+- `brew install pyenv`
+- `echo 'eval "$(pyenv init --path)"' >> ~/.zshrc`
+- `echo 'eval "$(pyenv init -)"' >> ~/.zshrc`
+- `source ~/.zshrc`
+- `pyenv --version`
 
 - cd into root
 - Create a virtual environment: python3 -m venv myenv 

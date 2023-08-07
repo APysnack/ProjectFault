@@ -19,8 +19,7 @@ Flask web application developed Summer of 2021
 - `python3 run_app.py`
 - install any dependencies required using pip install (package name)
 
-migrate database:
-activate virtual environment:
+5. Create local database
 - `source myenv/bin/activate`
 - `python`
 - `from application import create_app, db`

@@ -12,12 +12,9 @@ Flask web application developed Summer of 2021
 2. cd into root and create a virtual environment:
 - `python3 -m venv myenv `
 
-3. Activate environment:
+3. Activate environment and install application dependencies:
 - `source myenv/bin/activate`
-
-4. Application dependencies
-- `python3 run_app.py`
-- install any dependencies required using pip install (package name)
+- `pip3 install -r requirements.txt`
 
 5. Create local database
 - `source myenv/bin/activate`

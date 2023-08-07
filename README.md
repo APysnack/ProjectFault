@@ -1,9 +1,7 @@
 # ProjectFault
 Flask web application developed Summer of 2021
 
-MacOS installation 
-
-- Brew should be installed
+1. MacOS pyenv installation (ensure Brew is installed)
 - `brew update`
 - `brew install pyenv`
 - `echo 'eval "$(pyenv init --path)"' >> ~/.zshrc`
@@ -11,21 +9,31 @@ MacOS installation
 - `source ~/.zshrc`
 - `pyenv --version`
 
-- cd into root
-- Create a virtual environment: python3 -m venv myenv 
-- Activate environment source myenv/bin/activate
+2. cd into root and create a virtual environment:
+- python3 -m venv myenv 
 
-- pip install -r requirements.txt
-- pip install flask
-- copy environment variables/secrets from config.py
-- run python3 run_app.py and install any dependencies required  migrate database:
-- activate virtual environment: source myenv/bin/activate
-- type “python” followed by: from application import create_app from application import db from application.models import User (there might be other imports I’m missing)  app = create_app() with app.app_context():
-         db.create_all()
-         user = User.query.first()
-         hashed_pw = bcrypt.generate_password_hash("supersecretpassword").decode("utf-8")
-         user.password = hashed_pw
-         db.session.commit()
+3. Activate environment:
+- source myenv/bin/activate
 
+4. Application dependencies
+- python3 run_app.py
+- install any dependencies required using pip install (package name)
+
+migrate database:
+activate virtual environment:
+- source myenv/bin/activate
+- python
+- from application import create_app, db
+-  from application.models import User (there might be other imports I’m missing)
+- app = create_app()
+- with app.app_context():
+    db.create_all()
+    hashed_pw = bcrypt.generate_password_hash("ENTER_PASSWORD_HERE").decode("utf-8")
+    user = User(username='Namehere', email='email@foo.com', password=hashed_pw)
+    db.session.add(user)
+    db.session.commit()
+  
+Verify with User.query.all()
 
 - exit()
+- python3 run_app.py

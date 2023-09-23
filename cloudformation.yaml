@@ -158,7 +158,7 @@ Resources:
                   - '/var/www/html/index.html'
           commands:
             01_clone_git_repo:
-              command: git clone https://github.com/APysnack/ProjectFault.git /var/www/html/
+              command: git clone https://github.com/APysnack/ProjectFault.git /var/www/html/ProjectFault
             02_create_venv:
               command: |
                 su - ec2-user -c "

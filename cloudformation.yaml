@@ -147,13 +147,18 @@ Resources:
       Roles:
         - !Ref MyParameterStoreAccessRole
       PolicyDocument:
+        # todo: add interpolation for different regions and account ID for each statement below
         Statement:
           - Effect: Allow
             Action:
               - ssm:GetParameter
             Resource:
-              # todo: add interpolation for different regions
               - arn:aws:ssm:us-east-1:655948565243:parameter/project-fault/prod/*
+          - Effect: Allow
+            Action:
+              - kms:Decrypt
+            Resource:
+              - arn:aws:kms:us-east-1:655948565243:key/alias/aws/ssm
 
   MyInstanceProfile:
     Type: 'AWS::IAM::InstanceProfile'
@@ -196,7 +201,7 @@ Resources:
             source /home/ec2-user/projectFaultVenv/bin/activate
             pip install --upgrade pip
             pip3 install -r requirements.txt
-            mv /home/ec2-user/ProjectFault/prod_config.py /home/ec2-user/ProjectFault/config.py
+            mv /home/ec2-user/ProjectFault/application/prod_config.py /home/ec2-user/ProjectFault/application/config.py
             /home/ec2-user/projectFaultVenv/bin/gunicorn app:app -b 127.0.0.1:8000
 
   ProjectFaultASG:

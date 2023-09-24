@@ -131,39 +131,6 @@ Resources:
 
   MyLaunchTemplate:
     Type: AWS::EC2::LaunchTemplate
-    Metadata:
-      AWS::CloudFormation::Init:
-        config:
-          packages:
-            yum:
-              httpd: []
-              git: []
-              gcc: []
-              make: []
-              openssl-devel: []
-              bzip2-devel: []
-              libffi-devel: []
-              zlib-devel: []
-              readline-devel: []
-              sqlite-devel: []
-          files:
-            /var/www/html/index.html:
-              content: <html><head><title>Amazing test page</title></head><body><h1><center>SANITY CHECK</center></h1></body></html>
-          services:
-            sysvinit:
-              httpd:
-                enabled: 'true'
-                ensureRunning: 'true'
-                files:
-                  - '/var/www/html/index.html'
-          commands:
-            01_clone_git_repo:
-              command: git clone https://github.com/APysnack/ProjectFault.git /var/www/html/ProjectFault
-            02_create_venv:
-              command: |
-                su - ec2-user -c "
-                  cd /home/ec2-user
-                  python3 -m venv projectFaultVenv"
     Properties:
       LaunchTemplateName: project-fault-launch-template
       VersionDescription: Version 1.0
@@ -182,8 +149,15 @@ Resources:
         UserData:
           Fn::Base64: !Sub |
             #!/bin/bash -xe
-            /opt/aws/bin/cfn-init -v --stack ${AWS::StackId} --resource MyLaunchTemplate --region ${AWS::Region}
-            /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackId} --resource MyLaunchTemplate --region ${AWS::Region}
+            yum update -y
+            yum install -y nginx git python-pip
+            git clone https://github.com/APysnack/ProjectFault.git /home/ec2-user/ProjectFault
+            su - ec2-user -c "cd /home/ec2-user && python3 -m venv projectFaultVenv"
+            sudo systemctl start nginx
+            sudo systemctl enable nginx
+            sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
+
+            systemctl restart nginx
 
   ProjectFaultASG:
     Type: AWS::AutoScaling::AutoScalingGroup

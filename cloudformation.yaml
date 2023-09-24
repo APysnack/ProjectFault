@@ -150,14 +150,15 @@ Resources:
           Fn::Base64: !Sub |
             #!/bin/bash -xe
             yum update -y
-            yum install -y nginx git python-pip
+            yum install -y nginx git python-pip python3-devel gcc 
             git clone https://github.com/APysnack/ProjectFault.git /home/ec2-user/ProjectFault
             su - ec2-user -c "cd /home/ec2-user && python3 -m venv projectFaultVenv"
             sudo systemctl start nginx
             sudo systemctl enable nginx
             sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
-
-            systemctl restart nginx
+            sudo mv /home/ec2-user/ProjectFault/nginx.conf /etc/nginx/nginx.conf
+            sudo systemctl reload nginx
+            pip install --upgrade pip
 
   ProjectFaultASG:
     Type: AWS::AutoScaling::AutoScalingGroup

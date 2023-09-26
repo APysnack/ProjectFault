@@ -30,8 +30,7 @@ def account():
     elif request.method == 'GET':
         form.email.data = current_user.email
 
-    image_file = url_for('static', filename='images/' +
-                         current_user.image_file)
+    image_file = current_user.image_file
 
     liked_videos = []
     my_videos = current_user.liked_videos
@@ -83,35 +82,39 @@ def account():
 def admin():
     if current_user.rank != 'admin':
         return redirect(url_for('main.index'))
-    form = AdminForm()
+    
+    admin_form = AdminForm()
     artwork_form = ArtworkForm()
     audio_form = AudioForm()
     project_form = ProjectForm()
-    videoForm = VideoForm()
-    writingForm = WritingForm()
+    video_form = VideoForm()
+    writing_form = WritingForm()
     mass_email_form = MassEmailForm()
-    update_form = UpdateUserForm()
+    update_user_form = UpdateUserForm()
 
-    if writingForm.validate_on_submit():
+    if writing_form.validate_on_submit():
+        print("WRITING FORM SUBMITTED")
         md_content = markdown.markdown(
-            writingForm.content.data, extensions=['nl2br'])
+            writing_form.content.data, extensions=['nl2br'])
 
-        writing = Writings(user_id=current_user.id, title=writingForm.title.data,
-                           details=writingForm.details.data, content=md_content, tag=writingForm.tag.data)
+        writing = Writings(user_id=current_user.id, title=writing_form.title.data,
+                           details=writing_form.details.data, content=md_content, tag=writing_form.tag.data)
         db.session.add(writing)
         db.session.commit()
         flash('Writing has been added!', 'success')
         return redirect(url_for('users.admin'))
 
-    if videoForm.validate_on_submit():
-        video = Video(user_id=current_user.id, title=videoForm.title.data,
-                      url=videoForm.url.data, tag=videoForm.tag.data)
+    if video_form.validate_on_submit():
+        print("VIDEO FORM SUBMITTED")
+        video = Video(user_id=current_user.id, title=video_form.title.data,
+                      url=video_form.url.data, tag=video_form.tag.data)
         db.session.add(video)
         db.session.commit()
         flash('Video has been added!', 'success')
         return redirect(url_for('users.admin'))
 
     if project_form.validate_on_submit():
+        print("PROJECT FORM SUBMITTED")
         project = Project(title=project_form.title.data, details=project_form.details.data,
                           completion_time=project_form.completion_time.data)
         db.session.add(project)
@@ -120,6 +123,7 @@ def admin():
         return redirect(url_for('users.admin'))
 
     if audio_form.validate_on_submit():
+        print("AUDIO FORM SUBMITTED")
         audio_file = audio_form.audio.data
         audio_filename = secure_filename(audio_file.filename)
         file_path = os.path.join(
@@ -136,6 +140,7 @@ def admin():
         return redirect(url_for('users.admin'))
 
     if artwork_form.validate_on_submit():
+        print("ARTWORK FORM SUBMITTED")
         if artwork_form.artwork.data:
             art_link = save_picture(artwork_form.artwork.data, 'artwork')
             artwork = Artwork(user_id=current_user.id,
@@ -145,21 +150,22 @@ def admin():
             flash('Artwork has been added!', 'success')
             return redirect(url_for('users.admin'))
 
-    if form.validate_on_submit():
-        if form.image.data:
-            image_file = save_picture(form.image.data, 'avatar')
+    if update_user_form.validate_on_submit():
+        if update_user_form.image.data:
+            image_file = save_picture(update_user_form.image.data, 'avatar')
             current_user.image_file = image_file
 
-        current_user.username = form.username.data
-        current_user.email = form.email.data
+        current_user.username = update_user_form.username.data
+        current_user.email = update_user_form.email.data
         db.session.commit()
         flash('Your account has been updated!', 'success')
         return redirect(url_for('users.admin'))
     elif request.method == 'GET':
-        form.username.data = current_user.username
-        form.email.data = current_user.email
-    image_file = url_for('static', filename='images/' +
-                         current_user.image_file)
+        print("WTF IS THIS")
+        update_user_form.username.data = current_user.username
+        update_user_form.email.data = current_user.email
+    
+    image_file = current_user.image_file
 
     if mass_email_form.validate_on_submit():
         title = mass_email_form.title.data
@@ -169,11 +175,11 @@ def admin():
         flash('Email successfully sent to all registered users!', 'success')
         return redirect(url_for('users.admin'))
 
-    if update_form.validate_on_submit():
+    if admin_form.validate_on_submit():
         if current_user.rank == 'admin':
-            user_to_modify = update_form.username.data
+            user_to_modify = admin_form.username.data
             print(user_to_modify)
-            rank = update_form.memberType.data
+            rank = admin_form.memberType.data
             user = User.query.filter_by(username=user_to_modify).first()
             print(user)
             if(rank == 'remove'):
@@ -189,7 +195,7 @@ def admin():
                 flash('User successfully updated', 'success')
         return redirect(url_for('users.admin'))
 
-    return render_template('users/admin.html', title='Admin', update_form=update_form, mass_email_form=mass_email_form, image_file=image_file, form=form, artwork_form=artwork_form, writing_form=writingForm, video_form=videoForm, project_form=project_form, audio_form=audio_form)
+    return render_template('users/admin.html', title='Admin', update_user_form=update_user_form, mass_email_form=mass_email_form, image_file=image_file, admin_form=admin_form, artwork_form=artwork_form, writing_form=writing_form, video_form=video_form, project_form=project_form, audio_form=audio_form)
 
 
 @users.route("/confirm_registration/<token>", methods=['GET', 'POST'])

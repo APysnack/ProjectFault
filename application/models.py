@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
-    image_file = db.Column(db.String(20), nullable=False,
+    image_file = db.Column(db.String(100), nullable=False,
                            default='default.jpg')
     rank = db.Column(db.String(20), nullable=False, default='member')
 
@@ -216,7 +216,7 @@ class Audio(db.Model):
     tag = db.Column(db.String(20), nullable=False, default='general')
     url = db.Column(db.String(100), nullable=False, default='default.mp3')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    image_file = db.Column(db.String(20), nullable=False,
+    image_file = db.Column(db.String(100), nullable=False,
                            default='default.jpg')
     likes = db.relationship('AudioLike', backref='audio', lazy='dynamic')
 

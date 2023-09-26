@@ -68,10 +68,10 @@
                 <div class="accountPgEdit">
                     <div class="media">
                         {% if current_user.rank == 'member' or current_user.rank == 'unconfirmed' %}
-                            <img class="rounded-circle account-img" src="{{ image_file }}">
+                            <img class="rounded-circle account-img" src="{{ image_file }}" width="150">
                         {% else %}
                             <div class="premiumContainer">
-                                <img class="opAvatar premiumAvy" src="{{ image_file }}">
+                                <img class="opAvatar premiumAvy" src="{{ image_file }}" width="150">
                                 <span class="premModal">PREMIUM</span>
                           </div>
                         {% endif %}

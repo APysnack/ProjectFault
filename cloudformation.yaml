@@ -307,15 +307,31 @@ Resources:
       VPCSecurityGroups:
         - !Ref RDSSecurityGroup
 
+  # TODO: Make bucket private and serve via the application?
+  # I might prefer this media to be public
   MyS3Bucket:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: project-fault-media
       PublicAccessBlockConfiguration:
-        BlockPublicAcls: true
-        IgnorePublicAcls: true
-        BlockPublicPolicy: true
-        RestrictPublicBuckets: true
+        BlockPublicAcls: false
+        IgnorePublicAcls: false
+        BlockPublicPolicy: false
+        RestrictPublicBuckets: false
+
+  MyBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket:
+        Ref: MyS3Bucket
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: '*'
+            Action: s3:GetObject
+            Resource:
+              Fn::Sub: arn:aws:s3:::${MyS3Bucket}/*
 
   # TODO: Name should be dynamic
   RdsEndpointParameter:

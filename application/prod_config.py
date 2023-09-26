@@ -29,3 +29,5 @@ class Config:
     
     UPLOAD_FOLDER = basedir + '/static/audio/audio-files'
     ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'mp3', 'wav'}
+
+    ENV='production'

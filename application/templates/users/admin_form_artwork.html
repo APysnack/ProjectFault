@@ -1,0 +1,33 @@
+<form method="POST" action="" enctype="multipart/form-data">
+  {{ form.hidden_tag() }}
+  <fieldset class="form-group">
+    <legend class="border-bottom mb-4">Upload Artwork</legend>
+    <div class="form-group">
+      {{ artwork_form.artwork.label(class="form-control-label") }} {% if
+      artwork_form.artwork.errors %} {{
+      artwork_form.artwork(class="form-control-file is-invalid")}}
+      <div class="invalid-feedback">
+        {% for error in artwork_form.artwork.errors %}
+        <span>{{ error }}</span>
+        {% endfor %}
+      </div>
+      {% else %} {{ artwork_form.artwork(class="form-control-file") }} {% endif
+      %}
+    </div>
+    <div class="form-group">
+      {{ artwork_form.tag.label(class="form-control-label") }} {% if
+      artwork_form.tag.errors %} {{ artwork_form.tag(class="form-control
+      form-control-lg is-invalid")}}
+      <div class="invalid-feedback">
+        {% for error in artwork_form.tag.errors %}
+        <span>{{ error }}</span>
+        {% endfor %}
+      </div>
+      {% else %} {{ artwork_form.tag(class="form-control form-control-lg") }} {%
+      endif %}
+    </div>
+  </fieldset>
+  <div class="submitContainer">
+    <div class="form-group">{{ artwork_form.submit(class="submitBtn")}}</div>
+  </div>
+</form>

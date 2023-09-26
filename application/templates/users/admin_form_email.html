@@ -1,0 +1,33 @@
+<form method="POST" action="" enctype="multipart/form-data">
+  {{ form.hidden_tag() }}
+  <fieldset class="form-group">
+    <legend class="border-bottom mb-4">Mass Email</legend>
+    <div class="form-group">
+      {{ mass_email_form.title.label(class="form-control-label") }} {% if
+      mass_email_form.title.errors %} {{
+      mass_email_form.title(class="form-control form-control-lg is-invalid")}}
+      <div class="invalid-feedback">
+        {% for error in mass_email_form.title.errors %}
+        <span>{{ error }}</span>
+        {% endfor %}
+      </div>
+      {% else %} {{ mass_email_form.title(class="form-control form-control-lg")
+      }} {% endif %}
+    </div>
+    <div class="form-group">
+      {{ mass_email_form.content.label(class="form-control-label") }} {% if
+      mass_email_form.content.errors %} {{
+      mass_email_form.content(class="form-control form-control-lg is-invalid")}}
+      <div class="invalid-feedback">
+        {% for error in mass_email_form.content.errors %}
+        <span>{{ error }}</span>
+        {% endfor %}
+      </div>
+      {% else %} {{ mass_email_form.content(class="form-control
+      form-control-lg") }} {% endif %}
+    </div>
+  </fieldset>
+  <div class="submitContainer">
+    <div class="form-group">{{ mass_email_form.submit(class="submitBtn")}}</div>
+  </div>
+</form>

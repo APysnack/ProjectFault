@@ -192,7 +192,8 @@ a.songPageBtn:hover {
 }
 
 .account-img {
-  max-width: 175px;
+  background-color: red;
+  max-width: 15px;
   height: auto;
 }
 

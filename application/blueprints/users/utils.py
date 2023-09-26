@@ -11,7 +11,18 @@ def save_picture(form_image, type):
     random_hex = secrets.token_hex(8)
     f_name, f_ext = os.path.splitext(form_image.filename)
     new_filename = random_hex + f_ext
-    s3 = boto3.client('s3')
+
+    if current_app.config['ENV'] == 'development':
+      s3 = boto3.client(
+        's3',
+        aws_access_key_id=current_app.config['AWS_ACCESS_KEY_ID'],
+        aws_secret_access_key=current_app.config['AWS_SECRET_ACCESS_KEY'],
+        aws_session_token=current_app.config.get('AWS_SESSION_TOKEN')
+      )
+
+    else: 
+      s3 = boto3.client('s3')
+    
     s3_bucket = current_app.config['S3_BUCKET_NAME']
     s3_key = 'pf-images/' + new_filename
     s3.upload_fileobj(form_image, s3_bucket, s3_key)

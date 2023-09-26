@@ -159,7 +159,7 @@ Resources:
       Roles:
         - !Ref MyParameterStoreAccessRole
       PolicyDocument:
-        # todo: add interpolation for different regions and account ID for each statement below
+        # TODO: add interpolation for different regions and account ID for each statement below
         Statement:
           - Effect: Allow
             Action:
@@ -192,11 +192,12 @@ Resources:
           - !GetAtt InstanceSecurityGroup.GroupId
         IamInstanceProfile:
           Arn: !GetAtt MyInstanceProfile.Arn
+        # TODO: running python3 /home/ec2-user/ProjectFault/init_db.py relies on endpoint variable
         UserData:
           Fn::Base64: !Sub |
             #!/bin/bash -xe
             yum update -y
-            yum install -y nginx git python-pip python3-devel gcc 
+            yum install -y nginx git python-pip postgresql-devel python3-devel gcc 
             git clone https://github.com/APysnack/ProjectFault.git /home/ec2-user/ProjectFault
             su - ec2-user -c "cd /home/ec2-user && python3 -m venv projectFaultVenv"
             systemctl start nginx
@@ -206,7 +207,7 @@ Resources:
             systemctl reload nginx
             cd /home/ec2-user/ProjectFault
             source /home/ec2-user/projectFaultVenv/bin/activate
-            pip install --upgrade pip
+            pip3 install --upgrade pip
             pip3 install -r requirements.txt
             mv /home/ec2-user/ProjectFault/application/prod_config.py /home/ec2-user/ProjectFault/application/config.py
             /home/ec2-user/projectFaultVenv/bin/gunicorn app:app -b 127.0.0.1:8000
@@ -257,6 +258,7 @@ Resources:
       UnhealthyThresholdCount: 3
       VpcId: !Ref MyVPC
 
+  # TODO: Switch to https
   ALBListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
     Properties:

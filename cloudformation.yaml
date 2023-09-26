@@ -129,6 +129,18 @@ Resources:
           ToPort: '80'
           CidrIp: '0.0.0.0/0'
 
+  RDSSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: RDS Security Group
+      VpcId: !Ref MyVPC
+      SecurityGroupIngress:
+        - Description: 'Allow EC2 to communicate with DB'
+          IpProtocol: tcp
+          FromPort: '5432'
+          ToPort: '5432'
+          SourceSecurityGroupId: !GetAtt InstanceSecurityGroup.GroupId
+
   MyParameterStoreAccessRole:
     Type: AWS::IAM::Role
     Properties:
@@ -154,11 +166,6 @@ Resources:
               - ssm:GetParameter
             Resource:
               - arn:aws:ssm:us-east-1:655948565243:parameter/project-fault/prod/*
-          - Effect: Allow
-            Action:
-              - kms:Decrypt
-            Resource:
-              - arn:aws:kms:us-east-1:655948565243:key/alias/aws/ssm
 
   MyInstanceProfile:
     Type: 'AWS::IAM::InstanceProfile'
@@ -259,3 +266,40 @@ Resources:
       LoadBalancerArn: !Ref ApplicationLoadBalancer
       Port: 80
       Protocol: HTTP
+
+  MyDBSubnetGroup:
+    Type: 'AWS::RDS::DBSubnetGroup'
+    Properties:
+      DBSubnetGroupName: pf-subnet-group
+      DBSubnetGroupDescription: Project Fault Subnet Group
+      SubnetIds:
+        - !Ref PublicSubnet1
+        - !Ref PublicSubnet2
+        - !Ref PublicSubnet3
+
+  MyRDSInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      AllocatedStorage: 20
+      AvailabilityZone: !Select
+        - 0
+        - Fn::GetAZs: !Ref 'AWS::Region'
+      CopyTagsToSnapshot: false
+      DBInstanceClass: db.t3.micro
+      DBInstanceIdentifier: projectFaultDB
+      DBName: projectFaultDB
+      Engine: postgres
+      MasterUsername: postgres
+      MasterUserPassword: password
+      MultiAZ: false
+      # TODO: Set to false and add a NACL to allow private communication between EC2 and RDS
+      PubliclyAccessible: true
+      StorageType: gp2
+      DBSubnetGroupName: !Ref MyDBSubnetGroup
+      VPCSecurityGroups:
+        - !Ref RDSSecurityGroup
+
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: project-fault-media

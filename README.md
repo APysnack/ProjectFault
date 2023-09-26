@@ -19,8 +19,8 @@ Flask web application developed Summer of 2021
 5. Create local database
 - `source myenv/bin/activate`
 - `python`
-- `from application import create_app, db`
--  `from application.models import User` (there might be other imports I’m missing)
+- `from application import create_app, db, bcrypt`
+-  `from application.models import User`
 - `app = create_app()`
 
 ```

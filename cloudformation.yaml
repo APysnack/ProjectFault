@@ -145,6 +145,8 @@ Resources:
     Type: AWS::IAM::Role
     Properties:
       RoleName: MyParameterStoreAccessRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonS3FullAccess
       AssumeRolePolicyDocument:
         Statement:
           - Effect: Allow
@@ -174,6 +176,7 @@ Resources:
         - !Ref MyParameterStoreAccessRole
 
   MyLaunchTemplate:
+    DependsOn: RdsEndpointParameter
     Type: AWS::EC2::LaunchTemplate
     Properties:
       LaunchTemplateName: project-fault-launch-template
@@ -192,7 +195,7 @@ Resources:
           - !GetAtt InstanceSecurityGroup.GroupId
         IamInstanceProfile:
           Arn: !GetAtt MyInstanceProfile.Arn
-        # TODO: running python3 /home/ec2-user/ProjectFault/init_db.py relies on endpoint variable
+
         UserData:
           Fn::Base64: !Sub |
             #!/bin/bash -xe
@@ -210,6 +213,7 @@ Resources:
             pip3 install --upgrade pip
             pip3 install -r requirements.txt
             mv /home/ec2-user/ProjectFault/application/prod_config.py /home/ec2-user/ProjectFault/application/config.py
+            python3 /home/ec2-user/ProjectFault/init_db.py
             /home/ec2-user/projectFaultVenv/bin/gunicorn app:app -b 127.0.0.1:8000
 
   ProjectFaultASG:
@@ -305,3 +309,16 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: project-fault-media
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        IgnorePublicAcls: true
+        BlockPublicPolicy: true
+        RestrictPublicBuckets: true
+
+  # TODO: Name should be dynamic
+  RdsEndpointParameter:
+    Type: 'AWS::SSM::Parameter'
+    Properties:
+      Name: '/project-fault/prod/RDS_ENDPOINT'
+      Type: 'String'
+      Value: !GetAtt MyRDSInstance.Endpoint.Address

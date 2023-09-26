@@ -49,22 +49,22 @@
             <div class="row">
                 <div class="column">
                     {% for image in image_array[0:arrayLengths[0]] %}
-                        <img class="artwork" name='{{ image.id }}' src="{{ url_for('static', filename='images/' + image.image_file) }}" onclick="triggerModal(this, name, art_type='digital')">
+                        <img class="artwork" name='{{ image.id }}' src="{{ image.image_file }}" onclick="triggerModal(this, name, art_type='digital')">
                     {% endfor %}
                 </div>
                 <div class="column">
                     {% for image in image_array[arrayLengths[0]:(arrayLengths[0] + arrayLengths[1])] %}
-                        <img class="artwork" name='{{ image.id }}' src="{{ url_for('static', filename='images/' + image.image_file) }}" onclick="triggerModal(this, name, art_type='digital')">
+                        <img class="artwork" name='{{ image.id }}' src="{{ image.image_file }}" onclick="triggerModal(this, name, art_type='digital')">
                     {% endfor %}
                 </div>
                 <div class="column">
                     {% for image in image_array[(arrayLengths[0] + arrayLengths[1]):(arrayLengths[0] + arrayLengths[1] + arrayLengths[2])] %}
-                        <img class="artwork" name='{{ image.id }}' src="{{ url_for('static', filename='images/' + image.image_file) }}" onclick="triggerModal(this, name, art_type='digital')">
+                        <img class="artwork" name='{{ image.id }}' src="{{ image.image_file }}" onclick="triggerModal(this, name, art_type='digital')">
                     {% endfor %}
                 </div>
                 <div class="column">
                     {% for image in image_array[(arrayLengths[0] + arrayLengths[1] + arrayLengths[2]):] %}
-                        <img class="artwork" name='{{ image.id }}' src="{{ url_for('static', filename='images/' + image.image_file) }}" onclick="triggerModal(this, name, art_type='digital')">
+                        <img class="artwork" name='{{ image.id }}' src="{{ image.image_file }}" onclick="triggerModal(this, name, art_type='digital')">
                     {% endfor %}
                 </div>
             </div>

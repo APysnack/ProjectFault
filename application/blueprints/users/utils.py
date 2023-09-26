@@ -1,35 +1,22 @@
 import os
 import secrets
+import boto3
 from PIL import Image
 from flask import url_for, current_app
 from flask_mail import Message
 from application import mail
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
-
 def save_picture(form_image, type):
     random_hex = secrets.token_hex(8)
     f_name, f_ext = os.path.splitext(form_image.filename)
     new_filename = random_hex + f_ext
+    s3 = boto3.client('s3')
+    s3_bucket = current_app.config['S3_BUCKET_NAME']
+    s3_key = 'pf-images/' + new_filename
+    s3.upload_fileobj(form_image, s3_bucket, s3_key)
 
-    picture_path = os.path.join(
-        current_app.config['IMAGE_UPLOADS'], 'pf-images', new_filename)
-
-    if type == 'avatar':
-        output_size = (125, 125)
-
-    elif type == 'artwork':
-        i = Image.open(form_image)
-        i.save(picture_path)
-        return picture_path
-
-    else:
-        output_size = (150, 150)
-
-    i = Image.open(form_image)
-    i.thumbnail(output_size)
-    i.save(picture_path)
-
+    picture_path = f"{current_app.config['S3_BUCKET_URL']}{s3_key}"
     return picture_path
 
 

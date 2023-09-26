@@ -285,6 +285,7 @@ Resources:
 
   MyRDSInstance:
     Type: AWS::RDS::DBInstance
+    DependsOn: AttachGateway
     Properties:
       AllocatedStorage: 20
       AvailabilityZone: !Select

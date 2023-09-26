@@ -274,7 +274,7 @@ class Artwork(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False,
                             default=datetime.utcnow)
-    image_file = db.Column(db.String(20), nullable=False,
+    image_file = db.Column(db.String(100), nullable=False,
                            default='default.jpg')
     tag = db.Column(db.String(20), nullable=False, default='general')
     likes = db.relationship('ArtworkLike', backref='artwork', lazy='dynamic')

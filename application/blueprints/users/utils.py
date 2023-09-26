@@ -11,12 +11,9 @@ def save_picture(form_image, type):
     random_hex = secrets.token_hex(8)
     f_name, f_ext = os.path.splitext(form_image.filename)
     new_filename = random_hex + f_ext
-    if type == 'audio_img':
-        picture_path = os.path.join(
-            current_app.root_path, 'static/audio/audio-images', new_filename)
-    else:
-        picture_path = os.path.join(
-            current_app.root_path, 'static/images', new_filename)
+
+    picture_path = os.path.join(
+        current_app.config['IMAGE_UPLOADS'], 'pf-images', new_filename)
 
     if type == 'avatar':
         output_size = (125, 125)
@@ -24,7 +21,7 @@ def save_picture(form_image, type):
     elif type == 'artwork':
         i = Image.open(form_image)
         i.save(picture_path)
-        return new_filename
+        return picture_path
 
     else:
         output_size = (150, 150)
@@ -33,7 +30,7 @@ def save_picture(form_image, type):
     i.thumbnail(output_size)
     i.save(picture_path)
 
-    return new_filename
+    return picture_path
 
 
 def send_reset_email(user):

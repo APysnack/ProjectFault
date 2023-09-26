@@ -22,6 +22,6 @@ class Config:
 
     SECRET_KEY = get_parameter(client, 'SECRET_KEY', True)
 
-
+    IMAGE_UPLOADS = 'https://project-fault-media.s3.amazonaws.com/'
     UPLOAD_FOLDER = basedir + '/static/audio/audio-files'
     ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'mp3', 'wav'}

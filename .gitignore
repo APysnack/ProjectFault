@@ -1,1 +1,14 @@
 application/config.py
+application/__pycache__
+application/blueprints/ancillary/__pycache__
+application/blueprints/api/__pycache__
+application/blueprints/artwork/__pycache__
+application/blueprints/audio/__pycache__
+application/blueprints/code/__pycache__
+application/blueprints/errors/__pycache__
+application/blueprints/games/__pycache__
+application/blueprints/main/__pycache__
+application/blueprints/posts/__pycache__
+application/blueprints/text/__pycache__
+application/blueprints/users/__pycache__
+application/blueprints/video/__pycache__

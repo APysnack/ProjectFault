@@ -14,10 +14,10 @@
             <div id="postInfoContainer">
               <div class="metaWrap">
                 {% if post.author.rank == 'member' or post.author.rank == 'unconfirmed'%}
-                  <img class="opAvatar" src="{{ url_for('static', filename='images/' + post.author.image_file) }}">
+                  <img class="opAvatar" src="{{ post.author.image_file }}">
                 {% else %}
                   <div class="premiumContainer">
-                    <img class="opAvatar premiumAvy" src="{{ url_for('static', filename='images/' + post.author.image_file) }}">
+                    <img class="opAvatar premiumAvy" src="{{ post.author.image_file }}">
                     <span class="premModal">PREMIUM</span>
                   </div>
                 {% endif %}

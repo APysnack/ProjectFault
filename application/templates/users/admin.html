@@ -10,7 +10,7 @@
     <div class="media">
       <img
         class="rounded-circle account-img"
-        src="{{ image_file }}"
+        src="{{ image_to_display }}"
         width="150"
       />
       <div class="media-container">
@@ -19,12 +19,12 @@
       </div>
     </div>
 
-    {% include "users/admin_form_admin.html" %} {% include
-    "users/admin_form_artwork.html" %} {% include
-    "users/admin_form_writing.html" %} {% include "users/admin_form_video.html"
-    %} {% include "users/admin_form_project.html" %} {% include
-    "users/admin_form_audio.html" %} {% include "users/admin_form_email.html" %}
-    {% include "users/admin_form_update_user.html" %}
+    {% include "users/admin_form_update_self.html" %} {% include
+    "users/admin_form_artwork.html" %} {% include "users/admin_form_audio.html"
+    %} {% include "users/admin_form_video.html" %} {% include
+    "users/admin_form_writing.html" %} {% include
+    "users/admin_form_project.html" %} {% include
+    "users/admin_form_update_user.html" %}
   </div>
 </div>
 {% endblock %}

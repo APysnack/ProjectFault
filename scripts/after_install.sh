@@ -1,9 +1,5 @@
 #!/bin/bash
 
-ZIP_FILE="project_fault.zip"
-DEPLOY_PATH="/home/ec2-user/ProjectFault"
-
-unzip -o $ZIP_FILE -d $DEPLOY_PATH
 cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
 mv /home/ec2-user/ProjectFault/nginx.conf /etc/nginx/nginx.conf
 systemctl start nginx

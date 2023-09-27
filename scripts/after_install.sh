@@ -2,7 +2,6 @@
 
 cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
 mv /home/ec2-user/ProjectFault/nginx.conf /etc/nginx/nginx.conf
-systemctl start nginx
 cd /home/ec2-user/ProjectFault
 source /home/ec2-user/projectFaultVenv/bin/activate
 pip3 install --upgrade pip

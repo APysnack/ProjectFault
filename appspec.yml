@@ -1,7 +1,7 @@
 version: 0.0
 os: linux
 files:
-  - source: /project_fault.zip
+  - source: /
     destination: /home/ec2-user/ProjectFault
 permissions:
   - object: /home/ec2-user/ProjectFault/scripts

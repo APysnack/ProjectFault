@@ -5,11 +5,5 @@ phases:
     commands:
       - echo "Build started on `date`"
       - zip -r project_fault.zip .
-      - mkdir ProjectFault
-      - zip -r project_fault.zip ProjectFault
-  post_build:
-    commands:
-      - echo "Build completed on `date`"
-      - aws s3 cp project_fault.zip s3://project-fault-media/deployments/project_fault.zip
 artifacts:
   files: project_fault.zip

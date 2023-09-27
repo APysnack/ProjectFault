@@ -111,7 +111,7 @@ class AdminForm(FlaskForm):
 
 class ArtworkForm(FlaskForm):
     artwork = FileField('Upload Artwork', validators=[
-        FileAllowed(['jpg', 'png'])])
+        FileAllowed(['jpg', 'jpeg', 'png', 'gif', 'webp'])])
     tag = SelectField('Select Tag', choices=[
                       ('photo', 'Photography'), ('digital', 'Digital Art')], validators=[DataRequired()])
     submit = SubmitField('Add Artwork')
@@ -155,13 +155,6 @@ class AudioForm(FlaskForm):
     lyrics = TextAreaField('Song Lyrics', validators=[
         DataRequired()])
     submit = SubmitField('Add Song')
-
-
-class MassEmailForm(FlaskForm):
-    title = StringField('Email Title', validators=[DataRequired()])
-    content = TextAreaField('Email Content', validators=[
-        DataRequired(), Length(max=5000)])
-    submit = SubmitField('Send Email')
 
 
 class UpdateUserForm(FlaskForm):

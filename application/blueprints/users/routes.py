@@ -2,12 +2,9 @@ from flask import render_template, url_for, flash, redirect, request, Blueprint,
 from flask_login import login_user, current_user, logout_user, login_required
 from application import db, bcrypt
 from application.models import Artwork, PostComment, User, Post, Writings, Video, Project, Audio, AudioLike, VideoLike, WritingsLike, ProjectDislike, ProjectLike, ArtworkLike
-from application.blueprints.users.forms import (RegistrationForm, LoginForm, UpdateAccountForm, MassEmailForm,
-                                                RequestResetForm, ResetPassword, AdminForm, UpdateUserForm, VideoForm, WritingForm, ProjectForm, AudioForm, ArtworkForm)
-from application.blueprints.users.utils import save_picture, send_email_confirmation, send_reset_email, send_mass_email
-from werkzeug.utils import secure_filename
+from application.blueprints.users.forms import (RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPassword, AdminForm, UpdateUserForm, VideoForm, WritingForm, ProjectForm, AudioForm, ArtworkForm)
+from application.blueprints.users.utils import save_picture, save_audio_file, send_email_confirmation, send_reset_email
 import markdown
-import os
 import math
 
 users = Blueprint('users', __name__)
@@ -21,7 +18,7 @@ def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
         if form.image.data:
-            image_file = save_picture(form.image.data, 'avatar')
+            image_file = save_picture(form.image.data)
             current_user.image_file = image_file
         current_user.email = form.email.data
         db.session.commit()
@@ -35,12 +32,12 @@ def account():
     liked_videos = []
     my_videos = current_user.liked_videos
     for video in my_videos:
-        liked_videos.append(Video.query.filter_by(id=video.video_id).first())
+      liked_videos.append(Video.query.filter_by(id=video.video_id).first())
 
     liked_posts = []
     my_posts = current_user.liked_post
     for post in my_posts:
-        liked_posts.append(Post.query.filter_by(id=post.post_id).first())
+      liked_posts.append(Post.query.filter_by(id=post.post_id).first())
 
     # may go back and sort these by date, but this functionality is adequate for the beta version of the site
     liked_artwork = []
@@ -81,121 +78,84 @@ def account():
 @ login_required
 def admin():
     if current_user.rank != 'admin':
-        return redirect(url_for('main.index'))
+      return redirect(url_for('main.index'))
     
-    admin_form = AdminForm()
-    artwork_form = ArtworkForm()
-    audio_form = AudioForm()
-    project_form = ProjectForm()
-    video_form = VideoForm()
-    writing_form = WritingForm()
-    mass_email_form = MassEmailForm()
-    update_user_form = UpdateUserForm()
+    forms = {
+      "update_self_form": AdminForm(),
+      "update_user_form": UpdateUserForm(),
+      "artwork_form": ArtworkForm(),
+      "audio_form": AudioForm(),
+      "project_form": ProjectForm(),
+      "video_form": VideoForm(),
+      "writing_form": WritingForm(),
+    }
 
-    if writing_form.validate_on_submit():
-        print("WRITING FORM SUBMITTED")
-        md_content = markdown.markdown(
-            writing_form.content.data, extensions=['nl2br'])
+    image_to_display = current_user.image_file
 
-        writing = Writings(user_id=current_user.id, title=writing_form.title.data,
-                           details=writing_form.details.data, content=md_content, tag=writing_form.tag.data)
-        db.session.add(writing)
-        db.session.commit()
-        flash('Writing has been added!', 'success')
-        return redirect(url_for('users.admin'))
+    # populates form placeholder with current user info
+    if request.method == 'GET':
+      selected_form = forms.get("update_self_form") 
+      selected_form.username.data = current_user.username
+      selected_form.email.data = current_user.email
 
-    if video_form.validate_on_submit():
-        print("VIDEO FORM SUBMITTED")
-        video = Video(user_id=current_user.id, title=video_form.title.data,
-                      url=video_form.url.data, tag=video_form.tag.data)
-        db.session.add(video)
-        db.session.commit()
-        flash('Video has been added!', 'success')
-        return redirect(url_for('users.admin'))
-
-    if project_form.validate_on_submit():
-        print("PROJECT FORM SUBMITTED")
-        project = Project(title=project_form.title.data, details=project_form.details.data,
-                          completion_time=project_form.completion_time.data)
-        db.session.add(project)
-        db.session.commit()
-        flash('Project has been added!', 'success')
-        return redirect(url_for('users.admin'))
-
-    if audio_form.validate_on_submit():
-        print("AUDIO FORM SUBMITTED")
-        audio_file = audio_form.audio.data
-        audio_filename = secure_filename(audio_file.filename)
-        file_path = os.path.join(
-            current_app.config['UPLOAD_FOLDER'], audio_filename)
-        audio_file.save(file_path)
-        image_file = save_picture(audio_form.image.data, 'audio_img')
-        audio_lyrics = markdown.markdown(
-            audio_form.lyrics.data, extensions=['nl2br'])
-        audio = Audio(user_id=current_user.id, title=audio_form.title.data, lyrics=audio_lyrics,
-                      image_file=image_file, tag=audio_form.tag.data, url=audio_filename)
-        db.session.add(audio)
-        db.session.commit()
-        flash('Audio has been added!', 'success')
-        return redirect(url_for('users.admin'))
-
-    if artwork_form.validate_on_submit():
-        print("ARTWORK FORM SUBMITTED")
-        if artwork_form.artwork.data:
-            art_link = save_picture(artwork_form.artwork.data, 'artwork')
-            artwork = Artwork(user_id=current_user.id,
-                              image_file=art_link, tag=artwork_form.tag.data)
-            db.session.add(artwork)
-            db.session.commit()
-            flash('Artwork has been added!', 'success')
-            return redirect(url_for('users.admin'))
-
-    if update_user_form.validate_on_submit():
-        if update_user_form.image.data:
-            image_file = save_picture(update_user_form.image.data, 'avatar')
+    elif request.method == 'POST':
+      form_type = request.form.get("form_type")
+      selected_form = forms.get(form_type)
+      
+      if selected_form and selected_form.validate():
+        if form_type == "update_self_form":
+          if selected_form.image.data:
+            image_file = save_picture(selected_form.image.data)
             current_user.image_file = image_file
 
-        current_user.username = update_user_form.username.data
-        current_user.email = update_user_form.email.data
-        db.session.commit()
-        flash('Your account has been updated!', 'success')
-        return redirect(url_for('users.admin'))
-    elif request.method == 'GET':
-        print("WTF IS THIS")
-        update_user_form.username.data = current_user.username
-        update_user_form.email.data = current_user.email
-    
-    image_file = current_user.image_file
+          current_user.username = selected_form.username.data
+          current_user.email = selected_form.email.data
 
-    if mass_email_form.validate_on_submit():
-        title = mass_email_form.title.data
-        content = mass_email_form.content.data
-        members = User.query.filter_by(rank='member').all()
-        send_mass_email(title, content, members)
-        flash('Email successfully sent to all registered users!', 'success')
+        elif form_type == "artwork_form":
+          if selected_form.artwork.data:
+            art_link = save_picture(selected_form.artwork.data)
+            artwork = Artwork(user_id=current_user.id, image_file=art_link, tag=selected_form.tag.data)
+            db.session.add(artwork)
+
+        elif form_type == "audio_form":
+          audio_url = save_audio_file(selected_form.audio.data)
+          image_file = save_picture(selected_form.image.data)
+          audio_lyrics = markdown.markdown(selected_form.lyrics.data, extensions=['nl2br'])
+          audio = Audio(user_id=current_user.id, title=selected_form.title.data, lyrics=audio_lyrics, image_file=image_file, tag=selected_form.tag.data, url=audio_url)
+          db.session.add(audio)
+
+        elif form_type == "video_form":
+          video = Video(user_id=current_user.id, title=selected_form.title.data, url=selected_form.url.data, tag=selected_form.tag.data)
+          db.session.add(video)
+
+        elif form_type == "writing_form":
+          md_content = markdown.markdown(selected_form.content.data, extensions=['nl2br'])
+          writing = Writings(user_id=current_user.id, title=selected_form.title.data,
+                           details=selected_form.details.data, content=md_content, tag=selected_form.tag.data)
+          db.session.add(writing)
+
+        elif form_type == "project_form":
+          project = Project(title=selected_form.title.data, details=selected_form.details.data,
+                            completion_time=selected_form.completion_time.data)
+          db.session.add(project)
+
+        elif form_type == "update_user_form":
+          user_to_modify = selected_form.username.data
+          rank = selected_form.memberType.data
+          user = User.query.filter_by(username=user_to_modify).first()
+          
+          if (rank == 'remove'):
+            PostComment.query.filter_by(user_id=user.id).delete()
+            Post.query.filter_by(user_id=user.id).delete()
+            User.query.filter_by(id=user.id).delete()
+          else:
+            user.rank = rank
+
+        db.session.commit()  
+        flash('Changes successful!', 'success')
         return redirect(url_for('users.admin'))
 
-    if admin_form.validate_on_submit():
-        if current_user.rank == 'admin':
-            user_to_modify = admin_form.username.data
-            print(user_to_modify)
-            rank = admin_form.memberType.data
-            user = User.query.filter_by(username=user_to_modify).first()
-            print(user)
-            if(rank == 'remove'):
-                print(user.id)
-                PostComment.query.filter_by(user_id=user.id).delete()
-                Post.query.filter_by(user_id=user.id).delete()
-                User.query.filter_by(id=user.id).delete()
-                db.session.commit()
-                flash('User successfully deleted', 'success')
-            else:
-                user.rank = rank
-                db.session.commit()
-                flash('User successfully updated', 'success')
-        return redirect(url_for('users.admin'))
-
-    return render_template('users/admin.html', title='Admin', update_user_form=update_user_form, mass_email_form=mass_email_form, image_file=image_file, admin_form=admin_form, artwork_form=artwork_form, writing_form=writing_form, video_form=video_form, project_form=project_form, audio_form=audio_form)
+    return render_template('users/admin.html', title='Admin', image_to_display=image_to_display, **forms)
 
 
 @users.route("/confirm_registration/<token>", methods=['GET', 'POST'])

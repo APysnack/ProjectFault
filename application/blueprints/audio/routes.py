@@ -84,7 +84,7 @@ def updateSong(song_id):
                 song.url = audio_filename
 
             if audio_form.image.data:
-                image_file = save_picture(audio_form.image.data, 'audio_img')
+                image_file = save_picture(audio_form.image.data)
                 song.image_file = image_file
 
             if audio_form.lyrics.data:

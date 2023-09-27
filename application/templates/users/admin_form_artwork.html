@@ -1,5 +1,6 @@
 <form method="POST" action="" enctype="multipart/form-data">
-  {{ form.hidden_tag() }}
+  {{ artwork_form.hidden_tag() }}
+  <input type="hidden" name="form_type" value="artwork_form" />
   <fieldset class="form-group">
     <legend class="border-bottom mb-4">Upload Artwork</legend>
     <div class="form-group">

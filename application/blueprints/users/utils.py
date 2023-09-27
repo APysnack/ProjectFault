@@ -5,31 +5,40 @@ from PIL import Image
 from flask import url_for, current_app
 from flask_mail import Message
 from application import mail
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from werkzeug.utils import secure_filename
 
-def save_picture(form_image, type):
-    random_hex = secrets.token_hex(8)
-    f_name, f_ext = os.path.splitext(form_image.filename)
-    new_filename = random_hex + f_ext
 
-    if current_app.config['ENV'] == 'development':
-      s3 = boto3.client(
-        's3',
-        aws_access_key_id=current_app.config['AWS_ACCESS_KEY_ID'],
-        aws_secret_access_key=current_app.config['AWS_SECRET_ACCESS_KEY'],
-        aws_session_token=current_app.config.get('AWS_SESSION_TOKEN')
-      )
+def create_s3_client():
+  if current_app.config['ENV'] == 'development':
+    s3 = boto3.client('s3', aws_access_key_id=current_app.config['AWS_ACCESS_KEY_ID'],
+            aws_secret_access_key=current_app.config['AWS_SECRET_ACCESS_KEY'],
+            aws_session_token=current_app.config.get('AWS_SESSION_TOKEN'))
+  else:
+    s3 = boto3.client('s3')
+  return s3
 
-    else: 
-      s3 = boto3.client('s3')
-    
-    s3_bucket = current_app.config['S3_BUCKET_NAME']
-    s3_key = 'pf-images/' + new_filename
-    s3.upload_fileobj(form_image, s3_bucket, s3_key)
+def upload_to_s3(file, folder_name, file_name):
+   s3 = create_s3_client()
+   s3_bucket = current_app.config['S3_BUCKET_NAME']
+   s3_key = f"{folder_name}/{file_name}"
+   s3.upload_fileobj(file, s3_bucket, s3_key)
+   return f"{current_app.config['S3_BUCKET_URL']}{s3_key}"
 
-    picture_path = f"{current_app.config['S3_BUCKET_URL']}{s3_key}"
-    return picture_path
+def save_picture(form_image):
+  random_hex = secrets.token_hex(8)
+  f_name, f_ext = os.path.splitext(form_image.filename)
+  new_filename = random_hex + f_ext
 
+  picture_path = upload_to_s3(form_image, 'pf-images', new_filename)
+  return picture_path
+
+
+def save_audio_file(audio_file):
+  print("HEREIAM")
+  audio_filename = secure_filename(audio_file.filename)
+  print(audio_filename)
+  audio_url = upload_to_s3(audio_file, 'pf-audio', audio_filename)
+  return audio_url
 
 def send_reset_email(user):
     token = user.get_reset_token()
@@ -56,16 +65,3 @@ If you did not make this request then simply ignore this email and this account 
 '''
 
     mail.send(msg)
-
-
-def send_mass_email(title, content, members):
-    with mail.connect() as conn:
-        for member in members:
-            message = content
-            subject = title
-            msg = Message(recipients=[member.email],
-                          body=message,
-                          sender="admin@projectfault.com",
-                          subject=subject)
-
-            conn.send(msg)

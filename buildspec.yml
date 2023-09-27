@@ -4,8 +4,12 @@ phases:
   build:
     commands:
       - zip -r project_fault.zip .
-  post_build:
-    commands:
-      - aws s3 cp project_fault.zip s3://project-fault-media/deployments/project_fault.zip
+      - mkdir -p codedeploy
+      - mv project_fault.zip codedeploy/project_fault.zip
+
+post_build:
+  commands:
+    - aws s3 cp codedeploy/project_fault.zip s3://project-fault-media/deployments/project_fault.zip
+
 artifacts:
-  files: project_fault.zip
+  files: codedeploy/project_fault.zip

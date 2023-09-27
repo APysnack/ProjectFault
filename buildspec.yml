@@ -3,4 +3,11 @@ version: 0.2
 phases:
   build:
     commands:
-      - echo "Placebo build for pipeline"
+      - zip -r deployment-package.zip .
+
+artifacts:
+  files: deployment-package.zip
+
+post_build:
+  commands:
+    - aws s3 cp deployment-package.zip s3://project-fault-media/deployments

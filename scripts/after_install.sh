@@ -8,4 +8,4 @@ source /home/ec2-user/projectFaultVenv/bin/activate
 pip3 install --upgrade pip
 pip3 install -r requirements.txt
 mv /home/ec2-user/ProjectFault/application/prod_config.py /home/ec2-user/ProjectFault/application/config.py
-bash /home/ec2-user/ProjectFault/scripts/start_server.sh
+bash /home/ec2-user/ProjectFault/scripts/start_server.sh &

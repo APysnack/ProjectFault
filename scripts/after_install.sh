@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ZIP_FILE="project_fault.zip"
-DEPLOY_PATH="/path/to/your/app"
+DEPLOY_PATH="/home/ec2-user/ProjectFault"
 
 unzip -o $ZIP_FILE -d $DEPLOY_PATH
 cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak

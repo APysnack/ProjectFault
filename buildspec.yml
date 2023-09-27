@@ -1,13 +1,6 @@
 version: 0.2
 
 phases:
-  build:
-    commands:
-      - zip -r project_fault.zip .
-  post_build:
-    commands:
-      - aws s3 cp project_fault.zip s3://project-fault-media/deployments/project_fault.zip
 artifacts:
   files:
     - '**/*'
-  base-directory: 'dist'

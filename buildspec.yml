@@ -5,6 +5,8 @@ phases:
     commands:
       - echo "Build started on `date`"
       - zip -r project_fault.zip .
+      - mkdir ProjectFault
+      - zip -r project_fault.zip ProjectFault
   post_build:
     commands:
       - echo "Build completed on `date`"

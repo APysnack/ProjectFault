@@ -140,6 +140,11 @@ Resources:
           FromPort: '5432'
           ToPort: '5432'
           SourceSecurityGroupId: !GetAtt InstanceSecurityGroup.GroupId
+        - Description: 'Allow local ip to communicate with DB'
+          IpProtocol: tcp
+          FromPort: '5432'
+          ToPort: '5432'
+          CidrIp: 98.204.58.188/32
 
   MyParameterStoreAccessPolicy:
     Type: AWS::IAM::Policy
@@ -197,11 +202,12 @@ Resources:
           Arn: !GetAtt MyInstanceProfile.Arn
 
         # TODO: possible race condition between moving config.py and running gunicorn?
+        # codedeploy bucket name in wget command should be dynamic (replace us-east-1 with a variable)
         UserData:
           Fn::Base64: !Sub |
             #!/bin/bash -xe
             yum update -y
-            yum install -y nginx git python-pip postgresql-devel python3-devel gcc 
+            yum install -y nginx git python-pip postgresql-devel python3-devel gcc ruby wget
             git clone https://github.com/APysnack/ProjectFault.git /home/ec2-user/ProjectFault
             su - ec2-user -c "cd /home/ec2-user && python3 -m venv projectFaultVenv"
             cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
@@ -209,6 +215,9 @@ Resources:
             systemctl start nginx
             systemctl enable nginx
             cd /home/ec2-user/ProjectFault
+            wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
+            chmod +x ./install
+            sudo ./install auto
             source /home/ec2-user/projectFaultVenv/bin/activate
             pip3 install --upgrade pip
             pip3 install -r requirements.txt

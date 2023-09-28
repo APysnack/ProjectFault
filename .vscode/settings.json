@@ -1,3 +1,7 @@
 {
-    "python.pythonPath": "C:\\Users\\purle\\.virtualenvs\\flaskapp-Pl6CwsGr\\Scripts\\python.exe"
+  "python.pythonPath": "C:\\Users\\purle\\.virtualenvs\\flaskapp-Pl6CwsGr\\Scripts\\python.exe",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.autopep8"
+  },
+  "python.formatting.provider": "none"
 }

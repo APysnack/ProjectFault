@@ -19,7 +19,8 @@ def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
         if form.image.data:
-            image_file = save_picture(form.image.data)
+            image_file = save_picture(form.image.data, {
+                                      'width': 150, 'height': 150})
             current_user.image_file = image_file
         current_user.email = form.email.data
         db.session.commit()
@@ -106,7 +107,8 @@ def admin():
         if selected_form and selected_form.validate():
             if form_type == "update_self_form":
                 if selected_form.image.data:
-                    image_file = save_picture(selected_form.image.data)
+                    image_file = save_picture(selected_form.image.data, {
+                        'width': 125, 'height': 125})
                     current_user.image_file = image_file
 
                 current_user.username = selected_form.username.data
@@ -121,7 +123,8 @@ def admin():
 
             elif form_type == "audio_form":
                 audio_url = save_audio_file(selected_form.audio.data)
-                image_file = save_picture(selected_form.image.data)
+                image_file = save_picture(selected_form.image.data, {
+                    'width': 150, 'height': 150})
                 audio_lyrics = markdown.markdown(
                     selected_form.lyrics.data, extensions=['nl2br'])
                 audio = Audio(user_id=current_user.id, title=selected_form.title.data,

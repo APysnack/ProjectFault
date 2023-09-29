@@ -594,7 +594,7 @@ Resources:
                 Provider: CodeStarSourceConnection
               Configuration:
                 ConnectionArn: 'arn:aws:codestar-connections:us-east-1:655948565243:connection/d7646f2a-d662-419a-9d97-5205f531467f'
-                FullRepositoryId: 'apysnack/ProjectFault'
+                FullRepositoryId: 'APysnack/ProjectFault'
                 BranchName: 'main'
                 DetectChanges: true
               OutputArtifacts:

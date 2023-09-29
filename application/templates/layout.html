@@ -86,7 +86,8 @@
       </a>
       <nav class="navBar">
         <div class="navLinkContainer">
-          <a href="{{ url_for('main.media') }}" class="navLink">FOO</a>
+          <a href="{{ url_for('main.media') }}" class="navLink">Media</a>
+          <a href="{{ url_for('main.media') }}" class="navLink">TESTITEM</a>
           {% if current_user.is_authenticated %}
           <a href="{{ url_for('main.news') }}" class="navLink">News</a>
           <a href="{{ url_for('users.account') }}" class="navLink"

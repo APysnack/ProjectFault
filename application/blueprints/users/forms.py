@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, IntegerField, SelectField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms.validators import DataRequired, Optional, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
 from application.models import User
 
@@ -88,7 +88,11 @@ class ResetPassword(FlaskForm):
 class AdminForm(FlaskForm):
     username = StringField('Username',
                            validators=[DataRequired(), Length(min=4, max=20)])
+
     email = StringField('Email Address', validators=[DataRequired(), Email()])
+
+    password = PasswordField('Password', validators=[
+                             Optional(), Length(min=7, max=60)])
 
     submit = SubmitField('Update')
     image = FileField('Update Profile Picture', validators=[

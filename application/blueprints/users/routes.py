@@ -99,6 +99,7 @@ def admin():
         selected_form = forms.get("update_self_form")
         selected_form.username.data = current_user.username
         selected_form.email.data = current_user.email
+        selected_form.password.data = "********"
 
     elif request.method == 'POST':
         form_type = request.form.get("form_type")
@@ -110,6 +111,11 @@ def admin():
                     image_file = save_picture(selected_form.image.data, {
                         'width': 125, 'height': 125})
                     current_user.image_file = image_file
+
+                if selected_form.password.data:
+                    encrypted_password = bcrypt.generate_password_hash(
+                        selected_form.password.data).decode("utf-8")
+                    current_user.password = encrypted_password
 
                 current_user.username = selected_form.username.data
                 current_user.email = selected_form.email.data

@@ -56,11 +56,10 @@ var videoTab = {
 
 var codeDetails = [
   'Details regarding my professional experience in software development',
-  'Upcoming projects of any kind that I plan to develop in the future',
-  "Portfolio of applications I've developed",
+  "Portfolio of personal projects I've developed. Excludes professional work.",
 ];
-var codeLinks = ['/programming', '/resume', '/upcoming', '/programming'];
-var codeTitles = ['Resume', 'Future Projects', 'Code Demos'];
+var codeLinks = ['/programming', '/resume', '/programming'];
+var codeTitles = ['Resume', 'Software Projects'];
 var codeTab = {
   id: 'code',
   header: 'Programming',

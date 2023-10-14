@@ -43,11 +43,6 @@ def media():
     return render_template('main/media.html', title='Media Map')
 
 
-@main.route("/misc")
-def miscellaneous():
-    return render_template('main/miscellaneous.html', title='Miscellaneous')
-
-
 @ main.route("/news")
 def news():
     posts = Post.query.order_by(Post.date_posted.desc()).limit(3).all()

@@ -123,7 +123,7 @@ var miscLinks = [
   '/terms',
   '/privacy',
 ];
-var miscTitles = ['Contact', 'About Me', 'Donate', 'Terms', 'Privacy'];
+var miscTitles = ['About Me', 'Terms', 'Privacy'];
 var miscTab = {
   id: 'misc',
   header: 'Miscellaneous',

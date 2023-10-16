@@ -6,11 +6,6 @@ from application.models import Project
 code = Blueprint('code', __name__)
 
 
-@code.route("/code/randomOrderGenerator")
-def randomOrderGenerator():
-    return render_template('code/projects/randomOrderGenerator.html')
-
-
 @code.route("/upcoming", methods=["GET", "POST"])
 def upcoming():
     if request.method == 'POST':

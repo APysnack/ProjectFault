@@ -51,7 +51,30 @@ def news():
 
 @main.route("/programming")
 def programming():
-    return render_template('main/programming.html', title='Programming')
+    projects = [
+        {
+            "name": "Project Fault",
+            "url": "https://project-fault.com",
+            "image": "images/project-logo-1.jpg",
+            "framework": "Flask",
+            "frontend": "Vanilla JS/Jinja",
+            "backend": "Python/SQLAlchemy",
+            "developed": "2021 - 2022",
+            "github_url": "https://github.com/APysnack/ProjectFault",
+        },
+        {
+            "name": "Live Rap Center",
+            "url": "https://liverapcenter.com",
+            "image": "images/project-logo-2.jpg",
+            "framework": "Ruby On Rails/React",
+            "frontend": "ReactJS",
+            "backend": "Ruby/GraphQL",
+            "developed": "2023 - 2024",
+            "github_url": "https://github.com/APysnack/live-rap-center",
+        },
+    ]
+
+    return render_template('main/programming.html', title='Programming', projects=projects)
 
 
 @main.route("/video")

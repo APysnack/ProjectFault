@@ -115,7 +115,7 @@ var miscDetails = [
   'Details regarding how this website collects, handles, and processes data from visitors.',
 ];
 var miscLinks = [
-  '/misc',
+  '/media',
   '/contact',
   '/about',
   '/donate',

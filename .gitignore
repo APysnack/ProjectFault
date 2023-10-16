@@ -1,4 +1,5 @@
 application/config.py
+application/google_api.json
 application/__pycache__
 application/blueprints/ancillary/__pycache__
 application/blueprints/api/__pycache__

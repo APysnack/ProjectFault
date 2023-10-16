@@ -1,6 +1,6 @@
 #homeContainer * {
-  font-family: "Baskerville", "Open Sans", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-family: 'Baskerville', 'Open Sans', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
 }
 
 #homeNav {
@@ -169,17 +169,17 @@
 }
 
 #leftPanel {
-  background-image: url("../images/home-code.jpeg");
+  background-image: url('../images/home-code.jpeg');
   background-position: 50% 50%;
 }
 
 #centerPanel {
-  background-image: url("../images/home-video.jpeg");
+  background-image: url('../images/home-video.jpeg');
   background-position: 50% 50%;
 }
 
 #rightPanel {
-  background-image: url("../images/home-audio.jpeg");
+  background-image: url('../images/home-audio.jpeg');
   background-position: 50% 50%;
 }
 

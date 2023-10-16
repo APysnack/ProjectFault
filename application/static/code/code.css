@@ -1,73 +1,101 @@
-.codeProjectLink {
-  color: black;
-  padding: 0.5em 1em 0.5em 1em;
-  width: 100%;
-}
-
-.codeProjectLink:hover {
+.projects-container a,
+.projects-container a:visited,
+.projects-container a:hover,
+.projects-container a:active {
   text-decoration: none;
-  background-color: #2e3a46;
-  color: white;
+  color: inherit;
 }
 
-.constructionContainer {
-  margin-top: 1%;
-  margin-bottom: 3%;
-  max-width: 40%;
+.projects-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3em;
+}
+
+.project {
+  margin-top: 1em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px 0 0 0;
+  text-align: center;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+}
+
+.project:hover {
+  background-color: red;
+}
+
+.project:hover .github-container {
   background-color: black;
-  color: white;
-  padding: 3%;
-  border-radius: 7px;
+  border: 2px solid white;
 }
 
-.projectContainer {
+.project img {
+  max-width: 80%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.project-details {
+  margin-top: 2em;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 3px solid black;
-  border-radius: 7px;
+  flex-direction: column;
+  padding: 0 0 3em 0;
 }
 
-.projectDetails {
-  margin-top: 3%;
+.project:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s;
 }
 
-.projectHeader {
-  width: 100%;
-  background-color: #2e3a46;
-  text-align: center;
-  color: white;
-  padding: 2%;
+.github-link {
+  width: 3em;
+  margin-right: 1em;
 }
 
-.projectDetailsContainer {
-  padding: 5%;
+.github-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #df2500;
+  padding: 0.5em 2em 0.2em 2em;
+  border-radius: 10px;
+  margin-top: 2em;
+  cursor: pointer;
 }
 
-.projectDetailsContainer:hover {
-  background-color: #ced4da;
-  color: black;
-}
-
-a.projectLink {
-  text-decoration: none;
-  color: #666666;
-}
-
-@media screen and (max-width: 1200px) {
-  .projectContainer {
-    width: 85%;
-    margin-bottom: 3%;
+@keyframes scaleUp {
+  0% {
   }
-  .projectLink {
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.github-container:hover {
+  animation: scaleUp 0.25s ease-in-out forwards;
+  cursor: pointer;
+  background-color: black;
+  box-shadow: 0 0 0 2px #00df9a;
+  color: white;
+}
+
+@media screen and (max-width: 800px) {
+  .projects-container {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    gap: 0;
   }
 
-  .constructionContainer {
-    min-width: 85%;
+  .project {
+    width: 90%;
+    margin-bottom: 2em;
   }
 }

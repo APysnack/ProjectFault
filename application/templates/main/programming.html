@@ -6,27 +6,61 @@
 />
 {% endblock %} {% block body %}
 <div class="pageContainer">
-  <div class="localDirectory">
-    <div class="localDirectoryContentContainer">
-      <img
-        class="fileIcon"
-        src="{{ url_for('static', filename='images/file.png') }}"
-      />
-      <span class="directoryLinks"
-        ><a href="{{ url_for('main.media')}}">Media</a></span
-      >
-      <span class="directoryLinks">></span>
-      <span class="directoryLinks"
-        ><a href="{{ url_for('main.programming')}}">Code</a></span
-      >
+  <div class="projects-container">
+    <div class="project">
+      <h2>Project Fault</h2>
+      <a href="https://project-fault.com">
+        <img
+          src="{{ url_for('static', filename='images/project-logo-1.jpg') }}"
+        />
+      </a>
+
+      <div class="project-details">
+        <div>Framework: Flask</div>
+        <div>Front End: Vanilla JS/Jinja</div>
+        <div>Back End: Python/SQLAlchemy</div>
+        <div>Developed: 2021 - 2022</div>
+
+        <a
+          href="https://github.com/APysnack/ProjectFault"
+          class="github-container"
+        >
+          <img
+            class="github-link"
+            src="{{ url_for('static', filename='images/github.png') }}"
+          />
+
+          <div>Github Repo</div>
+        </a>
+      </div>
     </div>
-  </div>
-  <div class="constructionContainer">
-    At the moment, this portion of the site is still heavily under construction.
-    I will be adding some small programming assignments as I continue, and even
-    larger ones in the future. However, since the website it still in the early
-    stages, I'm still working on updating many parts of the site daily. Please
-    check back here for more in the future!
+
+    <div class="project">
+      <h2>Live Rap Center</h2>
+      <a href="https://liverapcenter.com">
+        <img
+          src="{{ url_for('static', filename='images/project-logo-2.jpg') }}"
+        />
+      </a>
+
+      <div class="project-details">
+        <div>Framework: Ruby On Rails/React</div>
+        <div>Front End: ReactJS</div>
+        <div>Back End: Ruby/GraphQL</div>
+        <div>Developed: 2023 - 2024</div>
+
+        <a href="https://github.com/APysnack/live-rap-center">
+          <div class="github-container">
+            <img
+              class="github-link"
+              src="{{ url_for('static', filename='images/github.png') }}"
+            />
+
+            <div>Github Repo</div>
+          </div>
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

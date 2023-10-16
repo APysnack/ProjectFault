@@ -6,27 +6,30 @@
 />
 {% endblock %} {% block body %}
 <div class="pageContainer">
-  <div class="localDirectory">
-    <div class="localDirectoryContentContainer">
-      <img
-        class="fileIcon"
-        src="{{ url_for('static', filename='images/file.png') }}"
-      />
-      <span class="directoryLinks"
-        ><a href="{{ url_for('main.media')}}">Media</a></span
-      >
-      <span class="directoryLinks">></span>
-      <span class="directoryLinks"
-        ><a href="{{ url_for('main.programming')}}">Code</a></span
-      >
+  <div class="projects-container">
+    {% for project in projects %}
+    <div class="project">
+      <h2>{{ project['name'] }}</h2>
+      <a href="{{ project['url'] }}">
+        <img src="{{ url_for('static', filename=project['image']) }}" />
+      </a>
+
+      <div class="project-details">
+        <div>Framework: {{ project['framework'] }}</div>
+        <div>Front End: {{ project['frontend'] }}</div>
+        <div>Back End: {{ project['backend'] }}</div>
+        <div>Developed: {{ project['developed'] }}</div>
+
+        <a href="{{ project['github_url'] }}" class="github-container">
+          <img
+            class="github-link"
+            src="{{ url_for('static', filename='images/github.png') }}"
+          />
+          <div>Github Repo</div>
+        </a>
+      </div>
     </div>
-  </div>
-  <div class="constructionContainer">
-    At the moment, this portion of the site is still heavily under construction.
-    I will be adding some small programming assignments as I continue, and even
-    larger ones in the future. However, since the website it still in the early
-    stages, I'm still working on updating many parts of the site daily. Please
-    check back here for more in the future!
+    {% endfor %}
   </div>
 </div>
 {% endblock %}

@@ -27,8 +27,7 @@ class Config:
 
     S3_BUCKET_NAME = get_parameter(client, 'S3_BUCKET_NAME', False)
 
-    # TODO: Switch to https
-    S3_BUCKET_URL = f"http://{S3_BUCKET_NAME}.s3.amazonaws.com/"
+    S3_BUCKET_URL = f"https://{S3_BUCKET_NAME}.s3.amazonaws.com/"
 
     UPLOAD_FOLDER = basedir + '/static/audio/audio-files'
     ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png',

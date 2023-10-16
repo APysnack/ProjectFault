@@ -1,39 +1,63 @@
-{% extends "layout.html" %}
-{% block heading %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='text/textWritings.css') }}">
-    <script defer src="{{ url_for('static', filename='text/textWritings.js') }}"></script>
-{% endblock %}
-
-{% block body %}
-    <div class="pageContainer">
-        <div class="localDirectory">
-            <div class="localDirectoryContentContainer">
-                <img class="fileIcon" src="{{ url_for('static', filename='images/file.png') }}"></img>
-                <span class="directoryLinks"><a href="{{ url_for('main.media')}}">Media</a></span>
-                <span class="directoryLinks">></span>
-                <span class="directoryLinks"><a href="{{ url_for('main.text')}}">Text</a></span>
-                <span class="directoryLinks">></span>
-                <span class="directoryLinks"><a href="{{ url_for('text.writings')}}">Writings</a></span>
-            </div>
-        </div>
-        <div class="forumContentContainer">
-            <div class="writingBlurb">
-                <header class="blurbHeader">
-                    Deconstructing Civilization
-                </header>
-                <body class="blurbBody">
-                    <span class="blurbDesc">This is a partly-educational, partly-comedic Non-Fiction book aimed at early college students to discuss a wide variety of topics that I feel everyone should know. Topics covered include 
-                    Finances, Economics, Psychology, Cryptocurrencies, Relationships, Religion & More.</span>
-                    <span class="blurbDesc"><b>Disclaimer: This book involves gratuitous profanity, and some of the topics discussed are controversial by nature and therefore may be deemed offensive to some.</b></span>
-                    <a class="displayBtn" download href="{{ url_for('static', filename='text/files/deconstructing_civilization.pdf') }}">Download PDF</a>
-                    <div class="displayBtn" id="displayBookBtn">Display Book</div>
-                </body>
-            </div>
-            <!-- <iframe class="writingPDF" src="{{ url_for('static', filename='text/files/deconstructing_civilization.pdf') }}" width="70%" height="1000px"></iframe> -->
-            <div class="writingContainer">
-                <iframe class="googleWriting" src="https://docs.google.com/document/d/e/2PACX-1vQJ1k3JHZC5VfoRNzXyNtQujjdKt4uDlkKh0en4yc2LwCp8fc3p9zauV7du-3Hj36XkDlDp9ClvJrGD/pub?embedded=true"></iframe>
-            </div>
-        </div>
+{% extends "layout.html" %} {% block heading %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='text/textWritings.css') }}"
+/>
+<script
+  defer
+  src="{{ url_for('static', filename='text/textWritings.js') }}"
+></script>
+{% endblock %} {% block body %}
+<div class="pageContainer">
+  <div class="localDirectory">
+    <div class="localDirectoryContentContainer">
+      <img
+        class="fileIcon"
+        src="{{ url_for('static', filename='images/file.png') }}"
+      />
+      <span class="directoryLinks"
+        ><a href="{{ url_for('main.media')}}">Media</a></span
+      >
+      <span class="directoryLinks">></span>
+      <span class="directoryLinks"
+        ><a href="{{ url_for('main.text')}}">Text</a></span
+      >
+      <span class="directoryLinks">></span>
+      <span class="directoryLinks"
+        ><a href="{{ url_for('text.writings')}}">Writings</a></span
+      >
     </div>
+  </div>
+  <div class="forumContentContainer">
+    <div class="writingBlurb">
+      <header class="blurbHeader">Deconstructing Civilization</header>
+      <body class="blurbBody">
+        <span class="blurbDesc"
+          >This is a partly-educational, partly-comedic Non-Fiction book aimed
+          at early college students to discuss a wide variety of topics that I
+          feel everyone should know. Topics covered include Finances, Economics,
+          Psychology, Cryptocurrencies, Relationships, Religion & More.</span
+        >
+        <span class="blurbDesc"
+          ><b
+            >Disclaimer: This book involves gratuitous profanity, and some of
+            the topics discussed are controversial by nature and therefore may
+            be deemed offensive to some.</b
+          ></span
+        >
+        <a class="displayBtn" download href="{{ pdf_url }}">Download PDF</a>
+
+        <div class="displayBtn" id="displayBookBtn">Display Book</div>
+      </body>
+    </div>
+    <div class="writingContainer">
+      <iframe
+        id="googleDoc"
+        class="googleWriting"
+        src="{{ document_url }}"
+      ></iframe>
+    </div>
+  </div>
+</div>
 {% endblock %}
-  

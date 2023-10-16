@@ -222,8 +222,9 @@ Resources:
       Roles:
         - !Ref MyParameterStoreAccessRole
 
+  # Uncomment DependsOn if not restoring from snapshot
   MyLaunchTemplate:
-    DependsOn: RdsEndpointParameter
+    # DependsOn: RdsEndpointParameter
     Type: AWS::EC2::LaunchTemplate
     Properties:
       LaunchTemplateName: project-fault-launch-template
@@ -244,6 +245,8 @@ Resources:
           Arn: !GetAtt MyInstanceProfile.Arn
 
         # codedeploy bucket name in wget command should be dynamic (replace us-east-1 with a variable)
+        # IF YOURE NOT RESTORING FROM A SNAPSHOT: add this line before gunicorn command:
+        # python3 /home/ec2-user/ProjectFault/init_db.py
         UserData:
           Fn::Base64: !Sub |
             #!/bin/bash -xe
@@ -263,7 +266,6 @@ Resources:
             pip3 install --upgrade pip
             pip3 install -r requirements.txt
             mv /home/ec2-user/ProjectFault/application/prod_config.py /home/ec2-user/ProjectFault/application/config.py
-            python3 /home/ec2-user/ProjectFault/init_db.py
             /home/ec2-user/projectFaultVenv/bin/gunicorn app:app -b 127.0.0.1:8000
 
   ProjectFaultASG:
@@ -350,30 +352,31 @@ Resources:
         - !Ref PublicSubnet2
         - !Ref PublicSubnet3
 
-  MyRDSInstance:
-    Type: AWS::RDS::DBInstance
-    DependsOn: AttachGateway
-    Properties:
-      AllocatedStorage: 20
-      AvailabilityZone: !Select
-        - 0
-        - Fn::GetAZs: !Ref 'AWS::Region'
-      CopyTagsToSnapshot: false
-      DBInstanceClass: db.t3.micro
-      DBInstanceIdentifier: projectFaultDB
-      DBName: projectFaultDB
-      Engine: postgres
-      MasterUsername: postgres
-      MasterUserPassword: password
-      MultiAZ: false
-      # TODO: For improved security, set to false and add a NACL to allow private communication between EC2 and RDS
-      PubliclyAccessible: true
-      StorageType: gp2
-      DBSubnetGroupName: !Ref MyDBSubnetGroup
-      VPCSecurityGroups:
-        - !Ref RDSSecurityGroup
-      # Prevents DB from taking a snapshot every time you delete CFN stack
-      DBSnapshotIdentifier: ''
+  # Uncomment this if you're not restoring from a snapshot:
+  # MyRDSInstance:
+  #   Type: AWS::RDS::DBInstance
+  #   DependsOn: AttachGateway
+  #   Properties:
+  #     AllocatedStorage: 20
+  #     AvailabilityZone: !Select
+  #       - 0
+  #       - Fn::GetAZs: !Ref 'AWS::Region'
+  #     CopyTagsToSnapshot: false
+  #     DBInstanceClass: db.t3.micro
+  #     DBInstanceIdentifier: projectFaultDB
+  #     DBName: projectFaultDB
+  #     Engine: postgres
+  #     MasterUsername: postgres
+  #     MasterUserPassword: password
+  #     MultiAZ: false
+  #     # TODO: For improved security, set to false and add a NACL to allow private communication between EC2 and RDS
+  #     PubliclyAccessible: true
+  #     StorageType: gp2
+  #     DBSubnetGroupName: !Ref MyDBSubnetGroup
+  #     VPCSecurityGroups:
+  #       - !Ref RDSSecurityGroup
+  #     # Prevents DB from taking a snapshot every time you delete CFN stack
+  #     DBSnapshotIdentifier: ''
 
   # TODO: Make bucket private and serve via the application?
   # I might prefer this media to be public
@@ -406,12 +409,13 @@ Resources:
     Properties:
       BucketName: project-fault-codepipeline-artifacts
 
-  RdsEndpointParameter:
-    Type: 'AWS::SSM::Parameter'
-    Properties:
-      Name: '/project-fault/prod/RDS_ENDPOINT'
-      Type: 'String'
-      Value: !GetAtt MyRDSInstance.Endpoint.Address
+  # Uncomment if you're not restoring from a snapshot
+  # RdsEndpointParameter:
+  #   Type: 'AWS::SSM::Parameter'
+  #   Properties:
+  #     Name: '/project-fault/prod/RDS_ENDPOINT'
+  #     Type: 'String'
+  #     Value: !GetAtt MyRDSInstance.Endpoint.Address
 
   CodeDeployApplication:
     Type: AWS::CodeDeploy::Application

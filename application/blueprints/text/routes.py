@@ -1,12 +1,15 @@
 from flask import render_template, Blueprint
 from application.models import Writings
+from .utils import get_doc_url
 
 text = Blueprint('text', __name__)
 
 
 @text.route("/writings")
 def writings():
-    return render_template('text/textWritings.html', title='Writing')
+    document_url = get_doc_url()
+    pdf_url = get_doc_url(is_pdf=True)
+    return render_template('text/textWritings.html', title='Writing', document_url=document_url, pdf_url=pdf_url)
 
 
 @text.route("/poetry")

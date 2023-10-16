@@ -34,12 +34,10 @@ class Config:
     ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png',
                           'jpg', 'jpeg', 'gif', 'mp3', 'wav'}
 
-    credentials_path = json.load(open(get_parameter(
-        client, 'GOOGLE_DOCS_CREDENTIALS', True)))
+    credentials_json = get_parameter(client, 'GOOGLE_DOCS_CREDENTIALS', True)
+    credentials_data = json.loads(credentials_json)
 
     GOOGLE_DOCS_CREDENTIALS = service_account.Credentials.from_service_account_info(
-        credentials_path, scopes=[
-            'https://www.googleapis.com/auth/documents.readonly']
-    )
+        credentials_data, scopes=['https://www.googleapis.com/auth/documents.readonly'])
 
     ENV = 'production'

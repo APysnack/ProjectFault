@@ -10,22 +10,45 @@
     {% for project in projects %}
     <div class="project">
       <h2>{{ project['name'] }}</h2>
-      <a href="{{ project['url'] }}">
-        <img src="{{ url_for('static', filename=project['image']) }}" />
-      </a>
+
+      <div class="project-logo-container">
+        <div class="overlay-text">
+          {{ project['url'] | replace('https://', '') }}
+        </div>
+        <a href="{{ project['url'] }}">
+          <img src="{{ url_for('static', filename=project['image']) }}" />
+        </a>
+      </div>
 
       <div class="project-details">
-        <div>Framework: {{ project['framework'] }}</div>
-        <div>Front End: {{ project['frontend'] }}</div>
-        <div>Back End: {{ project['backend'] }}</div>
-        <div>Developed: {{ project['developed'] }}</div>
+        <div class="project-specs">
+          <div class="project-spec">
+            <i class="fas fa-cogs"></i>
+            <div>{{ project['framework'] }}</div>
+          </div>
+
+          <div class="project-spec">
+            <i class="fas fa-laptop-code"></i>
+            <div>{{ project['frontend'] }}</div>
+          </div>
+
+          <div class="project-spec">
+            <i class="fas fa-server"></i>
+            <div>{{ project['backend'] }}</div>
+          </div>
+
+          <div class="project-spec">
+            <i class="fas fa-calendar-alt"></i>
+            <div>{{ project['developed'] }}</div>
+          </div>
+        </div>
 
         <a href="{{ project['github_url'] }}" class="github-container">
+          <div>Github Repo</div>
           <img
             class="github-link"
             src="{{ url_for('static', filename='images/github.png') }}"
           />
-          <div>Github Repo</div>
         </a>
       </div>
     </div>

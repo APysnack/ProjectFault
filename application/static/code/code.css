@@ -13,7 +13,7 @@
 }
 
 .project {
-  margin-top: 1em;
+  margin: 1em 0 1em 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 20px 0 0 0;
@@ -22,6 +22,10 @@
   background-color: #333;
   color: white;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .project:hover {
@@ -33,19 +37,66 @@
   border: 2px solid white;
 }
 
-.project img {
+.project-logo-container {
+  position: relative;
+  background-color: #282828;
   max-width: 80%;
   border-radius: 5px;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay-text {
+  position: absolute;
+  font-size: 2em;
+  opacity: 0;
+}
+
+.project-logo-container:hover .overlay-text {
+  opacity: 1;
+}
+
+.project img {
+  max-width: 100%;
+  transition: opacity 1s ease-out;
+}
+
+.project img:hover {
+  opacity: 0.2;
 }
 
 .project-details {
-  margin-top: 2em;
+  margin-top: 0.5em;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   padding: 0 0 3em 0;
+  width: 100%;
+}
+
+.project-specs {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 80%;
+  padding: 1em 2em 1em 1em;
+  border-radius: 10px;
+  background-color: white;
+  color: #444;
+  font-size: 1em;
+  gap: 0.6em;
+}
+
+.project-spec {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.7em;
+  font-size: 1em;
 }
 
 .project:hover {
@@ -54,19 +105,20 @@
 }
 
 .github-link {
-  width: 3em;
-  margin-right: 1em;
+  width: 2em;
+  margin: 0.7em 0em 0 1em;
 }
 
 .github-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   align-items: center;
   background-color: #df2500;
-  padding: 0.5em 2em 0.2em 2em;
+  padding: 0 1em 0 2em;
   border-radius: 10px;
   margin-top: 2em;
   cursor: pointer;
+  width: 80%;
 }
 
 @keyframes scaleUp {

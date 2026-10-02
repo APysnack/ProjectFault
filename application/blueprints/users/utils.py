@@ -47,6 +47,17 @@ def resize_image(image, dimensions, filename):
 def save_picture(form_image, dimensions=None):
     new_filename = get_filename(form_image)
 
+    if current_app.config['ENV'] == 'development':
+        image_path = os.path.join(
+            current_app.root_path, 'static/images', new_filename)
+
+        if dimensions is None:
+            form_image.save(image_path)
+        else:
+            resize_image(form_image, dimensions, new_filename)
+
+        return url_for('static', filename=f'images/{new_filename}')
+
     if dimensions is None:
         image_file = form_image
     else:
@@ -57,13 +68,23 @@ def save_picture(form_image, dimensions=None):
 
     if dimensions is not None:
         os.remove(temp_image_path)
+
     return picture_path
 
 
 def save_audio_file(audio_file):
     audio_filename = secure_filename(audio_file.filename)
-    print(audio_filename)
+
+    if current_app.config['ENV'] == 'development':
+        audio_path = os.path.join(
+            current_app.root_path, 'static/audio/audio-files', audio_filename)
+
+        audio_file.save(audio_path)
+
+        return url_for('static', filename=f'audio/audio-files/{audio_filename}')
+
     audio_url = upload_to_s3(audio_file, 'pf-audio', audio_filename)
+
     return audio_url
 
 

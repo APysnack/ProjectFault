@@ -3,6 +3,9 @@ Parameters:
     Description: Please enter the IP range (CIDR notation) for this VPC
     Type: String
     Default: 10.16.0.0/16
+  LatestAmiId:
+    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
+    Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
 
 Resources:
   MyVPC:
@@ -22,7 +25,7 @@ Resources:
       AvailabilityZone: !Select
         - 0
         - Fn::GetAZs: !Ref 'AWS::Region'
-      CidrBlock: !Select [1, !Cidr [!Ref VpcCIDR, 8, 13]]
+      CidrBlock: !Select [1, !Cidr [!Ref VpcCIDR, 8, 8]]
       MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
@@ -35,7 +38,7 @@ Resources:
       AvailabilityZone: !Select
         - 1
         - Fn::GetAZs: !Ref 'AWS::Region'
-      CidrBlock: !Select [2, !Cidr [!Ref VpcCIDR, 8, 13]]
+      CidrBlock: !Select [2, !Cidr [!Ref VpcCIDR, 8, 8]]
       MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
@@ -48,7 +51,7 @@ Resources:
       AvailabilityZone: !Select
         - 2
         - Fn::GetAZs: !Ref 'AWS::Region'
-      CidrBlock: !Select [3, !Cidr [!Ref VpcCIDR, 8, 13]]
+      CidrBlock: !Select [3, !Cidr [!Ref VpcCIDR, 8, 8]]
       MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
@@ -231,7 +234,7 @@ Resources:
       VersionDescription: Version 1.0
       LaunchTemplateData:
         # TODO: Add conditions for different regions
-        ImageId: ami-03a6eaae9938c858c
+        ImageId: !Ref LatestAmiId
         InstanceType: t2.micro
         BlockDeviceMappings:
           - DeviceName: /dev/xvda
@@ -251,7 +254,8 @@ Resources:
           Fn::Base64: !Sub |
             #!/bin/bash -xe
             yum update -y
-            yum install -y nginx git python-pip postgresql-devel python3-devel gcc ruby wget
+            yum install -y git python-pip postgresql-devel python3-devel gcc ruby wget
+            amazon-linux-extras install -y nginx1
             git clone https://github.com/APysnack/ProjectFault.git /home/ec2-user/ProjectFault
             su - ec2-user -c "cd /home/ec2-user && python3 -m venv projectFaultVenv"
             cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
@@ -312,7 +316,7 @@ Resources:
       Port: 443
       Protocol: HTTPS
       Certificates:
-        - CertificateArn: arn:aws:acm:us-east-1:655948565243:certificate/19598bed-3a5b-4304-8594-811827fb805f
+        - CertificateArn: arn:aws:acm:us-east-1:655948565243:certificate/64b1876e-e2cb-423f-88f0-558922bc5a00
 
   HTTPListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
@@ -735,7 +739,7 @@ Resources:
     DependsOn: ApplicationLoadBalancer
     Type: AWS::Route53::RecordSet
     Properties:
-      HostedZoneId: 'Z072375223SLW4TI9Z1IH' # ID for project-fault's hosted zone
+      HostedZoneId: 'Z05066343RZTDYI8F54P' # ID for project-fault's hosted zone
       Name: 'project-fault.com'
       Type: 'A'
       AliasTarget:
@@ -746,7 +750,7 @@ Resources:
     DependsOn: ApplicationLoadBalancer
     Type: AWS::Route53::RecordSet
     Properties:
-      HostedZoneId: 'Z072375223SLW4TI9Z1IH' # ID for project-fault's hosted zone
+      HostedZoneId: 'Z05066343RZTDYI8F54P' # ID for project-fault's hosted zone
       Name: 'www.project-fault.com'
       Type: 'A'
       AliasTarget:

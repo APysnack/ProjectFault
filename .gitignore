@@ -15,4 +15,5 @@ application/blueprints/users/__pycache__
 application/blueprints/video/__pycache__
 application/static/images/*
 application/static/audio/audio-files/*
+cloudformation-backup.yaml
 myenv

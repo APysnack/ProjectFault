@@ -1,7 +1,7 @@
-from flask import Flask
+from flask import Flask, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 from flask_mail import Mail
 from application.config import Config
 
@@ -48,5 +48,10 @@ def create_app(config_class=Config):
     app.register_blueprint(text)
     app.register_blueprint(users)
     app.register_blueprint(video)
+
+    @app.before_request
+    def resume_only():
+      if not current_user.is_authenticated and request.endpoint != 'ancillary.resume_assignment':
+        return redirect(url_for('ancillary.resume_assignment'))
 
     return app

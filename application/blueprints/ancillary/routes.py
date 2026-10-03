@@ -28,3 +28,7 @@ def resume():
 @ancillary.route("/terms")
 def terms():
     return render_template('ancillary/terms.html', title='Terms of Use')
+
+@ancillary.route("/resume-assignment")
+def resume_assignment():
+    return render_template('ancillary/resume_assignment.html', title='Resume')

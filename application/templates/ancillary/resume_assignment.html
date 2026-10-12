@@ -1,1 +1,832 @@
-<div>Placeholder</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Alan Pysnack — Computer Science graduate student at UMBC exploring trustworthy AI, human-computer interaction, and software systems.">
+  <title>Alan Pysnack | Research & Projects</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --background: #f7f9fc;
+      --surface: #ffffff;
+      --text: #172b4d;
+      --muted: #5d6f87;
+      --blue: #377dce;
+      --blue-dark: #24558b;
+      --blue-light: #eaf2fc;
+      --border: #dce5f0;
+      --max-width: 1080px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { color: var(--blue-dark); }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(247, 249, 252, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-family: "Manrope", sans-serif;
+      font-weight: 800;
+      font-size: 1.12rem;
+      letter-spacing: -0.04em;
+    }
+
+    .brand span { color: var(--blue); }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .hero {
+      padding-block: 76px 68px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.8fr);
+      gap: 64px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 18px;
+      color: var(--blue-dark);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-marker {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      flex-shrink: 0;
+      background: var(--blue);
+      border-radius: 2px;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1, h2, h3 {
+      font-family: "Manrope", sans-serif;
+      line-height: 1.25;
+      letter-spacing: -0.035em;
+    }
+
+    h1 {
+      max-width: 650px;
+      margin-bottom: 18px;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+    }
+
+    .hero-subtitle {
+      margin-bottom: 22px;
+      color: var(--blue-dark);
+      font-size: 1.08rem;
+      font-weight: 600;
+    }
+
+    .hero-copy > p:not(.hero-subtitle) {
+      max-width: 630px;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: var(--surface);
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: background 160ms ease, border-color 160ms ease;
+    }
+
+    .contact-link.icon-only {
+      width: 42px;
+      height: 42px;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .contact-link.icon-only .contact-icon {
+      width: 19px;
+      height: 19px;
+    }
+
+    .contact-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      display: block;
+    }
+
+    .contact-link:hover {
+      background: var(--blue-light);
+      border-color: #c4d8f1;
+    }
+
+    .contact-link.primary {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: white;
+    }
+
+    .contact-link.primary:hover { background: var(--blue-dark); }
+
+    .profile-card {
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: var(--surface);
+      box-shadow: 0 12px 32px rgba(32, 69, 112, 0.06);
+    }
+
+    .profile-photo {
+      width: 85%;
+      aspect-ratio: 4 / 5;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      margin: 0 auto 22px;
+      border-radius: 10px;
+      background: linear-gradient(145deg, #dceafa, #c5daf3);
+    }
+
+    .profile-label {
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .profile-card h3 {
+      margin-bottom: 4px;
+      font-size: 1.08rem;
+    }
+
+    .profile-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .profile-divider {
+      height: 1px;
+      margin-block: 20px;
+      background: var(--border);
+    }
+
+    .interest-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 12px;
+    }
+
+    .interest {
+      padding: 5px 9px;
+      border: 1px solid #d3e1f2;
+      border-radius: 20px;
+      background: #f9fbfe;
+      color: #345b86;
+      font-size: 0.76rem;
+    }
+
+    .section {
+      padding-block: 58px;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 0;
+      font-size: 1.8rem;
+    }
+
+    .section-intro {
+      max-width: 760px;
+      margin-bottom: 28px;
+      color: var(--muted);
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .research-card {
+      padding: 23px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: var(--surface);
+    }
+
+    .research-card h3 {
+      margin-block: 10px 8px;
+      font-size: 1.12rem;
+    }
+
+    .research-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .card-icon {
+      color: var(--blue);
+      font-size: 1.45rem;
+    }
+
+    .work-list { display: grid; gap: 15px; }
+
+    .work-card {
+      padding: 23px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: var(--surface);
+      transition: border-color 160ms ease, transform 160ms ease;
+    }
+
+    .work-card:hover {
+      border-color: #a9c7e9;
+      transform: translateY(-2px);
+    }
+
+    .work-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 11px;
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.045em;
+      text-transform: uppercase;
+    }
+
+    .work-card h3 {
+      margin-bottom: 9px;
+      font-size: 1.2rem;
+    }
+
+    .work-card p {
+      max-width: 820px;
+      margin-bottom: 17px;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .tag {
+      padding: 4px 9px;
+      border-radius: 20px;
+      background: var(--blue-light);
+      color: var(--blue-dark);
+      font-size: 0.76rem;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .status::before {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+      content: "";
+    }
+
+    .site-footer {
+      padding-block: 32px;
+      background: #edf3fa;
+    }
+
+    .footer-top, .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .footer-top { padding-bottom: 24px; }
+
+    .footer-top h2 {
+      margin-bottom: 5px;
+      font-size: 1.45rem;
+    }
+
+    .footer-top p, .footer-bottom {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .footer-top p { margin-bottom: 0; }
+
+    .footer-bottom {
+      padding-top: 20px;
+      border-top: 1px solid #d5e1ef;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .footer-links .contact-icon {
+      width: 15px;
+      height: 15px;
+    }
+
+    @media (max-width: 760px) {
+      .container { width: min(100% - 36px, var(--max-width)); }
+      .nav { min-height: 68px; }
+      .nav-links { gap: 14px; font-size: 0.82rem; }
+
+      .hero {
+        padding-block: 52px 44px;
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      h1 { font-size: clamp(2.35rem, 9vw, 3.4rem); }
+      .profile-card { max-width: 480px; }
+      .profile-photo { aspect-ratio: 16 / 9; }
+      .section { padding-block: 44px; }
+      .research-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 440px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        padding-block: 11px;
+      }
+
+      .nav-links { flex-wrap: wrap; gap: 14px; }
+      .work-card { padding: 18px; }
+
+      .footer-top, .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .work-meta {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home">Alan Pysnack<span>.</span></a>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#work">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero" id="home">
+      <div class="hero-copy" id="about">
+        <div class="eyebrow">
+          <span class="section-marker"></span>
+          Computer Science · Research
+        </div>
+
+        <h1>Alan Pysnack</h1>
+        <p class="hero-subtitle">M.S. Computer Science Student at UMBC</p>
+
+        <p>
+          I'm a computer science graduate student at the University of
+          Maryland, Baltimore County, interested in artificial intelligence,
+          human-computer interaction, and the ways technology shapes how
+          people think, communicate, and work.
+        </p>
+
+        <p>
+          My current research explores two questions: how the evidence
+          presented to language models affects the reliability of their
+          answers, and whether AI-generated images can help people build
+          connections through conversation. Before graduate school, I worked
+          as a software engineer. My undergraduate experience included
+          applying machine-learning algorithms to biological data 
+          and developing a solution to a platform-security problem involving TPM 2.0.
+        </p>
+
+        <div class="contact-links">
+          <a class="contact-link primary" href="mailto:apysnack@gmail.com">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2"/>
+              <path d="m3 7 9 6 9-6"/>
+            </svg>
+            Email
+          </a>
+
+          <a class="contact-link" href="https://github.com/apysnack"
+             target="_blank" rel="noopener noreferrer">
+            <svg class="contact-icon" viewBox="0 0 24 24"
+                 fill="currentColor" aria-hidden="true">
+              <path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.53v-2.04c-3.1.67-3.76-1.32-3.76-1.32-.5-1.29-1.23-1.63-1.23-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.6 1.21 3.23.92.1-.72.39-1.21.71-1.49-2.47-.28-5.07-1.24-5.07-5.5 0-1.22.44-2.21 1.15-2.99-.12-.28-.5-1.42.11-2.95 0 0 .94-.3 3.06 1.14a10.6 10.6 0 0 1 5.57 0c2.12-1.44 3.06-1.14 3.06-1.14.61 1.53.23 2.67.11 2.95.72.78 1.15 1.77 1.15 2.99 0 4.27-2.61 5.21-5.09 5.49.4.35.75 1.02.75 2.06V22c0 .29.2.63.77.52A11.1 11.1 0 0 0 12 .9Z"/>
+            </svg>
+            GitHub
+          </a>
+
+
+          <a class="contact-link"
+            href="https://orcid.org/0009-0006-3906-1611"
+            target="_blank"
+            rel="noopener noreferrer">
+            <svg class="contact-icon" viewBox="0 0 256 256"
+                fill="#A6CE39" aria-hidden="true">
+              <path d="M128 0C57.3 0 0 57.3 0 128s57.3 128 128 128
+                128-57.3 128-128S198.7 0 128 0z"/>
+              <path fill="#fff" d="M86.4 66.6c0 7.6-6.1 13.7-13.7 13.7
+                S59 74.2 59 66.6s6.1-13.7 13.7-13.7 13.7 6.1 13.7 13.7z
+                M60.9 91.8h23.6v96.4H60.9z
+                M103.5 91.8h39.2c37.3 0 55.9 23.7 55.9 48.2
+                0 25.8-20.1 48.2-55.7 48.2h-39.4V91.8z
+                M127.1 168.1h14.5c20.7 0 32.7-10.1 32.7-28.1
+                0-15.7-10.9-28.1-32.7-28.1h-14.5v56.2z"/>
+            </svg>
+            ORCID
+          </a>
+
+          <a class="contact-link"
+            href="{{ url_for('static', filename='files/cv.pdf') }}"
+            target="_blank"
+            rel="noopener noreferrer">
+            <svg class="contact-icon" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <path d="M14 2v6h6"/>
+              <path d="M8 13h8M8 17h8"/>
+            </svg>
+            CV
+          </a>
+
+          <a class="contact-link" href="#work">
+            Projects ↓
+          </a>
+
+        </div>
+      </div>
+
+      <aside class="profile-card" aria-label="Academic profile">
+        <img
+          src="{{ url_for('static', filename='images/profphoto.jpeg') }}"
+          alt="Photo of Alan Pysnack"
+          class="profile-photo"
+        >
+
+        <div class="profile-label">Affiliation</div>
+        <h3>M.S. Computer Science</h3>
+        <p>University of Maryland, Baltimore County</p>
+
+        <div class="profile-divider"></div>
+
+        <div class="profile-label">Research interests</div>
+        <div class="interest-list">
+          <span class="interest">Computational Social Science</span>
+          <span class="interest">Software Systems</span>
+          <span class="interest">Trustworthy AI</span>
+          <span class="interest">Human-Computer Interaction</span>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="research">
+      <div class="section-heading">
+        <span class="section-marker"></span>
+        <h2>Research Interests</h2>
+      </div>
+
+      <p class="section-intro">
+        I'm interested in how AI systems communicate information, how people
+        decide whether to trust their outputs, and how interactive technologies
+        can support meaningful experiences between people.
+      </p>
+
+      <div class="research-grid">
+        <article class="research-card">
+          <div class="card-icon" aria-hidden="true">◇</div>
+          <h3>Trustworthy AI</h3>
+          <p>
+            Studying the reliability of AI-generated answers, including how
+            supporting evidence, irrelevant information, and conflicting
+            sources influence factual accuracy of the model.
+          </p>
+        </article>
+
+        <article class="research-card">
+          <div class="card-icon" aria-hidden="true">◎</div>
+          <h3>Human-AI Interaction</h3>
+          <p>
+            Exploring how AI can become part of human-centered experiences,
+            particularly tools that encourage conversation, help people
+            discover common ground, and support social connection.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="section-heading">
+        <span class="section-marker"></span>
+        <h2>Research and Projects</h2>
+      </div>
+
+      <p class="section-intro">
+        Research projects, academic work, and software engineering experience
+        spanning artificial intelligence, computer security, and application
+        development.
+      </p>
+
+      <div class="work-list">
+        <article class="work-card">
+          <div class="work-meta">
+            <span>Graduate Research · 2026</span>
+            <span class="status">In progress</span>
+          </div>
+
+          <h3>Does Adding a Source Make LLM Answers More Trustworthy?</h3>
+
+          <p>
+            This project investigates how different types of evidence affect
+            the factual reliability of large language model answers. Using
+            questions from SQuAD 1.1, the study compares answers generated
+            without evidence against answers generated with relevant,
+            irrelevant, or conflicting information. The planned evaluation
+            examines answer accuracy, whether answers are supported by the
+            available evidence, and how models respond to contradictions.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Trustworthy AI</span>
+            <span class="tag">Large Language Models</span>
+            <span class="tag">Experimental Design</span>
+            <span class="tag">Python</span>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="work-meta">
+            <span>Graduate Research · 2026</span>
+            <span class="status">In progress</span>
+          </div>
+
+          <h3>Using AI-Generated Images to Facilitate Social Connection</h3>
+
+          <p>
+            This project investigates whether AI-generated images can help
+            strangers find common ground and start conversations. The
+            experimental prototype uses participant survey responses to
+            generate personalized visual artifacts that another participant
+            interprets. The study aims to evaluate participants' enjoyment,
+            perceived social connection, and willingness to interact again.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Human-AI Interaction</span>
+            <span class="tag">Social Computing</span>
+            <span class="tag">Generative AI</span>
+            <span class="tag">Study Design</span>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="work-meta">
+            <span>Senior Capstone · 2021</span>
+            <span>Computer Security</span>
+          </div>
+
+          <h3>Addressing PCR Fragility in TPM 2.0 Systems</h3>
+
+          <p>
+            Investigated how changes to a platform's configuration, such as
+            firmware updates, can invalidate TPM 2.0 policies protecting
+            sealed encryption keys. Studied policy mechanisms in the TPM
+            Software Stack and implemented a Policy OR approach in the
+            open-source Kmyth codebase, extending sealing and unsealing
+            functionality to accommodate multiple expected platform states.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Computer Security</span>
+            <span class="tag">C</span>
+            <span class="tag">TPM 2.0</span>
+            <span class="tag">Open Source</span>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="work-meta">
+            <span>Undergraduate Research · 2021</span>
+            <span>Machine Learning</span>
+          </div>
+
+          <h3>Classifying Protein Signal Peptides</h3>
+
+          <p>
+            Evaluated supervised machine-learning algorithms for predicting
+            signal peptides in eukaryotic and archaeal protein sequences.
+            Prepared datasets, trained and tested classifiers using Weka,
+            and compared their performance using Matthews correlation
+            coefficient (MCC).
+          </p>
+
+          <div class="tags">
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Classification</span>
+            <span class="tag">Weka</span>
+            <span class="tag">Bioinformatics</span>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="work-meta">
+            <span>Professional Experience · 2022–2026</span>
+            <span>Software Engineering</span>
+          </div>
+
+          <h3>Associate Software Engineer at Assurant</h3>
+
+          <p>
+            Developed and maintained production web and mobile applications
+            using Ruby on Rails, React, React Native, and TypeScript.
+            Worked on REST and GraphQL APIs, automated testing, code reviews,
+            and technical design. Improved pagination and client-side caching
+            in a high-volume workflow, reducing API requests by approximately
+            2,000-fold.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Ruby on Rails</span>
+            <span class="tag">React</span>
+            <span class="tag">React Native</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">API Design</span>
+            <span class="tag">Testing</span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <h2>Let's connect.</h2>
+          <p>Have a question or an interesting idea?</p>
+        </div>
+
+        <a class="contact-link primary" href="mailto:apysnack@gmail.com">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round"
+               aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <path d="m3 7 9 6 9-6"/>
+          </svg>
+          Get in touch
+        </a>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Alan Pysnack</span>
+
+        <div class="footer-links">
+          <a href="https://github.com/apysnack"
+             target="_blank" rel="noopener noreferrer">
+            <svg class="contact-icon" viewBox="0 0 24 24"
+                 fill="currentColor" aria-hidden="true">
+              <path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.53v-2.04c-3.1.67-3.76-1.32-3.76-1.32-.5-1.29-1.23-1.63-1.23-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.6 1.21 3.23.92.1-.72.39-1.21.71-1.49-2.47-.28-5.07-1.24-5.07-5.5 0-1.22.44-2.21 1.15-2.99-.12-.28-.5-1.42.11-2.95 0 0 .94-.3 3.06 1.14a10.6 10.6 0 0 1 5.57 0c2.12-1.44 3.06-1.14 3.06-1.14.61 1.53.23 2.67.11 2.95.72.78 1.15 1.77 1.15 2.99 0 4.27-2.61 5.21-5.09 5.49.4.35.75 1.02.75 2.06V22c0 .29.2.63.77.52A11.1 11.1 0 0 0 12 .9Z"/>
+            </svg>
+            GitHub
+          </a>
+
+          <a href="https://www.linkedin.com/in/apysnack/"
+             target="_blank" rel="noopener noreferrer">
+            <svg class="contact-icon" viewBox="0 0 24 24"
+                 fill="currentColor" aria-hidden="true">
+              <path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM7.93 18.45H4.97V9h2.96v9.45ZM6.45 7.71a1.72 1.72 0 1 1 0-3.44 1.72 1.72 0 0 1 0 3.44Zm12 10.74H15.5v-4.6c0-1.1-.02-2.51-1.53-2.51-1.54 0-1.78 1.2-1.78 2.43v4.68H9.23V9h2.84v1.29h.04c.4-.75 1.36-1.54 2.8-1.54 3 0 3.54 1.97 3.54 4.53v5.17Z"/>
+            </svg>
+            LinkedIn
+          </a>
+
+          <a href="mailto:apysnack@gmail.com">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2"/>
+              <path d="m3 7 9 6 9-6"/>
+            </svg>
+            Email
+          </a>
+
+          <a href="#home">Back to top ↑</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

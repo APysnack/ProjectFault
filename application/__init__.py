@@ -51,7 +51,11 @@ def create_app(config_class=Config):
 
     @app.before_request
     def resume_only():
-      if not current_user.is_authenticated and request.endpoint != 'ancillary.resume_assignment':
-        return redirect(url_for('ancillary.resume_assignment'))
+        if (
+          not current_user.is_authenticated
+          and request.endpoint != 'ancillary.resume_assignment'
+          and request.endpoint != 'static'
+        ):
+            return redirect(url_for('ancillary.resume_assignment'))
 
     return app

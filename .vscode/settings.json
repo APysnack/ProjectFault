@@ -1,7 +1,13 @@
 {
-  "python.pythonPath": "C:\\Users\\purle\\.virtualenvs\\flaskapp-Pl6CwsGr\\Scripts\\python.exe",
+  "python.defaultInterpreterPath": "${workspaceFolder}/myenv/bin/python",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "ms-python.black-formatter",
   "[python]": {
-    "editor.defaultFormatter": "ms-python.autopep8"
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
   },
-  "python.formatting.provider": "none"
+  "black-formatter.args": [
+    "--line-length",
+    "88"
+  ]
 }

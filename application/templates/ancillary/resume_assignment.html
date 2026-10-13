@@ -164,11 +164,6 @@
       padding: 0;
     }
 
-    .contact-link.icon-only .contact-icon {
-      width: 19px;
-      height: 19px;
-    }
-
     .contact-icon {
       width: 16px;
       height: 16px;
@@ -202,7 +197,7 @@
       aspect-ratio: 4 / 5;
       display: block;
       object-fit: cover;
-      object-position: center;
+      object-position: 50% 25%;
       margin: 0 auto 22px;
       border-radius: 10px;
       background: linear-gradient(145deg, #dceafa, #c5daf3);
@@ -271,35 +266,6 @@
       max-width: 760px;
       margin-bottom: 28px;
       color: var(--muted);
-    }
-
-    .research-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .research-card {
-      padding: 23px;
-      border: 1px solid var(--border);
-      border-radius: 11px;
-      background: var(--surface);
-    }
-
-    .research-card h3 {
-      margin-block: 10px 8px;
-      font-size: 1.12rem;
-    }
-
-    .research-card p {
-      margin-bottom: 0;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .card-icon {
-      color: var(--blue);
-      font-size: 1.45rem;
     }
 
     .work-list { display: grid; gap: 15px; }
@@ -419,27 +385,20 @@
       .container { width: min(100% - 36px, var(--max-width)); }
       .nav { min-height: 68px; }
       .nav-links { gap: 14px; font-size: 0.82rem; }
-
     
-    .hero {
-      padding-block: 52px 44px;
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
+      .hero {
+        padding-block: 52px 44px;
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
 
-    .hero-copy {
-      order: 2;
-    }
-
-    .profile-card {
-      order: 1;
-    }
+      .hero-copy { order: 2; }
+      .profile-card { order: 1; }
 
       h1 { font-size: clamp(2.35rem, 9vw, 3.4rem); }
       .profile-card { max-width: 480px; }
       .profile-photo { aspect-ratio: 16 / 9; }
       .section { padding-block: 44px; }
-      .research-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 440px) {
@@ -480,8 +439,8 @@
 
       <div class="nav-links">
         <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#work">Projects</a>
+        <a href="#research">Graduate Research</a>
+        <a href="#experience">Experience & Projects</a>
         <a href="#contact">Contact</a>
       </div>
     </nav>
@@ -499,20 +458,13 @@
         <p class="hero-subtitle">M.S. Computer Science Student at UMBC</p>
 
         <p>
-          I'm a computer science graduate student at the University of
-          Maryland, Baltimore County, interested in artificial intelligence,
-          human-computer interaction, and the ways technology shapes how
-          people think, communicate, and work.
-        </p>
-
-        <p>
-          My current research explores two questions: how the evidence
-          presented to language models affects the reliability of their
-          answers, and whether AI-generated images can help people build
-          connections through conversation. Before graduate school, I worked
-          as a software engineer. My undergraduate experience included
-          applying machine-learning algorithms to biological data 
-          and developing a solution to a platform-security problem involving TPM 2.0.
+          I am a Master's student in Computer Science at UMBC exploring how artificial 
+          intelligence can mediate and support human communication. Rather than using AI 
+          to replace human interaction, my research focuses on designing generative tools
+          and interactive games to help people build social connections. Prior to graduate 
+          school, I worked for four years as a software engineer at Assurant. My background
+          building web and mobile applications directly informs my current work in developing
+          and deploying interactive research prototypes.
         </p>
 
         <div class="contact-links">
@@ -581,10 +533,9 @@
             CV
           </a>
 
-          <a class="contact-link" href="#work">
-            Projects ↓
+          <a class="contact-link" href="#experience">
+            Experience ↓
           </a>
-
         </div>
       </div>
 
@@ -603,62 +554,53 @@
 
         <div class="profile-label">Research interests</div>
         <div class="interest-list">
-          <span class="interest">Computational Social Science</span>
+          <span class="interest">Human-Computer Interaction</span>
           <span class="interest">Software Systems</span>
           <span class="interest">Trustworthy AI</span>
-          <span class="interest">Human-Computer Interaction</span>
+          <span class="interest">Computational Social Science</span>
         </div>
       </aside>
     </section>
 
+    <!-- Graduate Research Section (Top Priority) -->
     <section class="section" id="research">
       <div class="section-heading">
         <span class="section-marker"></span>
-        <h2>Research Interests</h2>
+        <h2>Graduate Research</h2>
       </div>
 
       <p class="section-intro">
-        I'm interested in how AI systems communicate information, how people
-        decide whether to trust their outputs, and how interactive technologies
-        can support meaningful experiences between people.
-      </p>
-
-      <div class="research-grid">
-        <article class="research-card">
-          <div class="card-icon" aria-hidden="true">◇</div>
-          <h3>Trustworthy AI</h3>
-          <p>
-            Studying the reliability of AI-generated answers, including how
-            supporting evidence, irrelevant information, and conflicting
-            sources influence factual accuracy of the model.
-          </p>
-        </article>
-
-        <article class="research-card">
-          <div class="card-icon" aria-hidden="true">◎</div>
-          <h3>Human-AI Interaction</h3>
-          <p>
-            Exploring how AI can become part of human-centered experiences,
-            particularly tools that encourage conversation, help people
-            discover common ground, and support social connection.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="work">
-      <div class="section-heading">
-        <span class="section-marker"></span>
-        <h2>Research and Projects</h2>
-      </div>
-
-      <p class="section-intro">
-        Research projects, academic work, and software engineering experience
-        spanning artificial intelligence, computer security, and application
-        development.
+        Current graduate research and project work at UMBC.
       </p>
 
       <div class="work-list">
+        <article class="work-card">
+          <div class="work-meta">
+            <span>Graduate Research · 2026</span>
+            <span class="status">In progress</span>
+          </div>
+
+          <h3>Using AI-Generated Images to Facilitate Social Connection</h3>
+
+          <p>
+            This project explores how generative AI can help strangers move 
+            past surface-level small talk and build meaningful connections. 
+            By transforming a participant’s lived experiences into a personalized 
+            visual artifact, the game asks their partner to interpret the image—creating 
+            an indirect mechanism for reciprocal self-disclosure and deeper conversation. 
+            Beyond evaluating initial connection and enjoyment, future work aims to 
+            incorporate adaptive feedback loops, allowing the system to dynamically 
+            tune game parameters (such as humor or vulnerability) to optimize social outcomes.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Human-AI Interaction</span>
+            <span class="tag">AI-Mediated Communication</span>
+            <span class="tag">Generative AI</span>
+            <span class="tag">Adaptive Systems</span>
+          </div>
+        </article>
+
         <article class="work-card">
           <div class="work-meta">
             <span>Graduate Research · 2026</span>
@@ -684,29 +626,45 @@
             <span class="tag">Python</span>
           </div>
         </article>
+      </div>
+    </section>
 
+    <!-- Experience & Past Projects Section -->
+    <section class="section" id="experience">
+      <div class="section-heading">
+        <span class="section-marker"></span>
+        <h2>Experience & Past Projects</h2>
+      </div>
+
+      <p class="section-intro">
+        Professional software engineering background and undergraduate work.
+      </p>
+
+      <div class="work-list">
         <article class="work-card">
           <div class="work-meta">
-            <span>Graduate Research · 2026</span>
-            <span class="status">In progress</span>
+            <span>Professional Experience · 2022–2026</span>
+            <span>Software Engineering</span>
           </div>
 
-          <h3>Using AI-Generated Images to Facilitate Social Connection</h3>
+          <h3>Associate Software Engineer at Assurant</h3>
 
           <p>
-            This project investigates whether AI-generated images can help
-            strangers find common ground and start conversations. The
-            experimental prototype uses participant survey responses to
-            generate personalized visual artifacts that another participant
-            interprets. The study aims to evaluate participants' enjoyment,
-            perceived social connection, and willingness to interact again.
+            Developed and maintained production web and mobile applications
+            using Ruby on Rails, React, React Native, and TypeScript.
+            Worked on REST and GraphQL APIs, automated testing, code reviews,
+            and technical design. Improved pagination and client-side caching
+            in a high-volume workflow, reducing API requests by approximately
+            2,000-fold.
           </p>
 
           <div class="tags">
-            <span class="tag">Human-AI Interaction</span>
-            <span class="tag">Social Computing</span>
-            <span class="tag">Generative AI</span>
-            <span class="tag">Study Design</span>
+            <span class="tag">Ruby on Rails</span>
+            <span class="tag">React</span>
+            <span class="tag">React Native</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">API Design</span>
+            <span class="tag">Testing</span>
           </div>
         </article>
 
@@ -722,9 +680,10 @@
             Investigated how changes to a platform's configuration, such as
             firmware updates, can invalidate TPM 2.0 policies protecting
             sealed encryption keys. Studied policy mechanisms in the TPM
-            Software Stack and implemented a Policy OR approach in the
-            open-source Kmyth codebase, extending sealing and unsealing
-            functionality to accommodate multiple expected platform states.
+            Software Stack and implemented a Policy OR approach in Kmyth,
+            an open-source TPM 2.0 security framework maintained by the National
+            Security Agency, extending sealing functionality to accommodate
+            multiple expected platform states.
           </p>
 
           <div class="tags">
@@ -756,33 +715,6 @@
             <span class="tag">Classification</span>
             <span class="tag">Weka</span>
             <span class="tag">Bioinformatics</span>
-          </div>
-        </article>
-
-        <article class="work-card">
-          <div class="work-meta">
-            <span>Professional Experience · 2022–2026</span>
-            <span>Software Engineering</span>
-          </div>
-
-          <h3>Associate Software Engineer at Assurant</h3>
-
-          <p>
-            Developed and maintained production web and mobile applications
-            using Ruby on Rails, React, React Native, and TypeScript.
-            Worked on REST and GraphQL APIs, automated testing, code reviews,
-            and technical design. Improved pagination and client-side caching
-            in a high-volume workflow, reducing API requests by approximately
-            2,000-fold.
-          </p>
-
-          <div class="tags">
-            <span class="tag">Ruby on Rails</span>
-            <span class="tag">React</span>
-            <span class="tag">React Native</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">API Design</span>
-            <span class="tag">Testing</span>
           </div>
         </article>
       </div>
@@ -826,7 +758,7 @@
              target="_blank" rel="noopener noreferrer">
             <svg class="contact-icon" viewBox="0 0 24 24"
                  fill="currentColor" aria-hidden="true">
-              <path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM7.93 18.45H4.97V9h2.96v9.45ZM6.45 7.71a1.72 1.72 0 1 1 0-3.44 1.72 1.72 0 0 1 0 3.44Zm12 10.74H15.5v-4.6c0-1.1-.02-2.51-1.53-2.51-1.54 0-1.78 1.2-1.78 2.43v4.68H9.23V9h2.84v1.29h.04c.4-.75 1.36-1.54 2.8-1.54 3 0 3.54 1.97 3.54 4.53v5.17Z"/>
+              <path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM7.93 18.45H4.97V9h2.96v9.45slideDuplicate6.45 7.71a1.72 1.72 0 1 1 0-3.44 1.72 1.72 0 0 1 0 3.44Zm12 10.74H15.5v-4.6c0-1.1-.02-2.51-1.53-2.51-1.54 0-1.78 1.2-1.78 2.43v4.68H9.23V9h2.84v1.29h.04c.4-.75 1.36-1.54 2.8-1.54 3 0 3.54 1.97 3.54 4.53v5.17Z"/>
             </svg>
             LinkedIn
           </a>
